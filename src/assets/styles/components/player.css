@@ -6,6 +6,15 @@
   background-color: transparent !important;
 }
 
+.secondary-controls {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  font-size: 15px;
+  font-weight: normal;
+  font-family: var(--bodyfont) !important;
+}
+
 .sqs-widgets-audio-player-content {
   border-radius: 5px;
   background: var(--rainbow);

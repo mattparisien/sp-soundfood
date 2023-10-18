@@ -25,3 +25,7 @@ p a {
 p a:hover {
   opacity: 0.7;
 }
+
+a span {
+  text-decoration: none !important;
+}

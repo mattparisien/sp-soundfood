@@ -1,0 +1,27 @@
+/*************************************************/
+/******************* PARAGRAPH *******************/
+/*************************************************/
+
+p a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--hover);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transform: scaleX(1);
+}
+
+p a:hover::after {
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  animation-fill-mode: forwards;
+}
+
+#block-yui_3_17_2_1_1614646817809_14606 p {
+  margin-bottom: 0 !important;
+}

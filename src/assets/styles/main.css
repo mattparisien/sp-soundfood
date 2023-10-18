@@ -3,6 +3,7 @@
 @import "./anim.css";
 @import "./components/heading.css";
 @import "./components/buttons.css";
+@import "./components/paragraph.css";
 @import "./utilities.css";
 @import "./splash.css";
 @import "./components/header.css";
@@ -52,32 +53,6 @@ a [data-section-id="613f3dfdca6782606ea59b2b"] .section-background {
     flex-direction: column-reverse !important;
   }
 }
-
-a span {
-  text-decoration: none !important;
-}
-
-p a::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: var(--hover);
-  transform-origin: left;
-  transition: transform 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  transform: scaleX(1);
-}
-
-p a:hover::after {
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  animation-fill-mode: forwards;
-}
-
-
 
 #block-yui_3_17_2_1_1620240398140_12639 {
   mask-image: linear-gradient(
@@ -159,9 +134,6 @@ p a:hover::after {
   left: 0;
   z-index: 1;
 }
-#block-yui_3_17_2_1_1614646817809_14606 p {
-  margin-bottom: 0 !important;
-}
 
 #block-yui_3_17_2_1_1605042587191_5998 {
   opacity: 0.3;
@@ -200,9 +172,6 @@ p a:hover::after {
   flex-direction: column !important;
 }
 
-
-
-
 @media (min-width: 1px) and (max-width: 600px) {
   .sqs-slide-wrapper[data-slide-type="popup-overlay"]
     .sqs-slide-container[data-slide-type="popup-overlay"].overlay-mobile-styles-enabled
@@ -210,11 +179,6 @@ p a:hover::after {
     background-image: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/615caf1646f12869adfb0491/1633464087401/newsletter-bg.png) !important;
     background-size: 100% !important;
   }
-}
-
-[data-section-id="615cfb8c987ea77b014ea9e4"] h2,
-[data-section-id="615cfb8c987ea77b014ea9e4"] p {
-  color: var(--background) !important;
 }
 
 #block-yui_3_17_2_1_1633526029577_16774 {
@@ -285,7 +249,6 @@ a::after {
   display: none;
 }
 
-
 .action {
   position: absolute !important;
   top: 50%;
@@ -302,24 +265,9 @@ body {
   position: relative !important;
 }
 
-
-
-
-
 #block-yui_3_17_2_1_1625832099300_15441 {
   display: none !important;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /* BACKGROUND-COLORS */
 
@@ -352,12 +300,6 @@ body {
 }
 
 /* SHARE BUTTONS */
-
-#st-1,
-.st-btn {
-  background-color: transparent !important;
-  border: none !important;
-}
 
 /* ANIMATE TEXT ON SCROLL */
 
@@ -502,9 +444,6 @@ body {
 [data-section-id="5fb87b662cbb3411d980821d"] a {
   transition: 300ms ease !important;
 }
-
-
-
 
 /* WAVELENGTH HOME END */
 
@@ -753,61 +692,7 @@ a[href="https://www.vogue.com/article/women-with-superpowers-wellness-gurus-tasy
   z-index: -999;
 }
 
-/* WAVELENGTH POP UP */
 
-.overlayNewsletterEmail-field {
-  outline: none !important;
-  border: none !important;
-}
-
-#block-yui_3_17_2_1_1609796808909_7912 {
-  font-family: var(--bodyfont);
-}
-
-#block-yui_3_17_2_1_1609796808909_7912 h4 {
-  font-size: 25px;
-  box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.2) !important;
-  width: 150px;
-  padding: 10px;
-  transition: 300ms ease;
-
-  border-radius: 5px;
-}
-
-#block-yui_3_17_2_1_1609796808909_7912 h4:hover {
-  color: var(--hover) !important;
-}
-
-#block-yui_3_17_2_1_1609796808909_7912 {
-  display: flex;
-  justify-content: center;
-}
-
-#show-notes {
-  width: 100% !important;
-}
-
-#block-71168e93bd7b7500a037 H1 {
-  font-size: 8vw !important;
-}
-
-#block-71168e93bd7b7500a037 p {
-  line-height: 1.6rem;
-  font-size: 20px;
-}
-
-#block-yui_3_17_2_1_1609766473766_5158 p {
-  line-height: 1rem;
-}
-
-.secondary-controls {
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
-  font-size: 15px;
-  font-weight: normal;
-  font-family: var(--bodyfont) !important;
-}
 
 [data-section-id="5ff498d90d5ed170ab3fdd9d"] h2,
 [data-section-id="5ff498d90d5ed170ab3fdd9d"] p {
