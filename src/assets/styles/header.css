@@ -1,0 +1,79 @@
+/*************************************************/
+/******************** HEADER ********************/
+/*************************************************/
+
+#header.is-initial-transparent .header-dropshadow {
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+#header.is-initial-transparent {
+  background: transparent;
+}
+
+#header.is-initial-transparent .header-title-logo a img:nth-child(1) {
+  opacity: 1;
+}
+
+#header {
+  background-color: var(--siteBackgroundColor);
+  transition: background 200ms ease;
+}
+
+#header .header-title-logo a img:nth-child(1) {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+#header.is-initial-transparent a {
+  color: var(--siteBackgroundColor);
+}
+
+#header.is-initial-transparent .top-bun,
+#header.is-initial-transparent .bottom-bun,
+#header.is-initial-transparent .patty {
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.header-title-logo {
+  background-image: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5fab1381f50c1a71c9cae6ec/1605047171482/soundfood-web-logo.png) !important;
+  opacity: 1 !important;
+  padding-right: 0 !important;
+}
+
+.header-title-logo a::after {
+  display: none;
+}
+
+.header-menu {
+  background-color: white;
+}
+
+#collection-5fbeee2a645712565425d21e .header-wrapper {
+  display: none;
+}
+
+#collection-5fbeee2a645712565425d21e .header-title-logo {
+  display: none;
+}
+
+.header-nav-item a[href="/wavelength"] {
+  font-weight: bolder;
+  color: var(--hover) !important;
+}
+
+.header-nav-folder-content a {
+  width: 100%;
+  text-align: left;
+  transition: 300ms ease;
+}
+
+.header-nav-folder-content {
+  transition: 300ms ease;
+}
+
+.header-nav-item:nth-of-type(5) {
+  display: none;
+}

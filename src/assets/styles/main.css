@@ -1,75 +1,9 @@
-/* ---- TYPOGRAPHY CONFIG ---- */
-
-@font-face {
-  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/62bb4dea8c1cb75962e6ece1/1656442347014/itc-ronda.woff);
-  font-family: "Ronda Regular";
-}
-
-@font-face {
-  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/63c04cfd5cb63853dde810c6/1673547005866/NeueMontreal_Regular.woff);
-  font-family: "Neue Montreal";
-}
-
-button {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
-
-#header.is-initial-transparent .header-dropshadow {
-  opacity: 0;
-  transition: opacity 200ms ease;
-}
-
-#header.is-initial-transparent {
-  background: transparent;
-}
-
-#header.is-initial-transparent .header-title-logo a img:nth-child(1) {
-  opacity: 1;
-}
-
-#header {
-  background-color: var(--siteBackgroundColor);
-  transition: background 200ms ease;
-}
-
-#header .header-title-logo a img:nth-child(1) {
-  position: absolute;
-  opacity: 0;
-  transition: opacity 200ms ease;
-}
-
-#header.is-initial-transparent a {
-  color: var(--siteBackgroundColor);
-}
-
-#header.is-initial-transparent .top-bun,
-#header.is-initial-transparent .bottom-bun,
-#header.is-initial-transparent .patty {
-  opacity: 0;
-  transition: opacity 400ms ease;
-}
-
-:root {
-  --rainbow: linear-gradient(
-    30deg,
-    #8c9fbe,
-    #e1abc9,
-    #edcb83,
-    #a5d6c2,
-    #b1cce0,
-    #8ca4c0
-  );
-
-  --kobebold: "Kobe Bold";
-  --main: #394a51;
-  --faded: #607b83;
-  --hover: #c46f4b;
-  --background: #fdf3e7;
-  --background2: #ffff;
-  --h3font: "ITC Ronda Bold";
-}
+@import "./font.css";
+@import "./config.css";
+@import "./buttons.css";
+@import "./utilities.css";
+@import "./splash.css";
+@import "./header.css";
 
 .sqs-widgets-audio-player.dark {
   background-color: transparent !important;
@@ -103,11 +37,6 @@ button {
 
 .sqs-widgets-audio-player .labels {
   width: 100%;
-}
-
-.header-title-logo {
-  background-image: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5fab1381f50c1a71c9cae6ec/1605047171482/soundfood-web-logo.png) !important;
-  opacity: 1 !important;
 }
 
 #block-yui_3_17_2_1_1630852006224_3091 img {
@@ -151,10 +80,6 @@ button {
   100% {
     background-position: right;
   }
-}
-
-.header-title-logo a::after {
-  display: none;
 }
 
 [data-section-id="613f3dfdca6782606ea59b2b"] .section-background {
@@ -309,13 +234,6 @@ h1 a strong {
   .actions:not(.stacked)
   .input-wrapper:not(.hidden) {
   height: 100% !important;
-}
-
-.sqs-slide-wrapper[data-slide-type="popup-overlay"]
-  .sqs-slide-container[data-slide-type="popup-overlay"].newsletter-layout-style-inline
-  .actions:not(.stacked)
-  button[type="submit"] {
-  border-radius: 5px !important;
 }
 
 [data-form-id="5fab34f57c9a080d164c6bb9"] #overlayNewsletterEmail-field {
@@ -491,18 +409,6 @@ body {
   opacity: 1 !important;
 }
 
-.visible {
-  display: block !important;
-}
-
-.appear {
-  display: block !important;
-}
-
-.reveal {
-  visibility: visible;
-}
-
 /* Global Styles */
 
 h1,
@@ -574,138 +480,6 @@ p a:hover {
 
 .blog-basic-grid .collection-content-wrapper {
   background-color: white !important;
-}
-
-/*** SPLASH PAGE  ***/
-
-#collection-5faafe9106fbfc7f40d810f2 .section-background {
-  background-color: #f9f5f2;
-}
-
-.splash-logo {
-  width: 400px;
-  animation: fade-in 1s ease;
-  animation-delay: 200ms;
-  animation-fill-mode: forwards;
-  opacity: 0;
-}
-
-.splash-tagline {
-  text-align: center;
-  font-family: "Voyage Regular";
-  animation: fade-in 1s ease;
-  animation-delay: 500ms;
-  opacity: 0;
-  animation-fill-mode: forwards;
-}
-
-.sqs-block-horizontalrule hr {
-  animation: reveal 1s ease;
-  animation-delay: 700ms;
-  animation-fill-mode: forwards;
-  opacity: 0;
-}
-
-.splash-tease-latest {
-  text-align: center;
-  font-family: "Ogg";
-  animation: fade-in 1s ease;
-  animation-delay: 800ms;
-  animation-fill-mode: forwards;
-  opacity: 0;
-  font-size: 2rem !important;
-}
-
-.splash-tease-podcast-buttons {
-  display: flex;
-  justify-content: center;
-}
-
-.splash-tease-apple-podcasts,
-.splash-tease-spotify {
-  margin: 0 20px;
-}
-
-@keyframes fade-in {
-  0% {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 100%;
-  }
-}
-
-@keyframes reveal {
-  0% {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  100% {
-    opacity: 100%;
-    transform: scaleX(1);
-  }
-}
-
-@media (max-width: 700px) {
-  .splash-tagline {
-    font-size: 2rem;
-  }
-  .splash-tease-latest {
-    font-size: 2rem !important;
-  }
-
-  .splash-tune-in {
-    font-size: 20px;
-  }
-}
-
-iframe {
-  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
-}
-
-@media (max-width: 640px) {
-  .splash-tease-podcast-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-#sqs-slash-page-header {
-  font-family: "ITC Ronda Bold" !important;
-  text-transform: uppercase !important;
-}
-
-#block-yui_3_17_2_1_1605042587191_5998 hr {
-  background-image: linear-gradient(to right, red, orange, yellow, green, blue);
-}
-
-::placeholder {
-  transform: translate3d(0, 2px, 10px);
-  font-size: 18px;
-}
-
-.splash-download-final-link::after {
-  content: "";
-  position: absolute;
-  height: 2px;
-  width: 100%;
-  background-color: #cb7849;
-  left: 0;
-  bottom: 0;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 250ms ease;
-}
-
-.splash-download-final-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-#block-yui_3_17_2_1_1605328820387_16558 {
-  -webkit-appearance: none;
 }
 
 /* HEADER */
@@ -984,10 +758,6 @@ a[href="/join"]:hover {
   font-size: 20px !important;
 }
 
-#collection-5fbeee2a645712565425d21e .header-wrapper {
-  display: none;
-}
-
 a[href="/join-wavelength"] {
   font-weight: bolder;
 }
@@ -1005,12 +775,6 @@ a[href="/join-wavelength"] {
 
 #block-yui_3_17_2_1_1609463317014_15596 :focus {
   outline: none !important;
-}
-
-/* FAQ DISSAPEAR */
-
-#collection-5fbeee2a645712565425d21e .header-title-logo {
-  display: none;
 }
 
 /* INSTAGRAM SLIDER SECTION */
@@ -1063,13 +827,6 @@ input:focus {
   margin: 0 !important;
   display: inline-block;
 }
-/*
-  .header-announcement-bar-wrapper {
-    display: flex !important;
-    justify-content: space-between;
-  }
-  
-  */
 
 #loupe {
   transition: 300ms ease;
@@ -1082,10 +839,6 @@ input:focus {
 
 .search {
   background-color: var(--background) !important;
-}
-
-.header-title-logo {
-  padding-right: 0 !important;
 }
 
 .x {
@@ -1309,34 +1062,8 @@ a[href="https://www.soundfood.space/about-us/#nitsa-citrine"]
   text-transform: uppercase;
 }
 
-.header-nav-item a[href="/wavelength"] {
-  font-weight: bolder;
-  color: var(--hover) !important;
-}
 
-.header-nav-folder-content a {
-  width: 100%;
-  text-align: left;
-  transition: 300ms ease;
-}
 
-.header-nav-folder-content {
-  transition: 300ms ease;
-}
-
-/* TEMP REMOVE SEARCH */
-
-#block-yui_3_17_2_1_1609641909030_25123 {
-  display: none;
-}
-
-.header {
-  z-index: 999 !important;
-}
-
-#email-yui_3_17_2_1_1561060152221_28009-field {
-  z-index: -999 !important;
-}
 
 /* INSTA REMOVE BOTTOM ROW */
 
@@ -1383,54 +1110,12 @@ a[href="https://www.soundfood.space/about-us/#nitsa-citrine"]
   font-size: 23px !important;
 }
 
-.header-nav a[href="/sign-up"] {
-  font-weight: bolder;
-  color: var(--hover) !important;
-}
 
-.header-nav a[href="/sign-up"]:hover {
-  opacity: 0.7 !important;
-}
 
-/* SLIDESHOW REEL OF WAVELENGTH ON HOME*/
 
-[data-section-id="5ff8735f2e7b424c2aaf61fa"] h1 {
-  color: black;
-}
 
-.gallery-caption-content a {
-  font-family: "expressa bold" !important;
-  text-transform: uppercase !important;
-  color: var(--faded) !important;
-  line-height: 3rem !important;
-}
 
-.header-nav-item a {
-  font-family: var(--bodyfont) !important;
-}
 
-/* HIDE WAVELENGTH LINKS O SOUNDFOOD DIVISION */
-
-/*HIDE "JOIN" */
-.header-nav-item:nth-of-type(8) {
-  display: none !important;
-}
-
-.header-nav-item:nth-of-type(7) {
-  display: none !important;
-}
-
-#collection-5ff77772d96e7c4b0f195366 .header-nav-item:nth-of-type(7) {
-  display: block !important;
-}
-
-.header-nav-item:nth-of-type(4) {
-  background-color: none !important;
-}
-
-.user-accounts-text-link {
-  color: var(--background) !important;
-}
 
 /* OFFSET SMOOTH SCROLLING SO THAT IT SCROLLS TO EXACT SPOT */
 
@@ -3180,18 +2865,6 @@ body section:nth-child(1) .section-background {
 #introScreen.is-off {
   opacity: 0;
   pointer-events: none;
-}
-
-/*** Donate button ***/
-.header-actions-action a {
-  background-color: var(--primaryButtonBackgroundColor) !important;
-  padding: 0.5rem 1rem !important;
-  color: var(--siteBackgroundColor) !important;
-  font-family: "Neue Montreal" !important;
-  font-weight: 600 !important;
-  position: relative;
-  overflow: hidden;
-  transition: 300ms ease !important;
 }
 
 .header-menu {

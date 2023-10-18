@@ -1,0 +1,13 @@
+/*************************************************/
+/******************** FONT ********************/
+/*************************************************/
+
+@font-face {
+  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/62bb4dea8c1cb75962e6ece1/1656442347014/itc-ronda.woff);
+  font-family: "Ronda Regular";
+}
+
+@font-face {
+  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/63c04cfd5cb63853dde810c6/1673547005866/NeueMontreal_Regular.woff);
+  font-family: "Neue Montreal";
+}

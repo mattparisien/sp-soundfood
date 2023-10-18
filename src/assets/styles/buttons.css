@@ -1,0 +1,26 @@
+/*************************************************/
+/******************** BUTTONS ********************/
+/*************************************************/
+
+button {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/*** Donate button ***/
+.header-actions-action a {
+  background-color: var(--primaryButtonBackgroundColor) !important;
+  padding: 0.5rem 1rem !important;
+  color: var(--siteBackgroundColor) !important;
+  font-family: "Neue Montreal" !important;
+  font-weight: 600 !important;
+  position: relative;
+  overflow: hidden;
+  transition: 300ms ease !important;
+}
+
+.splash-tease-podcast-buttons {
+  display: flex;
+  justify-content: center;
+}

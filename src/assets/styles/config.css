@@ -1,0 +1,23 @@
+/*************************************************/
+/******************** CONFIG ********************/
+/*************************************************/
+
+:root {
+  --rainbow: linear-gradient(
+    30deg,
+    #8c9fbe,
+    #e1abc9,
+    #edcb83,
+    #a5d6c2,
+    #b1cce0,
+    #8ca4c0
+  );
+
+  --kobebold: "Kobe Bold";
+  --main: #394a51;
+  --faded: #607b83;
+  --hover: #c46f4b;
+  --background: #fdf3e7;
+  --background2: #ffff;
+  --h3font: "ITC Ronda Bold";
+}
