@@ -51,6 +51,10 @@
   background-color: white;
 }
 
+.sqs-slash-page-header {
+  color: var(--background) !important;
+}
+
 #collection-5fbeee2a645712565425d21e .header-wrapper {
   display: none;
 }
@@ -76,4 +80,12 @@
 
 .header-nav-item:nth-of-type(5) {
   display: none;
+}
+
+.header-announcement-bar-wrapper.is-fill .header-logo-dark {
+  opacity: 1 !important;
+}
+
+.header-nav-item a {
+  font-size: 1rem;
 }

@@ -1,0 +1,55 @@
+/*************************************************/
+/******************** ANIM ***********************/
+/*************************************************/
+
+@keyframes animate-glare {
+  0% {
+    bottom: 300px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+
+@keyframes rainbow-anim {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+@keyframes animateBg {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes animateRainbow {
+  100% {
+    background-position: right;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 100%;
+  }
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  100% {
+    opacity: 100%;
+    transform: scaleX(1);
+  }
+}

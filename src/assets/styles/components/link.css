@@ -1,0 +1,27 @@
+/*************************************************/
+/******************** LINK ********************/
+/*************************************************/
+
+a {
+  transition: 300ms ease;
+}
+
+a:hover {
+  opacity: 0.6;
+}
+
+.full-show-notes-link {
+  color: #aaa !important;
+  transition: 300ms ease;
+  opacity: 1 !important;
+}
+
+p a {
+  transition: 300ms ease;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+p a:hover {
+  opacity: 0.7;
+}

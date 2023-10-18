@@ -1,43 +1,13 @@
 @import "./font.css";
 @import "./config.css";
-@import "./buttons.css";
+@import "./anim.css";
+@import "./components/heading.css";
+@import "./components/buttons.css";
 @import "./utilities.css";
 @import "./splash.css";
-@import "./header.css";
-
-.sqs-widgets-audio-player.dark {
-  background-color: transparent !important;
-}
-
-.sqs-widgets-audio-player-content {
-  border-radius: 5px;
-  background: var(--rainbow);
-
-  background-size: 250% 250% !important;
-  animation: animate-this 15s linear infinite alternate !important;
-  -webkit-animation: animate-this 20s infinite alternate;
-  display: flex;
-  justify-content: center;
-
-  align-items: center;
-  box-shadow: 0 0px 25px 0 rgba(0, 0, 0, 0.3);
-}
-
-@media screen and (max-width: 600px) {
-  .sqs-widgets-audio-player.dark {
-    height: 20rem !important;
-  }
-}
-
-@media screen and (min-width: 600px) {
-  .sqs-widgets-audio-player.dark {
-    height: 250px !important;
-  }
-}
-
-.sqs-widgets-audio-player .labels {
-  width: 100%;
-}
+@import "./components/header.css";
+@import "./components/player.css";
+@import "./components/link.css";
 
 #block-yui_3_17_2_1_1630852006224_3091 img {
   position: absolute;
@@ -45,15 +15,6 @@
   opacity: 0.5;
   animation: animate-glare 10s ease;
   animation-direction: infinite alternate;
-}
-
-@keyframes animate-glare {
-  0% {
-    bottom: 300px;
-  }
-  100% {
-    bottom: 0px;
-  }
 }
 
 .grid-item:nth-of-type(3) {
@@ -73,16 +34,7 @@
   opacity: 1 !important;
 }
 
-@keyframes animate-this {
-  0% {
-    background-position: left;
-  }
-  100% {
-    background-position: right;
-  }
-}
-
-[data-section-id="613f3dfdca6782606ea59b2b"] .section-background {
+a [data-section-id="613f3dfdca6782606ea59b2b"] .section-background {
   filter: blur(20px);
 }
 
@@ -125,9 +77,7 @@ p a:hover::after {
   animation-fill-mode: forwards;
 }
 
-h1 a strong {
-  white-space: nowrap !important;
-}
+
 
 #block-yui_3_17_2_1_1620240398140_12639 {
   mask-image: linear-gradient(
@@ -250,16 +200,8 @@ h1 a strong {
   flex-direction: column !important;
 }
 
-.sqs-slice-group h1 {
-  color: var(--background) !important;
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
 
-.sqs-slice-group p {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
+
 
 @media (min-width: 1px) and (max-width: 600px) {
   .sqs-slide-wrapper[data-slide-type="popup-overlay"]
@@ -294,17 +236,8 @@ a::after {
   display: none;
 }
 
-.is-showing {
-  opacity: 1 !important;
-}
-
 [data-section-id="6145d3ee35d33358f76c62ba"] {
   display: none !important;
-}
-
-.is-scaling {
-  transition: transform 1000ms ease;
-  transform: translateY(0%) !important;
 }
 
 [data-section-id="5fff20e77f5f772e3946a425"] {
@@ -352,10 +285,6 @@ a::after {
   display: none;
 }
 
-#block-yui_3_17_2_1_1611341767502_13829 h2,
-#block-yui_3_17_2_1_1611341767502_13829 h1 {
-  margin: 0 !important;
-}
 
 .action {
   position: absolute !important;
@@ -373,108 +302,24 @@ body {
   position: relative !important;
 }
 
-.header-menu {
-  background-color: white;
-}
 
-.sqs-slash-page-header {
-  color: var(--background) !important;
-}
 
-.overlayNewsletterEmail-field {
-  border-radius: 10px !important;
-}
 
-.nested-off {
-  display: none;
-}
-
-.nested-active {
-  display: block;
-}
 
 #block-yui_3_17_2_1_1625832099300_15441 {
   display: none !important;
 }
 
-/* Header Styles */
 
-#block-yui_3_17_2_1_1611615782277_16218 {
-  display: none;
-}
 
-.full-show-notes-link {
-  color: #aaa !important;
-  transition: 300ms ease;
-  opacity: 1 !important;
-}
 
-/* Global Styles */
 
-h1,
-h2 {
-  font-family: "voyage regular" !important;
-}
 
-a {
-  transition: 300ms ease;
-}
 
-a:hover {
-  opacity: 0.6;
-}
 
-p a {
-  transition: 300ms ease;
-  border: none !important;
-  text-decoration: none !important;
-}
 
-p a:hover {
-  opacity: 0.7;
-}
 
-/* FONTS */
 
-@font-face {
-  font-family: "ITC Ronda Bold";
-  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5feb89b6fd974a70ae38e8b2/1609271734881/Ronda+Bold.ttf);
-}
-
-@font-face {
-  font-family: "Kobe Regular";
-  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/6019a4a189dd6d185b1ea436/1612293281876/Kobe1.1-Regular.otf);
-}
-
-@font-face {
-  font-family: "Expressa Regular";
-  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5fbdc083f81c9a2a0c60dffd/1606271108050/Expressa-Regular.ttf);
-}
-
-@font-face {
-  font-family: "Expressa Bold";
-  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5faf10a216947a58feee234f/1605308579100/Expressa-Bold.ttf);
-}
-
-@font-face {
-  font-family: "ITC Ronda Regular";
-  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5fb89fbfc5d58d0b1fb2f972/1605935039349/ITC+Ronda+W01+Regular.ttf);
-}
-
-@font-face {
-  font-family: "Voyage Regular";
-  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5fab25c3ac99946fb7ac8104/1605051844488/Voyage-Regular.otf);
-}
-
-@font-face {
-  font-family: "Ogg";
-  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5fab0155e37d572d9ab299df/1605042517860/Ogg+Roman+%281%29.ttf);
-}
-
-@font-face {
-  font-family: "Neue Montreal Regular";
-  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5fab035a06fbfc7f40d95921/1605043034413/NeueMontreal-Regular.otf);
-}
 
 /* BACKGROUND-COLORS */
 
@@ -658,49 +503,8 @@ p a:hover {
   transition: 300ms ease !important;
 }
 
-/* WAVELENGTH HOME BEGIN */
 
-#collection-5fbeee2a645712565425d21e
-  [data-section-id="5fbeef613c02f22b9df89df7"]
-  .content-wrapper
-  h1 {
-  font-size: 60px;
-  font-family: "Voyage";
-}
 
-#collection-5fbeee2a645712565425d21e
-  [data-section-id="5fbeef613c02f22b9df89df7"]
-  .content-wrapper
-  h4 {
-  font-family: "ITC Ronda Bold";
-  letter-spacing: -3px;
-}
-
-[data-section-id="5fbeef613c02f22b9df89df7"] h1,
-[data-section-id="5fbeef613c02f22b9df89df7"] h3,
-[data-section-id="5fbeef613c02f22b9df89df7"] p {
-  color: var(--background);
-}
-
-#block-837f71d8fa310e669c51,
-#block-9ce73b80c343a08fb57b {
-  box-shadow: 0 1vw 3vw rgba(0, 0, 0, 0.2) !important;
-  padding: 30px;
-}
-
-#collection-5fbeee2a645712565425d21e
-  [data-section-id="5fbeef613c02f22b9df89df7"]
-  a {
-  color: var(--faded) !important;
-  font-family: var(--bodyfont);
-  letter-spacing: -1px;
-
-  transition: 300ms ease;
-}
-
-#collection-5fbeee2a645712565425d21e button:hover a {
-  color: var(--hover) !important;
-}
 
 /* WAVELENGTH HOME END */
 
@@ -1062,9 +866,6 @@ a[href="https://www.soundfood.space/about-us/#nitsa-citrine"]
   text-transform: uppercase;
 }
 
-
-
-
 /* INSTA REMOVE BOTTOM ROW */
 
 #email-yui_3_17_2_1_1561060152221_28009-field {
@@ -1109,13 +910,6 @@ a[href="https://www.soundfood.space/about-us/#nitsa-citrine"]
 #show-notes {
   font-size: 23px !important;
 }
-
-
-
-
-
-
-
 
 /* OFFSET SMOOTH SCROLLING SO THAT IT SCROLLS TO EXACT SPOT */
 
@@ -1228,10 +1022,6 @@ a[href="https://www.soundfood.space/about-us/#nitsa-citrine"]
 .bright-inverse .sqs-block-horizontalrule hr {
   background-color: #c4bcb5 !important;
   height: 1px;
-}
-
-.header-nav-item:nth-of-type(5) {
-  display: none;
 }
 
 #block-yui_3_17_2_1_1611322950524_10202 .summary-heading span {
@@ -2055,7 +1845,7 @@ h1 strong {
   background: var(--rainbow);
   background-blend-mode: multiply !important;
   background-size: 200% !important;
-  animation: animate-this 10s infinite alternate !important;
+  animation: rainbow-anim 10s infinite alternate !important;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -2148,7 +1938,7 @@ h1 strong {
     #b698af
   );
   background-size: 200% !important;
-  animation: animate-this 10s infinite alternate !important;
+  animation: rainbow-anim 10s infinite alternate !important;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent !important;
@@ -2287,7 +2077,7 @@ h1 strong {
     #b698af
   );
   background-size: 200% !important;
-  animation: animate-this 10s infinite alternate !important;
+  animation: rainbow-anim 10s infinite alternate !important;
 }
 
 #myVideo {
@@ -2521,12 +2311,6 @@ a strong em {
   }
 }
 
-@keyframes animateBg {
-  100% {
-    transform: translateX(100%);
-  }
-}
-
 header .white-bold .sqs-block-button-element,
 .white-bold .image-button a,
 .white-bold .header-actions .btn,
@@ -2696,12 +2480,6 @@ h2 a {
   background-color: white;
 }
 
-@keyframes animateRainbow {
-  100% {
-    background-position: right;
-  }
-}
-
 @media screen and (max-width: 600px) {
   .subscribe-bar-links {
     display: none;
@@ -2749,14 +2527,6 @@ h2 a {
 h1 strong,
 h2 strong {
   letter-spacing: 0.1em;
-}
-
-.header-nav-item a {
-  font-size: 1rem;
-}
-
-.header-announcement-bar-wrapper.is-fill .header-logo-dark {
-  opacity: 1 !important;
 }
 
 [data-section-id="62bb56d9ba93cc3e0565a3a4"] {

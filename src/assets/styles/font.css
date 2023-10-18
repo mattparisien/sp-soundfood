@@ -8,6 +8,26 @@
 }
 
 @font-face {
-  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/63c04cfd5cb63853dde810c6/1673547005866/NeueMontreal_Regular.woff);
-  font-family: "Neue Montreal";
+  font-family: "ITC Ronda Bold";
+  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5feb89b6fd974a70ae38e8b2/1609271734881/Ronda+Bold.ttf);
+}
+
+@font-face {
+  font-family: "Expressa Regular";
+  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5fbdc083f81c9a2a0c60dffd/1606271108050/Expressa-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Expressa Bold";
+  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5faf10a216947a58feee234f/1605308579100/Expressa-Bold.ttf);
+}
+
+@font-face {
+  font-family: "ITC Ronda Regular";
+  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5fb89fbfc5d58d0b1fb2f972/1605935039349/ITC+Ronda+W01+Regular.ttf);
+}
+
+@font-face {
+  font-family: "Voyage Regular";
+  src: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5fab25c3ac99946fb7ac8104/1605051844488/Voyage-Regular.otf);
 }

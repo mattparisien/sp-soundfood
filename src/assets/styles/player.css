@@ -1,0 +1,36 @@
+/*************************************************/
+/******************** PLAYER ********************/
+/*************************************************/
+
+.sqs-widgets-audio-player.dark {
+  background-color: transparent !important;
+}
+
+.sqs-widgets-audio-player-content {
+  border-radius: 5px;
+  background: var(--rainbow);
+  background-size: 250% 250% !important;
+  animation: rainbow-anim 15s linear infinite alternate !important;
+  -webkit-animation: rainbow-anim 20s infinite alternate;
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+  box-shadow: 0 0px 25px 0 rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 600px) {
+  .sqs-widgets-audio-player.dark {
+    height: 20rem !important;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .sqs-widgets-audio-player.dark {
+    height: 250px !important;
+  }
+}
+
+.sqs-widgets-audio-player .labels {
+  width: 100%;
+}

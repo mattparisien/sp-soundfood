@@ -24,3 +24,9 @@ button {
   display: flex;
   justify-content: center;
 }
+
+#st-1,
+.st-btn {
+  background-color: transparent !important;
+  border: none !important;
+}

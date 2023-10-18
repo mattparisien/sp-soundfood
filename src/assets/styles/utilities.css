@@ -13,3 +13,20 @@
 .reveal {
   visibility: visible;
 }
+
+.is-showing {
+  opacity: 1 !important;
+}
+
+.is-scaling {
+  transition: transform 1000ms ease;
+  transform: translateY(0%) !important;
+}
+
+.nested-off {
+  display: none;
+}
+
+.nested-active {
+  display: block;
+}
