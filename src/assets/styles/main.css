@@ -1502,134 +1502,12 @@ a[href="https://www.soundfood.space/about-us/#nitsa-citrine"]
   box-shadow: none !important;
 }
 
-/* STYLE MEGA MENU */
-
-[data-section-id="600867c04e1a55641df4e4f0"] {
-  display: none;
-}
-
-[data-section-id="6005eecc2a9f891955cd6ea4"] {
-  display: none;
-  transition: 300ms ease !important;
-}
-
-[data-section-id="6005eecc2a9f891955cd6ea4"]:hover {
-  display: flex !important;
-}
-
-[data-section-id="600608202b33087440a94a1a"] {
-  display: none;
-}
-
-[data-section-id="600608202b33087440a94a1a"]:hover {
-  display: flex !important;
-}
-
-[data-section-id="600608202b33087440a94a1a"] {
-  display: none !important;
-  transition: 300ms ease !important;
-}
-
-[data-section-id="600608202b33087440a94a1a"]:hover {
-  display: flex !important;
-}
-
-[data-section-id="600608202b33087440a94a1a"] {
-  display: none !important;
-  transition: 300ms ease !important;
-}
-
-[data-section-id="600608202b33087440a94a1a"]:hover {
-  display: flex !important;
-}
-
-[data-section-id="600614f701b3607c2340a207"] {
-  display: none;
-}
-
-[data-section-id="600614f701b3607c2340a207"] .content-wrapper,
-[data-section-id="600614f701b3607c2340a207"] .section-background {
-  background-color: var(--background);
-}
-
-[data-section-id="600614f701b3607c2340a207"]:hover {
-  display: flex !important;
-}
-
-[data-section-id="60072dbd261f74523e90a9a0"] {
-  display: none;
-}
-
-[data-section-id="60072dbd261f74523e90a9a0"] .content-wrapper {
-  background-color: var(--background);
-}
-
-[data-section-id="60072dbd261f74523e90a9a0"]:hover {
-  display: flex !important;
-}
-
-.addMegaMenu {
-  display: flex !important;
-}
-
-/*
-  
-  .header-nav {
-    height: 60px !important;
-    display: flex !important;
-    justify-content: flex-end !important;
-    
-  }
-  
-  */
-
-/* REMOVE WAVELENGTH LINKS*/
-
-.header-nav-item:nth-of-type(9),
-.header-nav-item:nth-of-type(10),
-.header-nav-item:nth-of-type(11),
-.header-nav-item:nth-of-type(12) {
-  display: none;
-}
-
-/* CHANGE LOGO TO WAVELENGTH */
-
-#collection-5ff77772d96e7c4b0f195366 .header-title-logo {
-  height: 60px;
-  width: 300px !important;
-  background-image: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/5ffc7562c47bbb3c5eaf10a6/1610380642579/soundfood-wavelength-logo-09.png);
-  background-position: left;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.wavelength .header-title-logo {
-  height: 60px;
-  width: 200px !important;
-  background-image: url(https://static1.squarespace.com/static/5faafe6bd14f953d9205c484/t/601869979881486731ed930c/1612212632213/wavelength-logo-second-draft-04.png);
-  background-position: left;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-[data-section-id="60062bb31c6cfa0180f3db6f"] {
-  margin-bottom: -150px;
-  z-index: 1;
-}
-
 .gallery-caption-wrapper p {
   font-family: "voyage regular" !important;
   color: var(--faded);
   font-size: 6vh !important;
   line-height: 1rem !important;
 }
-
-/*
-  .header-nav-wrapper {
-    display: flex !important;
-    align-items: center;
-  }
-  
-  */
 
 #block-c9a12c2b653fe697938b input,
 #block-c9a12c2b653fe697938b textarea {
@@ -1667,130 +1545,9 @@ a[href="https://www.soundfood.space/about-us/#nitsa-citrine"]
   height: 1px;
 }
 
-/* EPISODE ARCHIVE PAGE */
-
-.blog-side-by-side h1 {
-  font-family: "Expressa bold" !important;
-}
-
-.blog-side-by-side p {
-  font-family: "voyage regular" !important;
-}
-
-#block-yui_3_17_2_1_1611243489353_6472 .archive-group-name-link {
-  font-family: var(--bodyfont);
-  font-weight: bolder;
-}
-
-#block-yui_3_17_2_1_1611243489353_6472 .archive-item-link {
-  font-family: "expressa regular";
-}
-#block-yui_3_17_2_1_1611243489353_6472 .archive-item-date-after {
-  font-family: var(--bodyfont);
-}
-
-#block-yui_3_17_2_1_1610630704284_7314 {
-  margin-left: 0;
-}
-
-.archive-group-list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-}
-
-/* STYLE UNIVERSAL FILTER */
-.items-count-inner {
-  font-family: var(--bodyfont);
-}
-
-.items {
-  display: none !important;
-}
-
-.customFiltersContainer label {
-  font-family: var(--bodyfont);
-}
-
-.customFiltersContainer {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between !important;
-
-  width: 100%;
-}
-
-.custom-items-search .search-wrap input {
-  border: none !important;
-  border-bottom: 1px solid var(--faded) !important;
-}
-.archive-group-list {
-  background-color: var(--background) !important;
-}
-
-#page-section-6009b3fdcc29ce2d51b1ba8c h1 {
-  font-size: calc((4.3 - 1) * 2vw + 1rem);
-}
-
-@media screen and (min-width: 1200px) {
-  #page-section-6009b3fdcc29ce2d51b1ba8c h1 {
-    font-size: 85px !important;
-  }
-}
-
 .header-nav-item:nth-of-type(5) {
   display: none;
 }
-
-a {
-  position: relative;
-}
-
-/*
-  @media screen and (max-width: 405px)
-  {
-    .header-title-logo{
-      width: 200px !important;
-    }
-  }
-  
-  .blog-meta-item {
-    display: none;
-  }
-  
-  article .thumb-image {
-    padding: 0px 10px;
-  }
-  
-  article .sqs-gallery-design-strip{
-    overflow: visible !important;
-  height: 20vw;
-  margin-left: -24%;
-    margin-right: -24% !important;
-  
-  }
-  
-  
-  
-  
-  article .sqs-block-gallery {
-      margin-bottom: -30%;
-    }
-  
-  @media screen and (max-width: 800px) {
-    article .sqs-gallery-design-strip{
-    height: 30vw;
-  
-  }
-    
-  article .sqs-block-gallery {
-      margin-bottom: -25%;
-    }
-    
-  
-  }
-  */
 
 #block-yui_3_17_2_1_1611322950524_10202 .summary-heading span {
   font-family: var(--bodyfont);
@@ -1847,20 +1604,6 @@ a {
   flex-direction: column-reverse;
 }
 
-/*
-  .header-nav-list {
-    height: 100%;
-    align-items: center;
-  }
-  
-  .header-nav-item {
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
-  
-  */
-
 .gallery-caption-content {
   color: var(--hover) !important;
 }
@@ -1873,12 +1616,6 @@ a {
 .sqs-block-markdown .sqs-block-content:before {
   text-align: center;
   width: 100%;
-}
-
-#block-yui_3_17_2_1_1611361049794_13819 h3 {
-  font-family: "expressa regular" !important;
-  font-weight: lighter;
-  font-size: 9vw;
 }
 
 #block-yui_3_17_2_1_1611361049794_13819 .section-background {
@@ -2040,14 +1777,6 @@ article .sqs-gallery-design-strip {
 .c-lightbox__content-inner {
   background-color: var(--background) !important;
 }
-
-/*
-  
-  p:not(.sqsrte-large):not(.sqsrte-small):not(.gallery-caption-content){
-    font-family: var(--bodyfont2) !important;
-  }
-  
-  */
 
 .header-nav-item:nth-of-type(14) {
   display: none;
@@ -3352,7 +3081,6 @@ h2 strong {
 body:not(.is-blog-page) section:nth-child(1) {
   padding-top: 0 !important;
 }
-
 
 body section:nth-child(1) .section-background {
   filter: blur(13px);
