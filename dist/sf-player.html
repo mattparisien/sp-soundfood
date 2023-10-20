@@ -44,9 +44,10 @@
       }
     </style>
     <script>
-      console.log(window.name)
-      const frame = Array.from(parent.document.getElementsByTagName("iframe")).filter(x => x.id == "sf-player");
-      console.log(frame);
+      
+      const frame = parent.document.getElementById('sf-player');
+      const episodeID = frame.dataset.episodeId;
+      console.log(frame, episodeID)
       
 
     </script>
