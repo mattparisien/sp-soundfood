@@ -11,7 +11,29 @@ h1 a strong {
   white-space: nowrap !important;
 }
 
+h1 strong,
+h2 strong {
+  letter-spacing: 0.1em;
+}
+
+h2 {
+  color: var(--primaryButtonBackgroundColor) !important;
+}
+
 #block-yui_3_17_2_1_1611341767502_13829 h2,
 #block-yui_3_17_2_1_1611341767502_13829 h1 {
   margin: 0 !important;
+}
+
+h4 em {
+  font-family: "Voyage Regular";
+  font-style: normal;
+}
+
+h3 {
+  font-family: "ITC Ronda Bold" !important;
+  text-transform: uppercase;
+}
+h2 a {
+  font-family: "ITC Ronda Bold";
 }

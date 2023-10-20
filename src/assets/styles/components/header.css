@@ -119,3 +119,20 @@
 .header-nav-item--active a {
   background-image: none !important;
 }
+
+.header-menu {
+  background-color: transparent;
+}
+
+.header-menu-bg {
+  background-color: var(--siteBackgroundColor) !important;
+}
+
+.header-menu * {
+  font-family: "Voyage Regular";
+  font-size: 4rem;
+}
+
+.header-nav-item a:hover {
+  opacity: 0.6 !important;
+}
