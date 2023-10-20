@@ -1,0 +1,68 @@
+:root {
+  --rainbow-color: linear-gradient(
+    30deg,
+    #8c9fbe,
+    #e1abc9,
+    #edcb83,
+    #a5d6c2,
+    #b1cce0,
+    #8ca4c0
+  );
+  --bg-color: #fdf3e7;
+  --shadow: -3px 6px 30px -5px rgba(1, 48, 94, 0.4);
+}
+
+@font-face {
+  src: url("./ITC\ Ronda\ Bold.otf");
+  font-family: "Ronda Bold";
+}
+
+@keyframes rainbow-anim {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.sf-player {
+  width: 100%;
+  height: 20vw;
+  background: blue;
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  background: var(--rainbow);
+  color: var(--bg-color);
+  background-size: 250% 250%;
+
+  animation: rainbow-anim 15s linear infinite alternate;
+  -webkit-animation: rainbow-anim 20s infinite alternate;
+}
+
+.sf-player-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sf-player-title {
+  text-transform: uppercase;
+  font-family: "Ronda Bold";
+  font-size: 2em;
+  padding: 0 3rem;
+  line-height: 1em;
+  text-align: center;
+}
