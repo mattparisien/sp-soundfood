@@ -9,6 +9,7 @@
 @import "./components/header.css";
 @import "./components/player.css";
 @import "./components/link.css";
+@import "./components/summary-block.css";
 
 #block-yui_3_17_2_1_1630852006224_3091 img {
   position: absolute;
