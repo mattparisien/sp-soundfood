@@ -6,6 +6,10 @@
   background-color: transparent !important;
 }
 
+.player .labels .title-wrapper .title {
+  line-height: 1em;
+}
+
 .secondary-controls {
   position: absolute;
   right: 0px;
