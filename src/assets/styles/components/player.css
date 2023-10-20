@@ -54,3 +54,13 @@
 .sqs-widgets-audio-player .labels {
   width: 100%;
 }
+
+.player .action {
+  display: none;
+}
+
+@media (min-width: 1011px) {
+  .player .action {
+    display: block;
+  }
+}
