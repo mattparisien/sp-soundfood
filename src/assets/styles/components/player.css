@@ -29,7 +29,9 @@
   justify-content: center;
 
   align-items: center;
-  box-shadow: 0 0px 25px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow);
+  -webkit-box-shadow: var(--shadow);
+  box-shadow: var(--shadow);
 }
 
 @media (min-width: 1011px) {

@@ -102,11 +102,6 @@ a [data-section-id="613f3dfdca6782606ea59b2b"] .section-background {
   background: transparent !important;
 }
 
-#block-yui_3_17_2_1_1633382269536_11304 {
-  border-radius: 10px;
-  box-shadow: 0 0px 25px 0 rgba(0, 0, 0, 0.1);
-  margin: 10px !important;
-}
 
 #block-yui_3_17_2_1_1633382269536_11304 {
   height: 250px;
@@ -357,13 +352,7 @@ body {
 
 /* MERCURIAL MAIL SECTION HOME */
 
-#email-yui_3_17_2_1_1609168855956_12330-field {
-  box-shadow: none !important;
-}
 
-#email-yui_3_17_2_1_1609168855956_12330-field:focus {
-  outline: none;
-}
 
 [data-section-id="5fd170689a9e5443ac6f60f2"] input[type="text"] {
   font-family: var(--bodyfont);

@@ -1,0 +1,14 @@
+/*************************************************/
+/****************** SHOW NOTES *******************/
+/*************************************************/
+
+.markdown-block + .html-block p.sqsrte-large {
+  font-family: "Ronda Regular";
+  color: var(--hover) !important;
+  font-size: 1.8rem;
+}
+
+.markdown-block + .html-block p.sqsrte-large:first-child {
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  line-height: 1.2em;
+}
