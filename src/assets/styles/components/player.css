@@ -32,6 +32,13 @@
   box-shadow: 0 0px 25px 0 rgba(0, 0, 0, 0.3);
 }
 
+@media (min-width: 1011px) {
+  .labels {
+    padding: 0;
+    margin-left: 60px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .sqs-widgets-audio-player.dark {
     height: 20rem !important;
