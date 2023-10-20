@@ -33,8 +33,8 @@
 }
 
 @media (min-width: 1011px) {
-  .labels {
-    padding: 0;
+  .player .labels {
+    padding: 0px;
     margin-left: 60px;
   }
 }
