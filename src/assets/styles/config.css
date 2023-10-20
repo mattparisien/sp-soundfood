@@ -13,7 +13,8 @@
     #8ca4c0
   );
 
-  --kobebold: "Kobe Bold";
+  --font-sans: "Kobe Regular";
+  --font-sans-bold: "ITC Ronda Bold";
   --main: #394a51;
   --faded: #607b83;
   --hover: #c46f4b;

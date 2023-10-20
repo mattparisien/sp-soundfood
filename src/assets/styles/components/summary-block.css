@@ -1,0 +1,12 @@
+/*************************************************/
+/***************** SUMMARY BLOCK *****************/
+/*************************************************/
+
+.summary-title .summary-title-episode-title {
+  font-family: "Ronda Regular";
+  text-transform: uppercase;
+  font-size: clamp(1.5rem, 3vw, 2rem) !important;
+  line-height: 1em;
+  margin-bottom: 0.2em;
+  display: block;
+}
