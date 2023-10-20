@@ -36,10 +36,12 @@
 } */
 
 .sf-player {
-  width: 100%;
-  height: 20vw;
+  max-width: 750px;
+  height: 300px;
+
+  margin: 0 auto;
   background: blue;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   box-shadow: var(--shadow);
   background: var(--rainbow);
   color: var(--bg-color);
