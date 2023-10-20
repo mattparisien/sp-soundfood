@@ -2150,10 +2150,6 @@ h2 a {
   color: var(--faded) !important;
 }
 
-.header-actions--right a {
-  font-family: "ITC Ronda Bold" !important;
-}
-
 #hero-intro-logo g {
   opacity: 1;
 }
