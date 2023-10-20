@@ -8,6 +8,7 @@
     <title>SF Player</title>
   </head>
   <body>
+    
     <div class="sf-player">
       <div class="sf-player-wrapper">
         <div class="sf-player-title">evolution through integration</div>
@@ -43,8 +44,11 @@
       }
     </style>
     <script>
-      console.log('hi');
-      console.log(window.frameElement);
+      if (window.frameElement) {
+        console.log(window.frameElement);
+        console.log(window.frameElement.dataset.episodeNumber);
+        
+      }
       
 
     </script>
