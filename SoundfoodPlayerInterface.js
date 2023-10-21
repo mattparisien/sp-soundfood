@@ -3,11 +3,13 @@ class SoundfoodPlayerInterface {
     this.els = Array.from(document.querySelectorAll("[data-player-el]")).reduce(
       (a, v) => ({
         ...a,
-        [v.dataset.playerEl]: v,
-        "events": this.getListeners(v.dataset.playerCb),
+        [v.dataset.playerEl]: {
+          ...v,
+          events: this.getListeners(v.dataset.playerCb),
+        },
       })
     );
-    console.log(this.els)
+    console.log(this.els.timeline.events);
     this.els["root"] = document.querySelector('[data-player-el="root"]');
   }
 
