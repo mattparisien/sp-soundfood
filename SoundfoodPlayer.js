@@ -153,8 +153,9 @@ class SoundfoodPlayer {
   }
 
   onTimelineClick(e) {
-      const xPos = e.clientX;
-      console.log(xPos - this.player.els.timeline.getBoundingClientRect().left)
+      
+      const pos = e.clientX - this.player.els.timeline.getBoundingClientRect().left;
+      this.timelineTrackWidth = pos;
   }
 
   initListeners() {
