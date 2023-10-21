@@ -3576,16 +3576,19 @@ class AudioManager {
     this.el = audioEl;
     this.track = track;
     this.onLoadCb = onLoadCb;
+    this.isPlaying = false;
 
     this.init();
   }
 
   play() {
     this.el.play();
+    this.isPlaying = true;
   }
 
   pause() {
     this.el.pause();
+    this.isPlaying = false;
   }
 
   setProgress(time) {
@@ -3631,8 +3634,6 @@ class AudioManager {
 
 class SoundfoodPlayer {
   hasPlayed = false;
-  isPlaying = false;
-  isReady = false;
 
   constructor(title, releaseDate, track) {
     this.track = track;
@@ -3684,7 +3685,7 @@ class SoundfoodPlayer {
       this.player.els.wrapper.classList.add("has-played");
     }
 
-    if (this.isPlaying) {
+    if (this.audio.isPlaying) {
       this.audio.play();
       this.player.els.wrapper.classList.add("is-playing");
       this.player.els.playSvg.style.display = "none";
@@ -3746,7 +3747,7 @@ class SoundfoodPlayer {
   onActionClick() {
     if (!this.hasPlayed) this.hasPlayed = true;
 
-    this.isPlaying = !this.isPlaying;
+    this.audio.isPlaying = !this.audio.isPlaying;
 
     this.toggleUIPlayState();
   }

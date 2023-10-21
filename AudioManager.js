@@ -5,16 +5,19 @@ class AudioManager {
     this.el = audioEl;
     this.track = track;
     this.onLoadCb = onLoadCb;
+    this.isPlaying = false;
 
     this.init();
   }
 
   play() {
     this.el.play();
+    this.isPlaying = true;
   }
 
   pause() {
     this.el.pause();
+    this.isPlaying = false;
   }
 
   setProgress(time) {
