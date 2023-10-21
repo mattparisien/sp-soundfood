@@ -10,15 +10,15 @@ const init = async () => {
 
   const episode = await api.getEpisode(episodeId);
 
-  const { data } = await api.getTrack(episode.episodeUrl);
-console.log(data)
+  const data = await api.getTrack(episode.episodeUrl);
+console.log('the data', data)
 
   if (data) {
     player = await new SoundfoodPlayer(
       episode.trackName,
       episode.releaseDate,
       {
-        Blob: data
+        Blob: data.data
       }
     );
   }
