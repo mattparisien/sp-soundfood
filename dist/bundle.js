@@ -3502,8 +3502,12 @@ class PodcastApi {
     try {
       return await lib_axios.get(this.endpoint, {
         headers: {
-          "Access-Control-Allow-Credentials": true,
           "Access-Control-Allow-Origin": "https://mattparisien.github.io",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods":
+            "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers":
+            "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length",
         },
       });
     } catch (err) {
@@ -3519,7 +3523,7 @@ class PodcastApi {
           "Content-Type": "application/json",
         },
       });
-      
+
       return await data.results.reverse()[episodeNumber + 1];
     } catch (err) {
       console.log(err);
