@@ -3542,8 +3542,9 @@ const init = async () => {
   const api = new PodcastApi_0();
   let player;
 
+  
   var episodeId = parseInt(window.location.search.substring(12));
-
+console.log(episodeId)
   const episode = await api.getEpisode(episodeId);
 
   // const data = await api.getTrack(episode.episodeUrl);
