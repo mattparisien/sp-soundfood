@@ -3570,7 +3570,7 @@ class AudioManager {
 
   initListeners() {
     this.el.addEventListener("loadeddata", (e) => {
-      this.onLoadCb?.(e).bind(this);
+      this.onLoadCb?.(e);
     });
   }
 
@@ -3603,7 +3603,7 @@ class SoundfoodPlayer {
     this.audio = new AudioManager_0(
       document.querySelector(".sf-player-audio"),
       this.track,
-      this.onAudioLoad
+      this.onAudioLoad.bind(this)
     );
 
     this.currTrackTime = 0;

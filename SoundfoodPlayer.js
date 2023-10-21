@@ -14,7 +14,7 @@ class SoundfoodPlayer {
     this.audio = new AudioManager(
       document.querySelector(".sf-player-audio"),
       this.track,
-      this.onAudioLoad
+      this.onAudioLoad.bind(this)
     );
 
     this.currTrackTime = 0;
