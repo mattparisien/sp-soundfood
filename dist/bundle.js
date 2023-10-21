@@ -3502,6 +3502,14 @@ class PodcastApi {
   async getEpisodes() {
     return await lib_axios.get(this.endpoint);
   }
+
+  async getEpisode(episodeNumber) {
+    const {data} = await lib_axios.get(this.endpoint);
+    const episode = await data.results.reverse()[episodeNumber-1];
+    console.log(episode)
+    
+
+  }
 }
 
 /* harmony default export */ const PodcastApi_0 = (PodcastApi);
@@ -3510,13 +3518,16 @@ class PodcastApi {
 
 
 
+
 const init = async () => {
+
+    
     const api = new PodcastApi_0();
     
     var episodeId = window.location.search.substring(12);
 
-    const episodes = await api.getEpisodes();
-    console.log(episodes)
+    const episode = await api.getEpisode(episodeId);
+    console.log(episode)
     
 };
 

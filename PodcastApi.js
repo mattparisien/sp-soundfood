@@ -13,6 +13,14 @@ class PodcastApi {
   async getEpisodes() {
     return await axios.get(this.endpoint);
   }
+
+  async getEpisode(episodeNumber) {
+    const {data} = await axios.get(this.endpoint);
+    const episode = await data.results.reverse()[episodeNumber-1];
+    console.log(episode)
+    
+
+  }
 }
 
 export default PodcastApi;
