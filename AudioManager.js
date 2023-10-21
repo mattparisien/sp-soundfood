@@ -25,11 +25,11 @@ class AudioManager {
   }
 
   getProgress() {
-    return Utils.formatSeconds(this.el.currentTime);
+    return this.el.currentTime;
   }
 
   getDuration() {
-    return Utils.formatSeconds(this.el.duration);
+    return this.el.duration;
   }
 
   getProgressPercent() {

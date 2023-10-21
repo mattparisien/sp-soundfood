@@ -100,7 +100,7 @@ class SoundfoodPlayer {
   }
 
   onAudioLoad() {
-    this.player.els.timeEnd.innerText = this.audio.getDuration();
+    this.player.els.timeEnd.innerText = Utils.formatSeconds(this.audio.getDuration());
   }
 
   onActionClick() {

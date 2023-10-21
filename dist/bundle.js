@@ -3531,43 +3531,6 @@ class PodcastApi {
 
 /* harmony default export */ const PodcastApi_0 = (PodcastApi);
 
-;// CONCATENATED MODULE: ./Utils.js
-class Utils {
-  static formatSeconds(seconds) {
-    return new Date(seconds * 1000).toISOString().slice(11, 19);
-  }
-
-  static formatDate(date) {
-    let dateStr = "";
-
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    const arr = date.substring(0, 10).split("-");
-    const year = arr[0];
-    const month = arr[1];
-    const day = arr[2];
-
-    dateStr += `${monthNames[month - 1]} ${day}, ${year}`;
-
-    return dateStr;
-  }
-}
-
-/* harmony default export */ const Utils_0 = (Utils);
-
 ;// CONCATENATED MODULE: ./AudioManager.js
 
 
@@ -3596,11 +3559,11 @@ class AudioManager {
   }
 
   getProgress() {
-    return Utils_0.formatSeconds(this.el.currentTime);
+    return this.el.currentTime;
   }
 
   getDuration() {
-    return Utils_0.formatSeconds(this.el.duration);
+    return this.el.duration;
   }
 
   getProgressPercent() {
@@ -3660,6 +3623,43 @@ class SoundfoodPlayerInterface {
 }
 
 /* harmony default export */ const SoundfoodPlayerInterface_0 = (SoundfoodPlayerInterface);
+
+;// CONCATENATED MODULE: ./Utils.js
+class Utils {
+  static formatSeconds(seconds) {
+    return new Date(seconds * 1000).toISOString().slice(11, 19);
+  }
+
+  static formatDate(date) {
+    let dateStr = "";
+
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const arr = date.substring(0, 10).split("-");
+    const year = arr[0];
+    const month = arr[1];
+    const day = arr[2];
+
+    dateStr += `${monthNames[month - 1]} ${day}, ${year}`;
+
+    return dateStr;
+  }
+}
+
+/* harmony default export */ const Utils_0 = (Utils);
 
 ;// CONCATENATED MODULE: ./SoundfoodPlayer.js
 
@@ -3764,7 +3764,7 @@ class SoundfoodPlayer {
   }
 
   onAudioLoad() {
-    this.player.els.timeEnd.innerText = this.audio.getDuration();
+    this.player.els.timeEnd.innerText = Utils_0.formatSeconds(this.audio.getDuration());
   }
 
   onActionClick() {
