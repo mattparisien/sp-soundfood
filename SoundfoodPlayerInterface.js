@@ -10,6 +10,7 @@ class SoundfoodPlayerInterface {
       })
     );
   console.log(this.els);
+    this.els["root"] = {};
     this.els["root"].node = document.querySelector('[data-player-el="root"]');
   }
 
