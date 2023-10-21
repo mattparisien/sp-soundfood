@@ -1,24 +1,31 @@
 import "./assets/styles/main.css";
 import PodcastApi from "../PodcastApi.js";
 import SoundfoodPlayer from "../SoundfoodPlayer.js";
+import axios from "axios";
 
 const init = async () => {
-  const api = new PodcastApi();
-  let player;
+  this.endpoint = `https://itunes.apple.com/lookup?id=1539431210&media=podcast&entity=podcastEpisode&limit=100`;
+  axios
+    .get(this.endpoint)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
 
-  var episodeId = parseInt(window.location.search.substring(12));
+  // const api = new PodcastApi();
+  // let player;
 
-  const episode = await api.getEpisode(episodeId);
+  // var episodeId = parseInt(window.location.search.substring(12));
 
-  const data = await api.getTrack(episode.episodeUrl);
+  // const episode = await api.getEpisode(episodeId);
 
-  if (data) {
-    player = await new SoundfoodPlayer(
-      episode.trackName,
-      episode.releaseDate,
-      data.data
-    );
-  }
+  // const data = await api.getTrack(episode.episodeUrl);
+
+  // if (data) {
+  //   player = await new SoundfoodPlayer(
+  //     episode.trackName,
+  //     episode.releaseDate,
+  //     data.data
+  //   );
+  // }
 };
 
 window.addEventListener("load", init);
