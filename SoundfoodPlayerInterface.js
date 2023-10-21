@@ -1,8 +1,7 @@
 class SoundfoodPlayerInterface {
-  constructor(wrapper) {
-    this.root = wrapper;
-    this.title = wrapper.querySelector(".sf-player-title");
-    this.date = wrapper.querySelector(".sf-player-date");
+  constructor() {
+    this.els = Array.from(document.querySelectorAll("[data-player-el]"));
+    console.log(this.els)
   }
 
   setAttributes(title, shortTitle, guest, releaseDate) {

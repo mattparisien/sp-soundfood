@@ -9,14 +9,14 @@
     <script src="./bundle.js"></script>
   </head>
   <body>
-    <div class="sf-player" id="sf-player">
+    <div class="sf-player" id="sf-player" data-player-el="root">
       <div class="sf-player-wrapper">
         <div class="sf-player-text">
           <div class="sf-player-date"></div>
           <div class="sf-player-title">evolution through integration</div>
         </div>
-        <div class="sf-player-controls">
-          <button class="sf-player-playBtn">
+        <div class="sf-player-controls" data-player-el="controls">
+          <button class="sf-player-playBtn" data-player-el="action">
             <svg
               viewBox="0 0 40 40"
               class="sf-player-playBtn--svg"
@@ -30,11 +30,11 @@
             <div class="sf-player-playBtn--circle"></div>
           </button>
           <div class="sf-player-controls--timeStamp">
-            <span class="track-time-current">00:00:00</span><span>/</span
-            ><span class="track-time-end">00:00:00</span>
+            <span class="track-time-current" data-player-el="currTime">00:00:00</span><span>/</span
+            ><span class="track-time-end" data-player-el="duration">00:00:00</span>
           </div>
-          <div class="sf-player-timeline">
-            <div class="track">
+          <div class="sf-player-timeline" data-player-el="timeline">
+            <div class="track" data-player-el="progress">
               <div class="track-inner">
                 <div class="track-bullet"></div>
               </div>

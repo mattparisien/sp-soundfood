@@ -17,9 +17,7 @@ class SoundfoodPlayer {
       this.onAudioLoad.bind(this)
     );
 
-    this.ui = new SoundfoodPlayerInterface(
-      document.getElementById("sf-player")
-    );
+    this.ui = new SoundfoodPlayerInterface();
     this.currTrackTime = 0;
     this.maxTrackTime = 0;
     this.animationFrame = null;
@@ -46,7 +44,12 @@ class SoundfoodPlayer {
 
     this.timelineWidth = this.player.els.timeline.getBoundingClientRect().width;
 
-    this.ui.setAttributes();
+    this.ui.setAttributes(
+      this.title,
+      this.shortTitle,
+      this.guest,
+      this.releaseDate
+    );
     this.initListeners();
   }
 
@@ -92,8 +95,6 @@ class SoundfoodPlayer {
 
     this.animationFrame = requestAnimationFrame(this.initAnimation.bind(this));
   }
-
-
 
   onResize() {
     this.player.els.timeline.getBoundingClientRect().width;
