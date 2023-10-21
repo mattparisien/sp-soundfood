@@ -3548,9 +3548,11 @@ class SoundfoodPlayer {
 
   toggleUIPlayState() {
     if (this.isPlaying) {
+      this.player.els.wrapper.classList.add("is-playing");
       this.player.els.playSvg.style.display = "none";
       this.player.els.pauseSvg.style.display = "block";
     } else {
+      this.player.els.wrapper.classList.remove("is-playing");
       this.player.els.playSvg.style.display = "block";
       this.player.els.pauseSvg.style.display = "none";
     }
@@ -3597,7 +3599,7 @@ class SoundfoodPlayer {
   }
 
   initListeners() {
-    this.player.els.playSvg.addEventListener("click", () => {
+    this.player.els.playBtn.addEventListener("click", () => {
       this.isPlaying = !this.isPlaying;
       this.toggleUIPlayState();
     });
