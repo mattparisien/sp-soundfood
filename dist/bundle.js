@@ -3573,17 +3573,17 @@ class SoundfoodPlayer {
         playBtn: document.querySelector(".sf-player-playBtn"),
         playSvg: document.getElementById("playSvg"),
         pauseSvg: document.getElementById("pauseSvg"),
-        progressLine: document.querySelector(
-          ".sf-player-controls--progressLine"
+        timeline: document.querySelector(
+          ".sf-player-timeline"
         ),
-        progressLineTrack: document.querySelector(
-          ".sf-player-controls--progressLine .track"
+        timelineTrack: document.querySelector(
+          ".sf-player-timeline .track"
         ),
       },
     };
 
-    this.progressLineWidth =
-      this.player.els.progressLine.getBoundingClientRect().width;
+    this.timelineWidth =
+      this.player.els.timeline.getBoundingClientRect().width;
     
 
     this.updateUI();
@@ -3620,7 +3620,7 @@ class SoundfoodPlayer {
 
   updateUIAnimation() {
     this.player.els.timeCurrent.innerText = this.currTrackTime;
-    this.player.els.progressLineTrack.style.width = `${this.progressLineTrackWidth}px`;
+    this.player.els.timelineTrack.style.width = `${this.timelineTrackWidth}px`;
   }
 
   
@@ -3628,7 +3628,7 @@ class SoundfoodPlayer {
     const elapsedPercent = this.getElapsedTimePercentage()
     
     
-    this.progressLineTrackWidth = this.progressLineWidth * elapsedPercent;
+    this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
     this.currTrackTime = this.formatTime(this.player.els.audio.currentTime);
 
     this.updateUIAnimation();
