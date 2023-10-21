@@ -3607,7 +3607,7 @@ class AudioManager {
     const max = this.getDuration();
     const curr = this.getProgress();
 
-    return curr / max * 100;
+    return curr / max;
   }
 
   initListeners() {
@@ -3638,6 +3638,7 @@ class SoundfoodPlayerInterface {
   }
 
   updateTimeline(progressPercent) {
+    console.log(progressPercent)
     const maxWidth = this.els.timeline.getBoundingClientRect().width;
     this.els.progress.style.width = maxWidth * progressPercent + "px";
   }
