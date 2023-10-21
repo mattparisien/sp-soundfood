@@ -1,18 +1,22 @@
 class SoundfoodPlayer {
+  hasPlayed = false;
   isPlaying = false;
   isReady = false;
 
-  constructor(title, releaseDate) {
+  constructor(title, releaseDate, trackData) {
+    this.trackData = trackData;
     this.title = title.split("with")[0].trim();
     this.guest = title.split("with")[1].trim();
     this.shortTitle = this.title.replace(":", "|").split("|")[0].trim();
     this.releaseDate = this.formatDate(releaseDate);
+    this.trackData = trackData;
 
     this.player = {
       els: {
         wrapper: document.getElementById("sf-player"),
         title: document.querySelector(".sf-player-title"),
         date: document.querySelector(".sf-player-date"),
+        audio: document.querySelector(".sf-player-audio"),
         playBtn: document.querySelector(".sf-player-playBtn"),
         playSvg: document.getElementById("playSvg"),
         pauseSvg: document.getElementById("pauseSvg"),
@@ -21,16 +25,26 @@ class SoundfoodPlayer {
 
     this.updateUI();
     this.initListeners();
+    this.initAudio();
   }
 
   toggleUIPlayState() {
+    if (
+      this.hasPlayed &&
+      !this.player.els.wrapper.classList.contains("has-played")
+    ) {
+      this.player.els.wrapper.classList.add("has-played");
+    }
+
     if (this.isPlaying) {
+      this.player.els.audio.play();
       this.player.els.wrapper.classList.add("is-playing");
       this.player.els.playSvg.style.display = "none";
-      this.player.els.pauseSvg.style.display = "block";
+      this.player.els.pauseSvg.style.display = "flex";
     } else {
+      this.player.els.audio.pause();
       this.player.els.wrapper.classList.remove("is-playing");
-      this.player.els.playSvg.style.display = "block";
+      this.player.els.playSvg.style.display = "flex";
       this.player.els.pauseSvg.style.display = "none";
     }
   }
@@ -77,9 +91,16 @@ class SoundfoodPlayer {
 
   initListeners() {
     this.player.els.playBtn.addEventListener("click", () => {
+      if (!this.hasPlayed) this.hasPlayed = true;
+
       this.isPlaying = !this.isPlaying;
+
       this.toggleUIPlayState();
     });
+  }
+
+  initAudio() {
+    this.player.els.audio.src = URL.createObjectURL(this.trackData);
   }
 }
 

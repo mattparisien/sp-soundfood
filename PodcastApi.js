@@ -10,22 +10,43 @@ class PodcastApi {
   }
 
   async getEpisodes() {
-    return await axios.get(this.endpoint, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      return await axios.get(this.endpoint, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async getEpisode(episodeNumber) {
-    const { data } = await axios.get(this.endpoint, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    });
-    return await data.results.reverse()[episodeNumber + 1];
+    try {
+      const { data } = await axios.get(this.endpoint, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      });
+      return await data.results.reverse()[episodeNumber + 1];
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async getTrack(trackUrl) {
+    try {
+      console.log(trackUrl);
+      const hi = await axios.get(trackUrl, {
+        responseType: "blob",
+      });
+      console.log(hi);
+      return hi;
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 

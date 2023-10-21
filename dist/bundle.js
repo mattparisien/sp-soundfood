@@ -3499,22 +3499,43 @@ class PodcastApi {
   }
 
   async getEpisodes() {
-    return await lib_axios.get(this.endpoint, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      return await lib_axios.get(this.endpoint, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async getEpisode(episodeNumber) {
-    const { data } = await lib_axios.get(this.endpoint, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    });
-    return await data.results.reverse()[episodeNumber + 1];
+    try {
+      const { data } = await lib_axios.get(this.endpoint, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      });
+      return await data.results.reverse()[episodeNumber + 1];
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async getTrack(trackUrl) {
+    try {
+      console.log(trackUrl);
+      const hi = await lib_axios.get(trackUrl, {
+        responseType: "blob",
+      });
+      console.log(hi);
+      return hi;
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 
@@ -3522,20 +3543,24 @@ class PodcastApi {
 
 ;// CONCATENATED MODULE: ./SoundfoodPlayer.js
 class SoundfoodPlayer {
+  hasPlayed = false;
   isPlaying = false;
   isReady = false;
 
-  constructor(title, releaseDate) {
+  constructor(title, releaseDate, trackData) {
+    this.trackData = trackData;
     this.title = title.split("with")[0].trim();
     this.guest = title.split("with")[1].trim();
     this.shortTitle = this.title.replace(":", "|").split("|")[0].trim();
     this.releaseDate = this.formatDate(releaseDate);
+    this.trackData = trackData;
 
     this.player = {
       els: {
         wrapper: document.getElementById("sf-player"),
         title: document.querySelector(".sf-player-title"),
         date: document.querySelector(".sf-player-date"),
+        audio: document.querySelector(".sf-player-audio"),
         playBtn: document.querySelector(".sf-player-playBtn"),
         playSvg: document.getElementById("playSvg"),
         pauseSvg: document.getElementById("pauseSvg"),
@@ -3544,16 +3569,26 @@ class SoundfoodPlayer {
 
     this.updateUI();
     this.initListeners();
+    this.initAudio();
   }
 
   toggleUIPlayState() {
+    if (
+      this.hasPlayed &&
+      !this.player.els.wrapper.classList.contains("has-played")
+    ) {
+      this.player.els.wrapper.classList.add("has-played");
+    }
+
     if (this.isPlaying) {
+      this.player.els.audio.play();
       this.player.els.wrapper.classList.add("is-playing");
       this.player.els.playSvg.style.display = "none";
-      this.player.els.pauseSvg.style.display = "block";
+      this.player.els.pauseSvg.style.display = "flex";
     } else {
+      this.player.els.audio.pause();
       this.player.els.wrapper.classList.remove("is-playing");
-      this.player.els.playSvg.style.display = "block";
+      this.player.els.playSvg.style.display = "flex";
       this.player.els.pauseSvg.style.display = "none";
     }
   }
@@ -3600,9 +3635,16 @@ class SoundfoodPlayer {
 
   initListeners() {
     this.player.els.playBtn.addEventListener("click", () => {
+      if (!this.hasPlayed) this.hasPlayed = true;
+
       this.isPlaying = !this.isPlaying;
+
       this.toggleUIPlayState();
     });
+  }
+
+  initAudio() {
+    this.player.els.audio.src = URL.createObjectURL(this.trackData);
   }
 }
 
@@ -3613,20 +3655,23 @@ class SoundfoodPlayer {
 
 
 
-
 const init = async () => {
+  const api = new PodcastApi_0();
+  let player;
 
-    
-    const api = new PodcastApi_0();
-    
-    var episodeId = parseInt(window.location.search.substring(12));
+  var episodeId = parseInt(window.location.search.substring(12));
 
-    
-    const episode = await api.getEpisode(episodeId);
-    
-    const player = await new SoundfoodPlayer_0(episode.trackName, episode.releaseDate);
-    
-    
+  const episode = await api.getEpisode(episodeId);
+
+  const { data } = await api.getTrack(episode.episodeUrl);
+
+  if (data) {
+    player = await new SoundfoodPlayer_0(
+      episode.trackName,
+      episode.releaseDate,
+      data
+    );
+  }
 };
 
 window.addEventListener("load", init);
