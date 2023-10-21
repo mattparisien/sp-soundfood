@@ -3600,13 +3600,13 @@ class SoundfoodPlayerInterface {
       (a, v) => ({
         ...a,
         [v.dataset.playerEl]: {
-          v,
+          node: v,
           events: this.getListeners(v.dataset.playerCb),
         },
       })
     );
-    console.log(this.els);
-    this.els["root"] = document.querySelector('[data-player-el="root"]');
+  console.log(this.els);
+    this.els["root"].node = document.querySelector('[data-player-el="root"]');
   }
 
   udpateControls() {
@@ -3628,20 +3628,20 @@ class SoundfoodPlayerInterface {
   }
 
   updateTimeline(progressPercent) {
-    const maxWidth = this.els.timeline.getBoundingClientRect().width;
+    const maxWidth = this.els.timeline.node.getBoundingClientRect().width;
     // console.log(
     //   this.els.timeline.getBoundingClientRect().width * progressPercent
     // );
-    this.els.progress.style.width = maxWidth * progressPercent + "px";
+    this.els.progress.node.style.width = maxWidth * progressPercent + "px";
   }
 
   setAttributes(title, shortTitle, guest, releaseDate) {
-    this.els.root.setAttribute("data-episode-title", title);
-    this.els.root.setAttribute("data-episode-short-title", shortTitle);
-    this.els.root.setAttribute("data-episode-guest", guest);
+    this.els.root.node.setAttribute("data-episode-title", title);
+    this.els.root.node.setAttribute("data-episode-short-title", shortTitle);
+    this.els.root.node.setAttribute("data-episode-guest", guest);
 
-    this.els.title.innerText = shortTitle;
-    this.els.date.innerText = releaseDate;
+    this.els.title.node.innerText = shortTitle;
+    this.els.date.node.innerText = releaseDate;
     this.updateTimeline();
   }
 }
