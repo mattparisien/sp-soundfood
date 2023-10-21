@@ -35,7 +35,7 @@ class AudioManager {
   }
 
   initListeners() {
-    this.audio.addEventListener("loadeddata", (e) => {
+    this.el.addEventListener("loadeddata", (e) => {
       this.onLoadCb?.(e);
     });
   }
