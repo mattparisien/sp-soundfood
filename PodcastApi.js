@@ -13,18 +13,11 @@ class PodcastApi {
     try {
       return await axios.get(this.endpoint, {
         headers: {
-          "Access-Control-Allow-Origin": "https://mattparisien.github.io",
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
-          "Access-Control-Allow-Methods":
-            "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers":
-            "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length",
         },
-        proxy: {
-          protocol: 'https',
-          host: '127.0.0.1',
-          port: 5500,
-      },
+        withCredentials: true,
+        
       });
     } catch (err) {
       console.log(err);
@@ -35,11 +28,11 @@ class PodcastApi {
     try {
       const { data } = await axios.get(this.endpoint, {
         headers: {
-          "Access-Control-Allow-Origin": "https://mattparisien.github.io",
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
       });
-
+      
       return await data.results.reverse()[episodeNumber + 1];
     } catch (err) {
       console.log(err);
