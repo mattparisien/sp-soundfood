@@ -41,7 +41,7 @@ class SoundfoodPlayer {
 
     if (this.isPlaying) {
       this.player.els.audio.play();
-      this.player.els.timeEnd = this.player.els.audio.duration;
+      this.player.els.timeEnd.innerText = this.player.els.audio.duration;
       this.player.els.wrapper.classList.add("is-playing");
       this.player.els.playSvg.style.display = "none";
       this.player.els.pauseSvg.style.display = "flex";
