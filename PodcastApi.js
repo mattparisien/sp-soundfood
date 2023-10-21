@@ -6,7 +6,7 @@ class PodcastApi {
     this.media = "podcast";
     this.entity = "podcastEpisode";
     this.limit = 100;
-    this.proxyUrl = "http://localhost:3000/episodes";
+    this.proxyUrl = process.env.PROXY_URL;
   }
 
   async getEpisodes() {
