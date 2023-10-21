@@ -11,15 +11,7 @@ class PodcastApi {
 
   async getEpisodes() {
     try {
-      return await axios.get(this.endpoint, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-          
-        },
-        withCredentials: true,
-        
-      });
+      return await axios.get(this.endpoint);
     } catch (err) {
       console.log(err);
     }
@@ -27,14 +19,9 @@ class PodcastApi {
 
   async getEpisode(episodeNumber) {
     try {
-      const { data } = await axios.get(this.endpoint, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-      });
-      
-      return await data.results.reverse()[episodeNumber + 1];
+      const { data } = await axios.get(this.endpoint);
+
+      return  data.results.reverse()[episodeNumber + 1];
     } catch (err) {
       console.log(err);
     }
