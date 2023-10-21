@@ -84,7 +84,7 @@ class SoundfoodPlayer {
     const elapsedPercent = this.audio.getProgressPercent();
 
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-    this.currTrackTime = Utils.formatTime(this.audio.getProgress());
+    this.currTrackTime = Utils.formatSeconds(this.audio.getProgress());
 
     this.updateUIAnimation();
 
@@ -108,7 +108,7 @@ class SoundfoodPlayer {
     const elapsedPercent = this.audio.getProgressPercent();
 
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-    this.currTrackTime = Utils.formatTime(this.audio.getProgress());
+    this.currTrackTime = Utils.formatSeconds(this.audio.getProgress());
   }
 
   onAudioLoad() {

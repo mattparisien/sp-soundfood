@@ -3712,7 +3712,7 @@ class SoundfoodPlayer {
     const elapsedPercent = this.audio.getProgressPercent();
 
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-    this.currTrackTime = Utils_0.formatTime(this.audio.getProgress());
+    this.currTrackTime = Utils_0.formatSeconds(this.audio.getProgress());
 
     this.updateUIAnimation();
 
@@ -3736,7 +3736,7 @@ class SoundfoodPlayer {
     const elapsedPercent = this.audio.getProgressPercent();
 
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-    this.currTrackTime = Utils_0.formatTime(this.audio.getProgress());
+    this.currTrackTime = Utils_0.formatSeconds(this.audio.getProgress());
   }
 
   onAudioLoad() {
