@@ -3,11 +3,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const webpack = require("webpack");
 
-require('dotenv').config({ path: './.env' }); 
+require("dotenv").config({ path: "./.env" });
 
 module.exports = (env) => {
-  console.log(process.env.PROXY_URL)
-  console.log(env)
   return {
     entry: "./src/index.js",
     output: {
@@ -21,7 +19,7 @@ module.exports = (env) => {
       }),
       new webpack.DefinePlugin({
         "process.env": {
-          PROXY_URL: JSON.stringify(env.PROXY_URL),
+          PROXY_URL: JSON.stringify(process.env.PROXY_URL),
         },
       }),
     ],
