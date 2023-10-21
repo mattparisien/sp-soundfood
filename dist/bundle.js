@@ -3583,7 +3583,9 @@ class SoundfoodPlayer {
 
     if (this.isPlaying) {
       this.player.els.audio.play();
-      this.player.els.timeEnd.innerText = this.player.els.audio.duration;
+      this.player.els.timeEnd.innerText = this.formatTime(
+        this.player.els.audio.duration
+      );
       this.player.els.wrapper.classList.add("is-playing");
       this.player.els.playSvg.style.display = "none";
       this.player.els.pauseSvg.style.display = "flex";
@@ -3593,6 +3595,10 @@ class SoundfoodPlayer {
       this.player.els.playSvg.style.display = "flex";
       this.player.els.pauseSvg.style.display = "none";
     }
+  }
+
+  formatTime(seconds) {
+    return new Date(seconds * 1000).toISOString().slice(11, 19);
   }
 
   formatDate(date) {
