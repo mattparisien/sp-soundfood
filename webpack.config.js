@@ -16,7 +16,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       "process.env": {
-        PROXY_URL: JSON.stringify(process.env.PROXY_URL),
+        PROXY_URL: process.env.PROXY_URL,
       }
     }),
   ],
