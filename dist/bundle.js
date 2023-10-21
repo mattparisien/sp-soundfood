@@ -3494,7 +3494,7 @@ class PodcastApi {
         this.collectionId = "1539431210";
         this.media = "podcast";
         this.entity = "podcastepisode";
-        this.limit - 100;
+        this.limit = 100;
         this.endpoint = `https://itunes.apple.com/lookup?id=${this.collectionId}&media=${this.media}&entity=${this.entity}&limit=${this.limit}`;
 1539431210
         this.init();
