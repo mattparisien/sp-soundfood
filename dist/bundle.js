@@ -3638,6 +3638,7 @@ class SoundfoodPlayerInterface {
   }
 
   updateTimeline(progressPercent) {
+    console.log(progressPercent)
     const maxWidth = this.els.timeline.getBoundingClientRect().width;
     console.log(this.els.timeline.getBoundingClientRect().width * progressPercent)
     this.els.progress.style.width = maxWidth * progressPercent + "px";
@@ -3745,7 +3746,7 @@ class SoundfoodPlayer {
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
     this.currTrackTime = this.audio.getProgress();
 
-    this.ui.updateTimeline(this.audio.getProgress());
+    this.ui.updateTimeline(this.audio.getProgressPercent());
 
     this.animationFrame = requestAnimationFrame(this.initAnimation.bind(this));
   }

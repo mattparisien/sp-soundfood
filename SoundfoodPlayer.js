@@ -86,7 +86,7 @@ class SoundfoodPlayer {
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
     this.currTrackTime = this.audio.getProgress();
 
-    this.ui.updateTimeline(this.audio.getProgress());
+    this.ui.updateTimeline(this.audio.getProgressPercent());
 
     this.animationFrame = requestAnimationFrame(this.initAnimation.bind(this));
   }
