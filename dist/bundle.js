@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 196:
+/***/ 382:
 /***/ (() => {
 
 
@@ -3530,10 +3530,182 @@ class PodcastApi {
 
 /* harmony default export */ const PodcastApi_0 = (PodcastApi);
 
+;// CONCATENATED MODULE: ./SoundfoodPlayer.js
+class SoundfoodPlayer {
+  hasPlayed = false;
+  isPlaying = false;
+  isReady = false;
+
+  constructor(title, releaseDate, trackData) {
+    this.trackData = trackData;
+    this.title = title.split("with")[0].trim();
+    this.guest = title.split("with")[1].trim();
+    this.shortTitle = this.title.replace(":", "|").split("|")[0].trim();
+    this.releaseDate = this.formatDate(releaseDate);
+    this.trackData = trackData;
+
+    this.currTrackTime = 0;
+    this.maxTrackTime = 0;
+    this.animationFrame = null;
+
+    this.player = {
+      els: {
+        wrapper: document.getElementById("sf-player"),
+        title: document.querySelector(".sf-player-title"),
+        date: document.querySelector(".sf-player-date"),
+        audio: document.querySelector(".sf-player-audio"),
+        timeCurrent: document.querySelector(
+          ".sf-player-controls--timeStamp .track-time-current"
+        ),
+        timeEnd: document.querySelector(
+          ".sf-player-controls--timeStamp .track-time-end"
+        ),
+        playBtn: document.querySelector(".sf-player-playBtn"),
+        playSvg: document.getElementById("playSvg"),
+        pauseSvg: document.getElementById("pauseSvg"),
+        timeline: document.querySelector(".sf-player-timeline"),
+        timelineTrack: document.querySelector(".sf-player-timeline .track"),
+      },
+    };
+
+    this.timelineWidth = this.player.els.timeline.getBoundingClientRect().width;
+
+    this.updateUI();
+    this.initListeners();
+    this.initAudio();
+  }
+
+  toggleUIPlayState() {
+    if (
+      this.hasPlayed &&
+      !this.player.els.wrapper.classList.contains("has-played")
+    ) {
+      this.player.els.wrapper.classList.add("has-played");
+    }
+
+    if (this.isPlaying) {
+      this.player.els.audio.play();
+      this.player.els.wrapper.classList.add("is-playing");
+      this.player.els.playSvg.style.display = "none";
+      this.player.els.pauseSvg.style.display = "flex";
+      this.initAnimation();
+    } else {
+      this.player.els.audio.pause();
+      this.player.els.wrapper.classList.remove("is-playing");
+      this.player.els.playSvg.style.display = "flex";
+      this.player.els.pauseSvg.style.display = "none";
+      this.cancelAnimation();
+    }
+  }
+
+  cancelAnimation() {
+    if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
+  }
+
+  updateUIAnimation() {
+    this.player.els.timeCurrent.innerText = this.currTrackTime;
+    this.player.els.timelineTrack.style.width = `${this.timelineTrackWidth}px`;
+  }
+
+  initAnimation() {
+    const elapsedPercent = this.getElapsedTimePercentage();
+
+    this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
+    this.currTrackTime = this.formatTime(this.player.els.audio.currentTime);
+
+    this.updateUIAnimation();
+
+    this.animationFrame = requestAnimationFrame(this.initAnimation.bind(this));
+  }
+
+  formatTime(seconds) {
+    return new Date(seconds * 1000).toISOString().slice(11, 19);
+  }
+
+  formatDate(date) {
+    let dateStr = "";
+
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const arr = date.substring(0, 10).split("-");
+    const year = arr[0];
+    const month = arr[1];
+    const day = arr[2];
+
+    dateStr += `${monthNames[month - 1]} ${day}, ${year}`;
+
+    return dateStr;
+  }
+
+  getDuration() {
+    return this.formatTime(this.player.els.audio.duration);
+  }
+
+  updateUI() {
+    this.player.els.wrapper.setAttribute("data-episode-title", this.title);
+    this.player.els.wrapper.setAttribute(
+      "data-episode-short-title",
+      this.shortTitle
+    );
+    this.player.els.wrapper.setAttribute("data-episode-guest", this.guest);
+
+    this.player.els.title.innerText = this.shortTitle;
+    this.player.els.date.innerText = this.releaseDate;
+  }
+
+  initListeners() {
+    window.addEventListener("resize", () => {
+      this.player.els.timeline.getBoundingClientRect().width;
+      const elapsedPercent = this.getElapsedTimePercentage();
+
+      this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
+      this.currTrackTime = this.formatTime(this.player.els.audio.currentTime);
+    });
+
+    this.player.els.audio.addEventListener("loadeddata", () => {
+      this.player.els.timeEnd.innerText = this.getDuration();
+    });
+
+    this.player.els.playBtn.addEventListener("click", () => {
+      if (!this.hasPlayed) this.hasPlayed = true;
+
+      this.isPlaying = !this.isPlaying;
+
+      this.toggleUIPlayState();
+    });
+  }
+
+  getElapsedTimePercentage() {
+    const max = this.player.els.audio.duration;
+    const curr = this.player.els.audio.currentTime;
+
+    return curr / max;
+  }
+
+  initAudio() {
+    this.player.els.audio.src = URL.createObjectURL(this.trackData);
+  }
+}
+
+/* harmony default export */ const SoundfoodPlayer_0 = (SoundfoodPlayer);
+
 ;// CONCATENATED MODULE: ./src/index.js
 
 
-// import SoundfoodPlayer from "../SoundfoodPlayer.js";
+
 
 
 const init = async () => {
@@ -3548,7 +3720,7 @@ const init = async () => {
   const data = await api.getTrack(episode.episodeUrl);
 
   if (data) {
-    player = await new SoundfoodPlayer(
+    player = await new SoundfoodPlayer_0(
       episode.trackName,
       episode.releaseDate,
       data.data
@@ -3687,7 +3859,7 @@ window.addEventListener("load", init);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [532], () => (__webpack_require__(196)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [532], () => (__webpack_require__(382)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
