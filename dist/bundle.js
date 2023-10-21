@@ -9,7 +9,7 @@
 
 const init = () => {
     console.log('hi')
-    var url = window.location.search.substring(1);
+    var url = window.location.search;
     console.log(url)
 };
 
