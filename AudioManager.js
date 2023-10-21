@@ -25,7 +25,7 @@ class AudioManager {
   }
 
   getProgress() {
-    return this.el.currentTime;
+    return Utils.formatSeconds(this.el.currentTime);
   }
 
   getDuration() {
@@ -35,7 +35,6 @@ class AudioManager {
   getProgressPercent() {
     const max = this.getDuration();
     const curr = this.getProgress();
-    console.log(curr, max);
 
     return curr / max;
   }
