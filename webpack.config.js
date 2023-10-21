@@ -4,7 +4,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const webpack = require("webpack");
 
 module.exports = (env) => {
-  
+  console.log(env)
   return {
     entry: "./src/index.js",
     output: {
