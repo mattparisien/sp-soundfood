@@ -3500,16 +3500,18 @@ class PodcastApi {
 
   async getEpisodes() {
     try {
-      return await lib_axios.get(this.endpoint, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-          
-        },
-        withCredentials: true,
-        mode: 'no-cors'
-        
-      });
+      fetch(this.endpoint)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          return response.blob();
+        })
+        .then((response) => {
+          console.log(response)
+          return response;
+        });
     } catch (err) {
       console.log(err);
     }
@@ -3523,7 +3525,7 @@ class PodcastApi {
           "Content-Type": "application/json",
         },
       });
-      
+
       return await data.results.reverse()[episodeNumber + 1];
     } catch (err) {
       console.log(err);
