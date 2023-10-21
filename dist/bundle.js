@@ -3666,26 +3666,36 @@ class SoundfoodPlayer {
     this.player.els.date.innerText = this.releaseDate;
   }
 
+  onResize() {
+    this.player.els.timeline.getBoundingClientRect().width;
+    const elapsedPercent = this.getElapsedTimePercentage();
+
+    this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
+    this.currTrackTime = this.formatTime(this.player.els.audio.currentTime);
+  }
+
+  onAudioLoad() {
+    this.player.els.timeEnd.innerText = this.getDuration();
+  }
+
+  onActionClick() {
+    if (!this.hasPlayed) this.hasPlayed = true;
+
+    this.isPlaying = !this.isPlaying;
+
+    this.toggleUIPlayState();
+  }
+
+  onTimelineClick(e) {
+      const xPos = e.clientX;
+      console.log(xPos)
+  }
+
   initListeners() {
-    window.addEventListener("resize", () => {
-      this.player.els.timeline.getBoundingClientRect().width;
-      const elapsedPercent = this.getElapsedTimePercentage();
-
-      this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-      this.currTrackTime = this.formatTime(this.player.els.audio.currentTime);
-    });
-
-    this.player.els.audio.addEventListener("loadeddata", () => {
-      this.player.els.timeEnd.innerText = this.getDuration();
-    });
-
-    this.player.els.playBtn.addEventListener("click", () => {
-      if (!this.hasPlayed) this.hasPlayed = true;
-
-      this.isPlaying = !this.isPlaying;
-
-      this.toggleUIPlayState();
-    });
+    window.addEventListener("resize", this.onResize);
+    this.player.els.audio.addEventListener("loadeddata", this.onAudioLoad);
+    this.player.els.playBtn.addEventListener("click", this.onActionClick);
+    this.player.els.timeline.addEventListener("click", this.onTimelineClick);
   }
 
   getElapsedTimePercentage() {
