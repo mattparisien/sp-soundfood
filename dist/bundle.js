@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 891:
+/***/ 453:
 /***/ (() => {
 
 
@@ -3628,7 +3628,28 @@ class AudioManager {
 
 /* harmony default export */ const AudioManager_0 = (AudioManager);
 
+;// CONCATENATED MODULE: ./SoundfoodPlayerInterface.js
+class SoundfoodPlayerInterface {
+  constructor(wrapper) {
+    this.root = wrapper;
+    this.title = wrapper.querySelector(".sf-player-title");
+    this.date = wrapper.querySelector(".sf-player-date");
+  }
+
+  setAttributes(title, shortTitle, guest, releaseDate) {
+    this.root.setAttribute("data-episode-title", title);
+    this.root.setAttribute("data-episode-short-title", shortTitle);
+    this.root.setAttribute("data-episode-guest", guest);
+
+    this.title.innerText = shortTitle;
+    this.date.innerText = releaseDate;
+  }
+}
+
+/* harmony default export */ const SoundfoodPlayerInterface_0 = (SoundfoodPlayerInterface);
+
 ;// CONCATENATED MODULE: ./SoundfoodPlayer.js
+
 
 
 
@@ -3647,6 +3668,9 @@ class SoundfoodPlayer {
       this.onAudioLoad.bind(this)
     );
 
+    this.ui = new SoundfoodPlayerInterface_0(
+      document.getElementById(".sf-player")
+    );
     this.currTrackTime = 0;
     this.maxTrackTime = 0;
     this.animationFrame = null;
@@ -3673,7 +3697,7 @@ class SoundfoodPlayer {
 
     this.timelineWidth = this.player.els.timeline.getBoundingClientRect().width;
 
-    this.updateUI();
+    this.ui.setAttributes();
     this.initListeners();
   }
 
@@ -3720,17 +3744,7 @@ class SoundfoodPlayer {
     this.animationFrame = requestAnimationFrame(this.initAnimation.bind(this));
   }
 
-  updateUI() {
-    this.player.els.wrapper.setAttribute("data-episode-title", this.title);
-    this.player.els.wrapper.setAttribute(
-      "data-episode-short-title",
-      this.shortTitle
-    );
-    this.player.els.wrapper.setAttribute("data-episode-guest", this.guest);
 
-    this.player.els.title.innerText = this.shortTitle;
-    this.player.els.date.innerText = this.releaseDate;
-  }
 
   onResize() {
     this.player.els.timeline.getBoundingClientRect().width;
@@ -3936,7 +3950,7 @@ window.addEventListener("load", init);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [532], () => (__webpack_require__(891)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [532], () => (__webpack_require__(453)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

@@ -1,4 +1,5 @@
 import AudioManager from "./AudioManager.js";
+import SoundfoodPlayerInterface from "./SoundfoodPlayerInterface.js";
 import Utils from "./Utils.js";
 
 class SoundfoodPlayer {
@@ -16,6 +17,9 @@ class SoundfoodPlayer {
       this.onAudioLoad.bind(this)
     );
 
+    this.ui = new SoundfoodPlayerInterface(
+      document.getElementById(".sf-player")
+    );
     this.currTrackTime = 0;
     this.maxTrackTime = 0;
     this.animationFrame = null;
@@ -42,7 +46,7 @@ class SoundfoodPlayer {
 
     this.timelineWidth = this.player.els.timeline.getBoundingClientRect().width;
 
-    this.updateUI();
+    this.ui.setAttributes();
     this.initListeners();
   }
 
@@ -89,17 +93,7 @@ class SoundfoodPlayer {
     this.animationFrame = requestAnimationFrame(this.initAnimation.bind(this));
   }
 
-  updateUI() {
-    this.player.els.wrapper.setAttribute("data-episode-title", this.title);
-    this.player.els.wrapper.setAttribute(
-      "data-episode-short-title",
-      this.shortTitle
-    );
-    this.player.els.wrapper.setAttribute("data-episode-guest", this.guest);
 
-    this.player.els.title.innerText = this.shortTitle;
-    this.player.els.date.innerText = this.releaseDate;
-  }
 
   onResize() {
     this.player.els.timeline.getBoundingClientRect().width;
