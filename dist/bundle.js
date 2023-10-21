@@ -3694,6 +3694,7 @@ class SoundfoodPlayer {
     
       this.pauseAudio();
       const pos = e.clientX - this.player.els.timeline.getBoundingClientRect().left;
+      console.log(pos, 'pos')
       this.timelineTrackWidth = pos;
       this.updateUIAnimation();
   }
