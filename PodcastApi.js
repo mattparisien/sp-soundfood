@@ -13,8 +13,8 @@ class PodcastApi {
     try {
       return await axios.get(this.endpoint, {
         headers: {
+          "Access-Control-Allow-Credentials": true,
           "Access-Control-Allow-Origin": "https://mattparisien.github.io",
-          "Content-Type": "application/json",
         },
       });
     } catch (err) {
