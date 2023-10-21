@@ -4,7 +4,7 @@ class AudioManager {
     this.track - track;
     this.onLoadCb = onLoadCb;
 
-    this.initListeners();
+    this.init();
   }
 
   play() {
@@ -38,6 +38,15 @@ class AudioManager {
     this.el.addEventListener("loadeddata", (e) => {
       this.onLoadCb?.(e);
     });
+  }
+
+  setTrack() {
+    this.el.src = this.track;
+  }
+
+  init() {
+    this.initListeners();
+    this.setTrack(this.track);
   }
 }
 
