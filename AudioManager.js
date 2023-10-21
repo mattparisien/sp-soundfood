@@ -36,6 +36,8 @@ class AudioManager {
     const max = this.getDuration();
     const curr = this.getProgress();
 
+    console.log(max, curr);
+
     return curr / max;
   }
 
