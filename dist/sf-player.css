@@ -30,6 +30,13 @@ html {
   width: 100%;
 }
 
+a {
+  color: var(--bg-color);
+  font-weight: 600;
+  border: none;
+  text-decoration: none;
+}
+
 body {
   width: 100%;
   height: 100vh;
@@ -72,7 +79,7 @@ body {
 .sf-player-wrapper {
   width: 100%;
   height: 100%;
-  padding: 1rem;
+  padding: 0 3rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -94,6 +101,7 @@ body {
 .sf-player-text .sf-player-date {
   margin-bottom: 1.5rem;
   font-family: "Helvetica";
+  opacity: 0.9;
 }
 
 .sf-player-title {
@@ -121,6 +129,7 @@ body {
   width: 100%;
   z-index: 2;
   padding-bottom: 2rem;
+  padding-top: 2rem;
   display: flex;
   align-items: center;
 }
@@ -136,7 +145,7 @@ body {
 }
 
 .sf-player-timeline {
-  height: 2px;
+  height: 3px;
   flex-grow: 1;
   margin: 0 1rem;
   position: relative;
@@ -144,12 +153,6 @@ body {
 
 .sf-player-timeline:hover {
   cursor: pointer;
-}
-
-.sf-player-controls:hover .track-bullet {
-  transform-origin: center;
-  opacity: 1;
-  transform: scale(1) translate(50%, -50%) !important;
 }
 
 .sf-player-timeline .background {
@@ -179,19 +182,19 @@ body {
   position: relative;
 }
 
-.sf-player-timeline .track .track-inner .track-bullet {
+.sf-player.has-played .sf-player-timeline .track .track-inner .track-bullet {
   position: absolute;
-  right: 0;
   top: 50%;
+  right: 0;
   width: 0.6rem;
   height: 0.6rem;
   background-color: var(--bg-color);
   border-radius: 50%;
   opacity: 1;
-  transform: scale(1) translate(50%, -50%);
+  transform: translateY(-50%);
   transform-origin: center;
   transition: transform 300ms ease;
-  opacity: 0;
+  opacity: 1;
 }
 
 .sf-player-playBtn {
@@ -249,4 +252,27 @@ body {
 .sf-player-audio {
   visibility: hidden;
   position: absolute;
+}
+
+.sf-player-topBar {
+  padding: 2rem 0;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.326);
+  z-index: 2;
+}
+
+.sf-player-subscriptions {
+  display: flex;
+}
+
+.sf-player-topBar div:nth-child(3) {
+  margin: 0 0.4rem 0 0.3rem;
+  opacity: 0.7;
+}
+
+.sf-player-topBar div:nth-child(1) {
+  margin-right: 0.4rem;
 }

@@ -17,7 +17,7 @@ class SoundfoodPlayer {
       this.onAudioLoad.bind(this)
     );
 
-    this.ui = new SoundfoodPlayerInterface();
+    this.ui = new SoundfoodPlayerInterface(this.audio);
     this.currTrackTime = 0;
     this.maxTrackTime = 0;
     this.animationFrame = null;
@@ -81,6 +81,10 @@ class SoundfoodPlayer {
   }
 
   initAnimation() {
+    if (!this.audio.isPlaying) {
+      this.cancelAnimation();
+    }
+
     const elapsedPercent = this.audio.getProgressPercent();
 
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
@@ -100,7 +104,9 @@ class SoundfoodPlayer {
   }
 
   onAudioLoad() {
-    this.player.els.timeEnd.innerText = Utils.formatSeconds(this.audio.getDuration());
+    this.player.els.timeEnd.innerText = Utils.formatSeconds(
+      this.audio.getDuration()
+    );
   }
 
   onActionClick() {
@@ -116,8 +122,6 @@ class SoundfoodPlayer {
   }
 
   onTimelineMouseDown(e) {
-    // this.pauseAudio();
-
     const pos =
       e.clientX - this.player.els.timeline.getBoundingClientRect().left;
     this.timelineTrackWidth = pos;

@@ -1,5 +1,3 @@
-import Utils from "./Utils.js";
-
 class AudioManager {
   constructor(audioEl, track, onLoadCb) {
     this.el = audioEl;
@@ -32,11 +30,13 @@ class AudioManager {
     return this.el.duration;
   }
 
+  getProgressDurationFromProgressPercent(progressPercent) {
+    return this.el.duration * progressPercent;
+  }
+
   getProgressPercent() {
     const max = this.getDuration();
     const curr = this.getProgress();
-
-    console.log(max, curr);
 
     return curr / max;
   }
