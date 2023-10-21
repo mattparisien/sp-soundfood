@@ -10,6 +10,7 @@ class PodcastApi {
   }
 
   async getEpisodes() {
+    console.log('hi')
     try {
       fetch(this.endpoint)
         .then((response) => {
