@@ -154,7 +154,7 @@ class SoundfoodPlayer {
 
   onTimelineClick(e) {
       const xPos = e.clientX;
-      console.log(xPos)
+      console.log(xPos - this.timelineWidth)
   }
 
   initListeners() {
