@@ -3600,9 +3600,10 @@ class SoundfoodPlayerInterface {
       (a, v) => ({
         ...a,
         [v.dataset.playerEl]: v,
-        [events]: this.getListeners(v.dataset.playerCb),
+        "events": this.getListeners(v.dataset.playerCb),
       })
     );
+    console.log(this.els)
     this.els["root"] = document.querySelector('[data-player-el="root"]');
   }
 
