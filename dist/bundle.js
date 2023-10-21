@@ -3575,6 +3575,7 @@ class AudioManager {
   }
 
   setTrack() {
+    console.log(this.track);
     this.el.src = this.track;
   }
 
