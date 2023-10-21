@@ -26,7 +26,7 @@ class AudioManager {
   }
 
   getDuration() {
-    Utils.formatSeconds(this.el.duration);
+    return Utils.formatSeconds(this.el.duration);
   }
 
   getProgressPercent() {

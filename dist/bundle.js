@@ -3597,7 +3597,7 @@ class AudioManager {
   }
 
   getDuration() {
-    Utils_0.formatSeconds(this.el.duration);
+    return Utils_0.formatSeconds(this.el.duration);
   }
 
   getProgressPercent() {
