@@ -115,7 +115,6 @@ body {
   z-index: 1;
   opacity: 0;
   transition: 400ms ease;
-  /* pointer-events: none; */
 }
 
 .sf-player-controls {
@@ -144,7 +143,9 @@ body {
 }
 
 .sf-player-controls:hover .track-bullet {
-  transform: scale(1);
+  transform-origin: center;
+
+  transform: scale(1)translate(50%, -50%) !important;
 }
 
 .sf-player-timeline .background {
@@ -166,32 +167,28 @@ body {
   height: 100%;
   opacity: 1;
   border-radius: 1rem;
-  
 }
 
-.sf-player-timeline .track .track-inner{
+.sf-player-timeline .track .track-inner {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-.sf-player-timeline .track .track-inner .track-bullet{
+.sf-player-timeline .track .track-inner .track-bullet {
   position: absolute;
   right: 0;
   top: 50%;
-  transform: translateY(-50%)translateX(50%);
   width: 0.6rem;
   height: 0.6rem;
   background-color: var(--bg-color);
   border-radius: 50%;
   opacity: 1;
-  transform: scale(0);
+  transform: scale(1)translate(50%, -50%);
+  transform-origin: center;
   transition: transform 300ms ease;
+
 }
-
-
-
-
 
 .sf-player-playBtn {
   width: 4rem;

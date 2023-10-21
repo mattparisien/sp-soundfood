@@ -30,18 +30,12 @@ class SoundfoodPlayer {
         playBtn: document.querySelector(".sf-player-playBtn"),
         playSvg: document.getElementById("playSvg"),
         pauseSvg: document.getElementById("pauseSvg"),
-        timeline: document.querySelector(
-          ".sf-player-timeline"
-        ),
-        timelineTrack: document.querySelector(
-          ".sf-player-timeline .track"
-        ),
+        timeline: document.querySelector(".sf-player-timeline"),
+        timelineTrack: document.querySelector(".sf-player-timeline .track"),
       },
     };
 
-    this.timelineWidth =
-      this.player.els.timeline.getBoundingClientRect().width;
-    
+    this.timelineWidth = this.player.els.timeline.getBoundingClientRect().width;
 
     this.updateUI();
     this.initListeners();
@@ -80,11 +74,9 @@ class SoundfoodPlayer {
     this.player.els.timelineTrack.style.width = `${this.timelineTrackWidth}px`;
   }
 
-  
   initAnimation() {
-    const elapsedPercent = this.getElapsedTimePercentage()
-    
-    
+    const elapsedPercent = this.getElapsedTimePercentage();
+
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
     this.currTrackTime = this.formatTime(this.player.els.audio.currentTime);
 
@@ -142,6 +134,14 @@ class SoundfoodPlayer {
   }
 
   initListeners() {
+    window.addEventListener("resize", () => {
+      this.player.els.timeline.getBoundingClientRect().width;
+      const elapsedPercent = this.getElapsedTimePercentage();
+
+      this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
+      this.currTrackTime = this.formatTime(this.player.els.audio.currentTime);
+    });
+
     this.player.els.audio.addEventListener("loadeddata", () => {
       this.player.els.timeEnd.innerText = this.getDuration();
     });
@@ -156,7 +156,7 @@ class SoundfoodPlayer {
   }
 
   getElapsedTimePercentage() {
-    const max = this.player.els.audio.duration
+    const max = this.player.els.audio.duration;
     const curr = this.player.els.audio.currentTime;
 
     return curr / max;
