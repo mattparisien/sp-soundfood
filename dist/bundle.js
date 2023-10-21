@@ -3499,13 +3499,22 @@ class PodcastApi {
   }
 
   async getEpisodes() {
-    return await lib_axios.get(this.endpoint);
+    return await lib_axios.get(this.endpoint, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+    });
   }
 
   async getEpisode(episodeNumber) {
-    const { data } = await lib_axios.get(this.endpoint);
+    const { data } = await lib_axios.get(this.endpoint, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+    });
     return await data.results.reverse()[episodeNumber + 1];
-    
   }
 }
 
