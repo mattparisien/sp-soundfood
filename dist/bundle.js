@@ -3669,7 +3669,7 @@ class SoundfoodPlayer {
     );
 
     this.ui = new SoundfoodPlayerInterface_0(
-      document.getElementById(".sf-player")
+      document.getElementById("sf-player")
     );
     this.currTrackTime = 0;
     this.maxTrackTime = 0;
