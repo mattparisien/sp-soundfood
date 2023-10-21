@@ -11,20 +11,37 @@ class SoundfoodPlayer {
     this.releaseDate = this.formatDate(releaseDate);
     this.trackData = trackData;
 
+    this.currTrackTime = 0;
+    this.maxTrackTime = 0;
+    this.animationFrame = null;
+
     this.player = {
       els: {
         wrapper: document.getElementById("sf-player"),
         title: document.querySelector(".sf-player-title"),
         date: document.querySelector(".sf-player-date"),
         audio: document.querySelector(".sf-player-audio"),
+        timeCurrent: document.querySelector(
+          ".sf-player-controls--timeStamp .track-time-current"
+        ),
         timeEnd: document.querySelector(
           ".sf-player-controls--timeStamp .track-time-end"
         ),
         playBtn: document.querySelector(".sf-player-playBtn"),
         playSvg: document.getElementById("playSvg"),
         pauseSvg: document.getElementById("pauseSvg"),
+        progressLine: document.querySelector(
+          ".sf-player-controls--progressLine"
+        ),
+        progressLineTrack: document.querySelector(
+          ".sf-player-controls--progressLine .track"
+        ),
       },
     };
+
+    this.progressLineWidth =
+      this.player.els.progressLine.getBoundingClientRect().width;
+    
 
     this.updateUI();
     this.initListeners();
@@ -41,18 +58,39 @@ class SoundfoodPlayer {
 
     if (this.isPlaying) {
       this.player.els.audio.play();
-      this.player.els.timeEnd.innerText = this.formatTime(
-        this.player.els.audio.duration
-      );
       this.player.els.wrapper.classList.add("is-playing");
       this.player.els.playSvg.style.display = "none";
       this.player.els.pauseSvg.style.display = "flex";
+      this.initAnimation();
     } else {
       this.player.els.audio.pause();
       this.player.els.wrapper.classList.remove("is-playing");
       this.player.els.playSvg.style.display = "flex";
       this.player.els.pauseSvg.style.display = "none";
+      this.cancelAnimation();
     }
+  }
+
+  cancelAnimation() {
+    if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
+  }
+
+  updateUIAnimation() {
+    this.player.els.timeCurrent.innerText = this.currTrackTime;
+    this.player.els.progressLineTrack.style.width = `${this.progressLineTrackWidth}px`;
+  }
+
+  
+  initAnimation() {
+    const elapsedPercent = this.getElapsedTimePercentage()
+    
+    
+    this.progressLineTrackWidth = this.progressLineWidth * elapsedPercent;
+    this.currTrackTime = this.formatTime(this.player.els.audio.currentTime);
+
+    this.updateUIAnimation();
+
+    this.animationFrame = requestAnimationFrame(this.initAnimation.bind(this));
   }
 
   formatTime(seconds) {
@@ -87,6 +125,10 @@ class SoundfoodPlayer {
     return dateStr;
   }
 
+  getDuration() {
+    return this.formatTime(this.player.els.audio.duration);
+  }
+
   updateUI() {
     this.player.els.wrapper.setAttribute("data-episode-title", this.title);
     this.player.els.wrapper.setAttribute(
@@ -100,6 +142,10 @@ class SoundfoodPlayer {
   }
 
   initListeners() {
+    this.player.els.audio.addEventListener("loadeddata", () => {
+      this.player.els.timeEnd.innerText = this.getDuration();
+    });
+
     this.player.els.playBtn.addEventListener("click", () => {
       if (!this.hasPlayed) this.hasPlayed = true;
 
@@ -107,6 +153,13 @@ class SoundfoodPlayer {
 
       this.toggleUIPlayState();
     });
+  }
+
+  getElapsedTimePercentage() {
+    const max = this.player.els.audio.duration
+    const curr = this.player.els.audio.currentTime;
+
+    return curr / max;
   }
 
   initAudio() {

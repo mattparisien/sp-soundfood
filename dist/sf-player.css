@@ -38,7 +38,7 @@ body {
   justify-content: center;
   padding: 0px;
   margin: 0px;
-  font-family: 'Helvetica';
+  font-family: "Helvetica";
 }
 
 .sf-player {
@@ -126,8 +126,42 @@ body {
   align-items: center;
 }
 
-.sf-player-controls--timeStamp >*:nth-child(even){
+.sf-player-controls--timeStamp {
+  font-size: 0.92rem;
+  margin-left: 0.4rem;
+}
+
+.sf-player-controls--timeStamp > *:nth-child(even) {
   margin: 0 0.3rem;
+}
+
+.sf-player-controls--progressLine {
+  height: 2px;
+  border-radius: 1rem;
+  overflow: hidden;
+  flex-grow: 1;
+  margin: 0 1rem;
+  position: relative;
+}
+
+.sf-player-controls--progressLine .background {
+  position: absolute;
+  background: var(--bg-color);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.25;
+}
+
+.sf-player-controls--progressLine .track {
+  position: absolute;
+  background: var(--bg-color);
+  left: 0;
+  top: 0;
+  width: 0px;
+  height: 100%;
+  opacity: 1;
 }
 
 .sf-player-playBtn {
@@ -146,8 +180,8 @@ body {
 
 .sf-player-playBtn::after {
   position: absolute;
-  width: 75%;
-  height: 75%;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   background-color: rgba(1, 48, 94, 0.2);
   content: "";

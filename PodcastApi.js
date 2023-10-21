@@ -30,6 +30,7 @@ class PodcastApi {
           "Content-Type": "application/json",
         },
       });
+      
       return await data.results.reverse()[episodeNumber + 1];
     } catch (err) {
       console.log(err);
