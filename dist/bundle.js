@@ -3634,6 +3634,7 @@ class SoundfoodPlayerInterface {
     this.els = Array.from(document.querySelectorAll("[data-player-el]")).reduce(
       (a, v) => ({ ...a, [v.dataset.playerEl]: v })
     );
+    this.els["root"] = document.querySelector("[data-player-el=\"root\"]")
   }
 
   setAttributes(title, shortTitle, guest, releaseDate) {
