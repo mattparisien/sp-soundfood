@@ -3570,12 +3570,11 @@ class AudioManager {
 
   initListeners() {
     this.el.addEventListener("loadeddata", (e) => {
-      this.onLoadCb?.(e);
+      this.onLoadCb?.(e).bind(this);
     });
   }
 
   setTrack() {
-    console.log(this.track);
     this.el.src = this.track;
   }
 
