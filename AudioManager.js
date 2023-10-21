@@ -24,6 +24,7 @@ class AudioManager {
   }
 
   getDuration() {
+    console.log('hi')
     this.el.duration;
   }
 
