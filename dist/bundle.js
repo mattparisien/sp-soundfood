@@ -3686,8 +3686,14 @@ class SoundfoodPlayer {
     this.toggleUIPlayState();
   }
 
+  pauseAudio() {
+    this.player.els.audio.pause();
+  }
+
   onTimelineClick(e) {
-      
+    
+      this.pauseAudio();
+
       const pos = e.clientX - this.player.els.timeline.getBoundingClientRect().left;
       console.log(pos);
       this.timelineTrackWidth = pos;
