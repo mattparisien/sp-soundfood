@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 382:
+/***/ 641:
 /***/ (() => {
 
 
@@ -3531,7 +3531,55 @@ class PodcastApi {
 
 /* harmony default export */ const PodcastApi_0 = (PodcastApi);
 
+;// CONCATENATED MODULE: ./AudioManager.js
+class AudioManager {
+  constructor(audioEl, track, onLoadCb) {
+    this.el = audioEl;
+    this.track - track;
+    this.onLoadCb = onLoadCb;
+
+    this.initListeners();
+  }
+
+  play() {
+    this.el.play();
+  }
+
+  pause() {
+    this.el.pause();
+  }
+
+  setProgress(time) {
+    this.el.currentTime = time;
+  }
+
+  getProgress() {
+    return this.el.currentTime;
+  }
+
+  getDuration() {
+    this.el.duration;
+  }
+
+  getProgressPercent() {
+    const max = this.getDuration();
+    const curr = this.getProgress();
+
+    return curr / max;
+  }
+
+  initListeners() {
+    this.audio.addEventListener("loadeddata", (e) => {
+      this.onLoadCb?.(e);
+    });
+  }
+}
+
+/* harmony default export */ const AudioManager_0 = (AudioManager);
+
 ;// CONCATENATED MODULE: ./SoundfoodPlayer.js
+
+
 class SoundfoodPlayer {
   hasPlayed = false;
   isPlaying = false;
@@ -3543,6 +3591,11 @@ class SoundfoodPlayer {
     this.guest = title.split("with")[1].trim();
     this.shortTitle = this.title.replace(":", "|").split("|")[0].trim();
     this.releaseDate = this.formatDate(releaseDate);
+    this.audio = new AudioManager_0(
+      document.querySelector(".sf-player-audio"),
+      this.track,
+      this.onAudioLoad
+    );
 
     this.currTrackTime = 0;
     this.maxTrackTime = 0;
@@ -3584,13 +3637,13 @@ class SoundfoodPlayer {
     }
 
     if (this.isPlaying) {
-      this.player.els.audio.play();
+      this.audio.play();
       this.player.els.wrapper.classList.add("is-playing");
       this.player.els.playSvg.style.display = "none";
       this.player.els.pauseSvg.style.display = "flex";
       this.initAnimation();
     } else {
-      this.player.els.audio.pause();
+      this.audio.pause();
       this.player.els.wrapper.classList.remove("is-playing");
       this.player.els.playSvg.style.display = "flex";
       this.player.els.pauseSvg.style.display = "none";
@@ -3603,16 +3656,15 @@ class SoundfoodPlayer {
   }
 
   updateUIAnimation() {
-    
     this.player.els.timeCurrent.innerText = this.currTrackTime;
     this.player.els.timelineTrack.style.width = `${this.timelineTrackWidth}px`;
   }
 
   initAnimation() {
-    const elapsedPercent = this.getElapsedTimePercentage();
+    const elapsedPercent = this.audio.getProgressPercent();
 
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-    this.currTrackTime = this.formatTime(this.player.els.audio.currentTime);
+    this.currTrackTime = this.formatTime(this.audio.getProgress());
 
     this.updateUIAnimation();
 
@@ -3652,7 +3704,7 @@ class SoundfoodPlayer {
   }
 
   getDuration() {
-    return this.formatTime(this.player.els.audio.duration);
+    return this.formatTime(this.audio.getDuration());
   }
 
   updateUI() {
@@ -3669,10 +3721,10 @@ class SoundfoodPlayer {
 
   onResize() {
     this.player.els.timeline.getBoundingClientRect().width;
-    const elapsedPercent = this.getElapsedTimePercentage();
+    const elapsedPercent = this.audio.getProgressPercent();
 
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-    this.currTrackTime = this.formatTime(this.player.els.audio.currentTime);
+    this.currTrackTime = this.formatTime(this.audio.getProgress());
   }
 
   onAudioLoad() {
@@ -3688,34 +3740,27 @@ class SoundfoodPlayer {
   }
 
   pauseAudio() {
-    this.player.els.audio.pause();
+    this.audio.pause();
   }
 
   onTimelineMouseDown(e) {
-    
-      // this.pauseAudio();
-      
-      const pos = e.clientX - this.player.els.timeline.getBoundingClientRect().left;
-      this.timelineTrackWidth = pos;
-      
+    // this.pauseAudio();
+
+    const pos =
+      e.clientX - this.player.els.timeline.getBoundingClientRect().left;
+    this.timelineTrackWidth = pos;
   }
 
   initListeners() {
     window.addEventListener("resize", this.onResize.bind(this));
-    this.player.els.audio.addEventListener("loadeddata", this.onAudioLoad.bind(this));
-    this.player.els.playBtn.addEventListener("click", this.onActionClick.bind(this));
-    this.player.els.timeline.addEventListener("mousedown", this.onTimelineMouseDown.bind(this));
-  }
-
-  getElapsedTimePercentage() {
-    const max = this.player.els.audio.duration;
-    const curr = this.player.els.audio.currentTime;
-
-    return curr / max;
-  }
-
-  initAudio() {
-    this.player.els.audio.src = this.track;
+    this.player.els.playBtn.addEventListener(
+      "click",
+      this.onActionClick.bind(this)
+    );
+    this.player.els.timeline.addEventListener(
+      "mousedown",
+      this.onTimelineMouseDown.bind(this)
+    );
   }
 }
 
@@ -3878,7 +3923,7 @@ window.addEventListener("load", init);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [532], () => (__webpack_require__(382)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [532], () => (__webpack_require__(641)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

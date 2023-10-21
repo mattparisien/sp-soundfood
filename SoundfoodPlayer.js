@@ -1,3 +1,5 @@
+import AudioManager from "./AudioManager.js";
+
 class SoundfoodPlayer {
   hasPlayed = false;
   isPlaying = false;
@@ -9,6 +11,11 @@ class SoundfoodPlayer {
     this.guest = title.split("with")[1].trim();
     this.shortTitle = this.title.replace(":", "|").split("|")[0].trim();
     this.releaseDate = this.formatDate(releaseDate);
+    this.audio = new AudioManager(
+      document.querySelector(".sf-player-audio"),
+      this.track,
+      this.onAudioLoad
+    );
 
     this.currTrackTime = 0;
     this.maxTrackTime = 0;
@@ -50,13 +57,13 @@ class SoundfoodPlayer {
     }
 
     if (this.isPlaying) {
-      this.player.els.audio.play();
+      this.audio.play();
       this.player.els.wrapper.classList.add("is-playing");
       this.player.els.playSvg.style.display = "none";
       this.player.els.pauseSvg.style.display = "flex";
       this.initAnimation();
     } else {
-      this.player.els.audio.pause();
+      this.audio.pause();
       this.player.els.wrapper.classList.remove("is-playing");
       this.player.els.playSvg.style.display = "flex";
       this.player.els.pauseSvg.style.display = "none";
@@ -69,16 +76,15 @@ class SoundfoodPlayer {
   }
 
   updateUIAnimation() {
-    
     this.player.els.timeCurrent.innerText = this.currTrackTime;
     this.player.els.timelineTrack.style.width = `${this.timelineTrackWidth}px`;
   }
 
   initAnimation() {
-    const elapsedPercent = this.getElapsedTimePercentage();
+    const elapsedPercent = this.audio.getProgressPercent();
 
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-    this.currTrackTime = this.formatTime(this.player.els.audio.currentTime);
+    this.currTrackTime = this.formatTime(this.audio.getProgress());
 
     this.updateUIAnimation();
 
@@ -118,7 +124,7 @@ class SoundfoodPlayer {
   }
 
   getDuration() {
-    return this.formatTime(this.player.els.audio.duration);
+    return this.formatTime(this.audio.getDuration());
   }
 
   updateUI() {
@@ -135,10 +141,10 @@ class SoundfoodPlayer {
 
   onResize() {
     this.player.els.timeline.getBoundingClientRect().width;
-    const elapsedPercent = this.getElapsedTimePercentage();
+    const elapsedPercent = this.audio.getProgressPercent();
 
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-    this.currTrackTime = this.formatTime(this.player.els.audio.currentTime);
+    this.currTrackTime = this.formatTime(this.audio.getProgress());
   }
 
   onAudioLoad() {
@@ -154,34 +160,27 @@ class SoundfoodPlayer {
   }
 
   pauseAudio() {
-    this.player.els.audio.pause();
+    this.audio.pause();
   }
 
   onTimelineMouseDown(e) {
-    
-      // this.pauseAudio();
-      
-      const pos = e.clientX - this.player.els.timeline.getBoundingClientRect().left;
-      this.timelineTrackWidth = pos;
-      
+    // this.pauseAudio();
+
+    const pos =
+      e.clientX - this.player.els.timeline.getBoundingClientRect().left;
+    this.timelineTrackWidth = pos;
   }
 
   initListeners() {
     window.addEventListener("resize", this.onResize.bind(this));
-    this.player.els.audio.addEventListener("loadeddata", this.onAudioLoad.bind(this));
-    this.player.els.playBtn.addEventListener("click", this.onActionClick.bind(this));
-    this.player.els.timeline.addEventListener("mousedown", this.onTimelineMouseDown.bind(this));
-  }
-
-  getElapsedTimePercentage() {
-    const max = this.player.els.audio.duration;
-    const curr = this.player.els.audio.currentTime;
-
-    return curr / max;
-  }
-
-  initAudio() {
-    this.player.els.audio.src = this.track;
+    this.player.els.playBtn.addEventListener(
+      "click",
+      this.onActionClick.bind(this)
+    );
+    this.player.els.timeline.addEventListener(
+      "mousedown",
+      this.onTimelineMouseDown.bind(this)
+    );
   }
 }
 
