@@ -3488,14 +3488,14 @@ axios.default = axios;
 
 ;// CONCATENATED MODULE: ./src/index.js
 
-
-
+// import PodcastApi from "../PodcastApi.js";
+// import SoundfoodPlayer from "../SoundfoodPlayer.js";
 
 
 const init = async () => {
-  undefined.endpoint = `https://itunes.apple.com/lookup?id=1539431210&media=podcast&entity=podcastEpisode&limit=100`;
+  const endpoint = `https://itunes.apple.com/lookup?id=1539431210&media=podcast&entity=podcastEpisode&limit=100`;
   lib_axios
-    .get(undefined.endpoint)
+    .get(endpoint)
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 

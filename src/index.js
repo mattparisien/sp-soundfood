@@ -1,12 +1,12 @@
 import "./assets/styles/main.css";
-import PodcastApi from "../PodcastApi.js";
-import SoundfoodPlayer from "../SoundfoodPlayer.js";
+// import PodcastApi from "../PodcastApi.js";
+// import SoundfoodPlayer from "../SoundfoodPlayer.js";
 import axios from "axios";
 
 const init = async () => {
-  this.endpoint = `https://itunes.apple.com/lookup?id=1539431210&media=podcast&entity=podcastEpisode&limit=100`;
+  const endpoint = `https://itunes.apple.com/lookup?id=1539431210&media=podcast&entity=podcastEpisode&limit=100`;
   axios
-    .get(this.endpoint)
+    .get(endpoint)
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 
