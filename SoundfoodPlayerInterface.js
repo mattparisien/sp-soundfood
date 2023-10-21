@@ -6,6 +6,10 @@ class SoundfoodPlayerInterface {
     this.els["root"] = document.querySelector("[data-player-el=\"root\"]")
   }
 
+  updateTimeline() {
+    this.els.progress.style.width = "60px";
+  }
+
   setAttributes(title, shortTitle, guest, releaseDate) {
     console.log(this.els)
     this.els.root.setAttribute("data-episode-title", title);
@@ -14,6 +18,7 @@ class SoundfoodPlayerInterface {
 
     this.els.title.innerText = shortTitle;
     this.els.date.innerText = releaseDate;
+    this.updateTimeline();
   }
 }
 
