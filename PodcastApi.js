@@ -6,6 +6,7 @@ class PodcastApi {
     this.media = "podcast";
     this.entity = "podcastEpisode";
     this.limit = 100;
+    console.log(process.env.PROXY_URL)
     this.proxyUrl = process.env.PROXY_URL;
   }
 
