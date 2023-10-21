@@ -2,14 +2,24 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 138:
+/***/ 232:
 /***/ (() => {
 
+
+;// CONCATENATED MODULE: ./PodcastApi.js
+class PodcastApi {
+    constructor() {
+
+    }
+}
+
+/* harmony default export */ const PodcastApi_0 = (PodcastApi);
+;// CONCATENATED MODULE: ./src/index.js
 
 
 
 const init = () => {
-    const Api = new PodcastApi();
+    const Api = new PodcastApi_0();
     var url = window.location.search.substring(12);
     console.log(url)
 };
@@ -145,7 +155,7 @@ window.addEventListener("load", init);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [532], () => (__webpack_require__(138)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [532], () => (__webpack_require__(232)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

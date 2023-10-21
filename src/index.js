@@ -1,5 +1,5 @@
 import "./assets/styles/main.css";
-import "../PodcastApi.js";
+import PodcastApi from "../PodcastApi.js";
 
 const init = () => {
     const Api = new PodcastApi();
