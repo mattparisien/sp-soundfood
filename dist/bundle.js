@@ -3600,7 +3600,7 @@ class SoundfoodPlayerInterface {
       (a, v) => ({
         ...a,
         [v.dataset.playerEl]: {
-          ...v,
+          v,
           events: this.getListeners(v.dataset.playerCb),
         },
       })
