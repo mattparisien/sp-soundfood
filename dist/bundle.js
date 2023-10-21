@@ -3493,6 +3493,7 @@ axios.default = axios;
 
 
 const init = async () => {
+  console.log('hello!')
   const endpoint = `https://itunes.apple.com/lookup?id=1539431210&media=podcast&entity=podcastEpisode&limit=100`;
   lib_axios
     .get(endpoint)
