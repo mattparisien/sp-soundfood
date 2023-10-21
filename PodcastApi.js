@@ -38,11 +38,9 @@ class PodcastApi {
 
   async getTrack(trackUrl) {
     try {
-      console.log(trackUrl);
       const hi = await axios.get(trackUrl, {
         responseType: "blob",
       });
-      console.log(hi);
       return hi;
     } catch (err) {
       console.log(err);

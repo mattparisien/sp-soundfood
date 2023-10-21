@@ -38,6 +38,7 @@ body {
   justify-content: center;
   padding: 0px;
   margin: 0px;
+  font-family: 'Helvetica';
 }
 
 .sf-player {
@@ -121,6 +122,12 @@ body {
   width: 100%;
   z-index: 2;
   padding-bottom: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.sf-player-controls--timeStamp >*:nth-child(even){
+  margin: 0 0.3rem;
 }
 
 .sf-player-playBtn {

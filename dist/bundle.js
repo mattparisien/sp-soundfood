@@ -3527,11 +3527,9 @@ class PodcastApi {
 
   async getTrack(trackUrl) {
     try {
-      console.log(trackUrl);
       const hi = await lib_axios.get(trackUrl, {
         responseType: "blob",
       });
-      console.log(hi);
       return hi;
     } catch (err) {
       console.log(err);
@@ -3664,12 +3662,15 @@ const init = async () => {
   const episode = await api.getEpisode(episodeId);
 
   const { data } = await api.getTrack(episode.episodeUrl);
+console.log(data)
 
   if (data) {
     player = await new SoundfoodPlayer_0(
       episode.trackName,
       episode.releaseDate,
-      data
+      {
+        Blob: data
+      }
     );
   }
 };
