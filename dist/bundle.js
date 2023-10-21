@@ -3509,6 +3509,11 @@ class PodcastApi {
           "Access-Control-Allow-Headers":
             "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length",
         },
+        proxy: {
+          protocol: 'https',
+          host: '127.0.0.1',
+          port: 5500,
+      },
       });
     } catch (err) {
       console.log(err);
