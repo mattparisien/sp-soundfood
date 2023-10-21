@@ -3638,6 +3638,7 @@ class SoundfoodPlayerInterface {
   }
 
   updateTimeline(progressPercent) {
+    console.log(progressPercent)
     const maxWidth = this.els.timeline.getBoundingClientRect().width;
     // console.log(
     //   this.els.timeline.getBoundingClientRect().width * progressPercent
