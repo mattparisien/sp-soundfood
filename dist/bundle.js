@@ -3628,6 +3628,7 @@ class AudioManager {
 ;// CONCATENATED MODULE: ./SoundfoodPlayer.js
 
 
+
 class SoundfoodPlayer {
   hasPlayed = false;
   isPlaying = false;
@@ -3638,7 +3639,7 @@ class SoundfoodPlayer {
     this.title = title.split("with")[0].trim();
     this.guest = title.split("with")[1].trim();
     this.shortTitle = this.title.replace(":", "|").split("|")[0].trim();
-    this.releaseDate = this.formatDate(releaseDate);
+    this.releaseDate = Utils_0.formatDate(releaseDate);
     this.audio = new AudioManager_0(
       document.querySelector(".sf-player-audio"),
       this.track,
@@ -3711,17 +3712,11 @@ class SoundfoodPlayer {
     const elapsedPercent = this.audio.getProgressPercent();
 
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-    this.currTrackTime = this.formatTime(this.audio.getProgress());
+    this.currTrackTime = Utils_0.formatTime(this.audio.getProgress());
 
     this.updateUIAnimation();
 
     this.animationFrame = requestAnimationFrame(this.initAnimation.bind(this));
-  }
-
- 
-
-  getDuration() {
-    return this.formatTime(this.audio.getDuration());
   }
 
   updateUI() {
@@ -3741,11 +3736,11 @@ class SoundfoodPlayer {
     const elapsedPercent = this.audio.getProgressPercent();
 
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-    this.currTrackTime = this.formatTime(this.audio.getProgress());
+    this.currTrackTime = Utils_0.formatTime(this.audio.getProgress());
   }
 
   onAudioLoad() {
-    this.player.els.timeEnd.innerText = this.getDuration();
+    this.player.els.timeEnd.innerText = this.audio.getDuration();
   }
 
   onActionClick() {
