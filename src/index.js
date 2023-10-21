@@ -4,19 +4,14 @@ import "./assets/styles/main.css";
 import axios from "axios";
 
 const init = async () => {
-  console.log('hello!')
-  const endpoint = `https://itunes.apple.com/lookup?id=1539431210&media=podcast&entity=podcastEpisode&limit=100`;
-  axios
-    .get(endpoint)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
 
-  // const api = new PodcastApi();
-  // let player;
 
-  // var episodeId = parseInt(window.location.search.substring(12));
+  const api = new PodcastApi();
+  let player;
 
-  // const episode = await api.getEpisode(episodeId);
+  var episodeId = parseInt(window.location.search.substring(12));
+
+  const episode = await api.getEpisode(episodeId);
 
   // const data = await api.getTrack(episode.episodeUrl);
 

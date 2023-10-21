@@ -6,7 +6,7 @@ class PodcastApi {
     this.media = "podcast";
     this.entity = "podcastEpisode";
     this.limit = 100;
-    this.endpoint = `https://itunes.apple.com/lookup?id=${this.collectionId}&media=${this.media}&entity=${this.entity}&limit=${this.limit}`;
+    this.proxyUrl = 'http://localhost:3000/episodes';
   }
 
   async getEpisodes() {
@@ -19,9 +19,9 @@ class PodcastApi {
 
   async getEpisode(episodeNumber) {
     try {
-      const { data } = await axios.get(this.endpoint);
+      const { data } = await axios.get(this.proxyUrl + "/" + episodeNumber);
 
-      return  data.results.reverse()[episodeNumber + 1];
+      console.log(data)
     } catch (err) {
       console.log(err);
     }
