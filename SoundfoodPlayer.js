@@ -80,18 +80,13 @@ class SoundfoodPlayer {
     if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
   }
 
-  updateUIAnimation() {
-    this.player.els.timeCurrent.innerText = this.currTrackTime;
-    this.player.els.timelineTrack.style.width = `${this.timelineTrackWidth}px`;
-  }
-
   initAnimation() {
     const elapsedPercent = this.audio.getProgressPercent();
 
     this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
     this.currTrackTime = Utils.formatSeconds(this.audio.getProgress());
 
-    this.updateUIAnimation();
+    this.ui.updateTimeline(this.audio.getProgress());
 
     this.animationFrame = requestAnimationFrame(this.initAnimation.bind(this));
   }
