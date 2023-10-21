@@ -3546,7 +3546,7 @@ class SoundfoodPlayer {
   isReady = false;
 
   constructor(title, releaseDate, trackData) {
-    this.trackData = trackData.Blob;
+    this.trackData = trackData;
     this.title = title.split("with")[0].trim();
     this.guest = title.split("with")[1].trim();
     this.shortTitle = this.title.replace(":", "|").split("|")[0].trim();
@@ -3668,9 +3668,11 @@ const init = async () => {
   const data = await api.getTrack(episode.episodeUrl);
 
   if (data) {
-    player = await new SoundfoodPlayer_0(episode.trackName, episode.releaseDate, {
-      Blob: data.data,
-    });
+    player = await new SoundfoodPlayer_0(
+      episode.trackName,
+      episode.releaseDate,
+      data.data
+    );
   }
 };
 

@@ -13,9 +13,11 @@ const init = async () => {
   const data = await api.getTrack(episode.episodeUrl);
 
   if (data) {
-    player = await new SoundfoodPlayer(episode.trackName, episode.releaseDate, {
-      Blob: data.data,
-    });
+    player = await new SoundfoodPlayer(
+      episode.trackName,
+      episode.releaseDate,
+      data.data
+    );
   }
 };
 

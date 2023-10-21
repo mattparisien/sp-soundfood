@@ -4,7 +4,7 @@ class SoundfoodPlayer {
   isReady = false;
 
   constructor(title, releaseDate, trackData) {
-    this.trackData = trackData.Blob;
+    this.trackData = trackData;
     this.title = title.split("with")[0].trim();
     this.guest = title.split("with")[1].trim();
     this.shortTitle = this.title.replace(":", "|").split("|")[0].trim();
