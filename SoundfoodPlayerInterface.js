@@ -9,7 +9,7 @@ class SoundfoodPlayerInterface {
         },
       })
     );
-    console.log(this.els.timeline.events);
+    console.log(this.els);
     this.els["root"] = document.querySelector('[data-player-el="root"]');
   }
 
