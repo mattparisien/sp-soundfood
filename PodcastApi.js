@@ -31,14 +31,20 @@ class PodcastApi {
 
   async getEpisode(episodeNumber) {
     try {
-      const { data } = await axios.get(this.endpoint, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-      });
+      fetch(this.endpoint)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
 
-      return await data.results.reverse()[episodeNumber + 1];
+          return response.blob();
+        })
+        .then((response) => {
+          console.log(response);
+          // data.results.reverse()[episodeNumber + 1];
+
+          return response;
+        });
     } catch (err) {
       console.log(err);
     }
