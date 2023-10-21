@@ -3631,9 +3631,7 @@ class AudioManager {
 ;// CONCATENATED MODULE: ./SoundfoodPlayerInterface.js
 class SoundfoodPlayerInterface {
   constructor() {
-    this.els = Array.from(document.querySelectorAll("[data-player-el]")).map(x => ({
-      [x.dataset.playerEl]: x
-    }));
+    this.els = Object.assign({}, Array.from(document.querySelectorAll("[data-player-el]")));
     console.log(this.els)
   }
 
