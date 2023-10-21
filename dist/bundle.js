@@ -3535,7 +3535,7 @@ class PodcastApi {
 class AudioManager {
   constructor(audioEl, track, onLoadCb) {
     this.el = audioEl;
-    this.track - track;
+    this.track = track;
     this.onLoadCb = onLoadCb;
 
     this.init();
