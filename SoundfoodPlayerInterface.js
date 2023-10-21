@@ -9,7 +9,6 @@ class SoundfoodPlayerInterface {
         },
       })
     );
-  console.log(this.els);
     this.els["root"] = {};
     this.els["root"].node = document.querySelector('[data-player-el="root"]');
   }
@@ -19,6 +18,7 @@ class SoundfoodPlayerInterface {
   }
 
   getListeners(str) {
+    console.log(str)
     if (!str) return str;
 
     const obj = {};
