@@ -7,12 +7,17 @@
     <link rel="stylesheet" type="text/css" href="./sf-player.css" />
     <title>SF Player</title>
     <script src="./bundle.js"></script>
-
   </head>
   <body>
     <div class="sf-player" id="sf-player">
       <div class="sf-player-wrapper">
-        <div class="sf-player-title">evolution through integration</div>
+        <div class="sf-player-text">
+          <div class="sf-player-date"></div>
+          <div class="sf-player-title">evolution through integration</div>
+        </div>
+        <div class="sf-player-controls"></div>
+        <div class="sf-player-overlay"></div>
+        /
       </div>
     </div>
 
@@ -45,11 +50,8 @@
       }
     </style>
     <script>
-
-      
-      console.log(window.parent[0].document.querySelector("iframe"))
-      const episodeId = window.frameElement.getAttribute('data-episode-id');
-
+      console.log(window.parent[0].document.querySelector("iframe"));
+      const episodeId = window.frameElement.getAttribute("data-episode-id");
     </script>
   </body>
 </html>

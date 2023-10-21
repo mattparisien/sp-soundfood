@@ -12,8 +12,8 @@ const init = async () => {
 
     
     const episode = await api.getEpisode(episodeId);
-    console.log(episode)
-    const player = await new SoundfoodPlayer(episode.trackName);
+    
+    const player = await new SoundfoodPlayer(episode.trackName, episode.releaseDate);
     
     
 };

@@ -50,9 +50,16 @@ body {
   background: var(--rainbow);
   color: var(--bg-color);
   background-size: 250% 250%;
+  overflow: hidden;
+
 
   animation: rainbow-anim 15s linear infinite alternate;
   -webkit-animation: rainbow-anim 20s infinite alternate;
+}
+
+.sf-player:hover .sf-player-overlay {
+  opacity: 0.14;
+  
 }
 
 .sf-player-wrapper {
@@ -63,6 +70,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.sf-player-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.sf-player-text .sf-player-date {
+  margin-bottom: 1.5rem;
+  font-family: 'Helvetica';
 }
 
 .sf-player-title {
@@ -72,4 +93,16 @@ body {
   padding: 0 3rem;
   line-height: 1em;
   text-align: center;
+}
+
+.sf-player-overlay {
+  background-color: black;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: 300ms ease;
 }
