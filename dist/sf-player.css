@@ -142,10 +142,14 @@ body {
   position: relative;
 }
 
+.sf-player-timeline:hover {
+  cursor: pointer;
+}
+
 .sf-player-controls:hover .track-bullet {
   transform-origin: center;
 
-  transform: scale(1)translate(50%, -50%) !important;
+  transform: scale(1) translate(50%, -50%) !important;
 }
 
 .sf-player-timeline .background {
@@ -184,10 +188,9 @@ body {
   background-color: var(--bg-color);
   border-radius: 50%;
   opacity: 1;
-  transform: scale(1)translate(50%, -50%);
+  transform: scale(1) translate(50%, -50%);
   transform-origin: center;
   transition: transform 300ms ease;
-
 }
 
 .sf-player-playBtn {
