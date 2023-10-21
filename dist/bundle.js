@@ -3607,7 +3607,7 @@ class AudioManager {
     const max = this.getDuration();
     const curr = this.getProgress();
 
-    return curr / max;
+    return curr / max * 0.1;
   }
 
   initListeners() {
