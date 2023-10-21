@@ -15,7 +15,9 @@ module.exports = {
       chunkFilename: "[id].css",
     }),
     new webpack.DefinePlugin({
-      "process.env.PROXY_URL": JSON.stringify(process.env.PROXY_URL),
+      "process.env": {
+        PROXY_URL: JSON.stringify(process.env.PROXY_URL),
+      }
     }),
   ],
   module: {
