@@ -12,6 +12,7 @@ class PodcastApi {
     }
 
     init() {
+        console.log(this.endpoint)
         return axios.get(this.endpoint)
     }
 }

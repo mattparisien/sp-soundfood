@@ -3501,6 +3501,7 @@ class PodcastApi {
     }
 
     init() {
+        console.log(this.endpoint)
         return lib_axios.get(this.endpoint)
     }
 }
@@ -3513,7 +3514,7 @@ class PodcastApi {
 const init = () => {
     const api = new PodcastApi_0();
     var episodeId = window.location.search.substring(12);
-    console.log(url)
+    
 };
 
 window.addEventListener("load", init);
