@@ -158,10 +158,10 @@ class SoundfoodPlayer {
   }
 
   initListeners() {
-    window.addEventListener("resize", this.onResize);
-    this.player.els.audio.addEventListener("loadeddata", this.onAudioLoad);
-    this.player.els.playBtn.addEventListener("click", this.onActionClick);
-    this.player.els.timeline.addEventListener("click", this.onTimelineClick);
+    window.addEventListener("resize", this.onResize.bind(this));
+    this.player.els.audio.addEventListener("loadeddata", this.onAudioLoad.bind(this));
+    this.player.els.playBtn.addEventListener("click", this.onActionClick.bind(this));
+    this.player.els.timeline.addEventListener("click", this.onTimelineClick.bind(this));
   }
 
   getElapsedTimePercentage() {
