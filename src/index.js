@@ -12,6 +12,7 @@ const init = async () => {
   
   var episodeId = parseInt(window.location.search.substring(12));
   const episode = await api.getEpisode(episodeId);
+  console.log(episode)
   const data = await api.getTrack(episode.episodeUrl);
 
   if (data) {
