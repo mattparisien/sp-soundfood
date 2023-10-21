@@ -1,8 +1,9 @@
 import "./assets/styles/main.css";
+import "../PodcastApi.js";
 
 const init = () => {
-    console.log('hi')
-    var url = window.location.search;
+    const Api = new PodcastApi();
+    var url = window.location.search.substring(12);
     console.log(url)
 };
 
