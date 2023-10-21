@@ -3504,8 +3504,10 @@ class PodcastApi {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
+          
         },
         withCredentials: true,
+        mode: 'no-cors'
         
       });
     } catch (err) {
