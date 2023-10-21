@@ -3,13 +3,12 @@ class SoundfoodPlayer {
   isPlaying = false;
   isReady = false;
 
-  constructor(title, releaseDate, trackData) {
-    this.trackData = trackData;
+  constructor(title, releaseDate, track) {
+    this.track = track;
     this.title = title.split("with")[0].trim();
     this.guest = title.split("with")[1].trim();
     this.shortTitle = this.title.replace(":", "|").split("|")[0].trim();
     this.releaseDate = this.formatDate(releaseDate);
-    this.trackData = trackData;
 
     this.currTrackTime = 0;
     this.maxTrackTime = 0;
@@ -163,7 +162,7 @@ class SoundfoodPlayer {
   }
 
   initAudio() {
-    this.player.els.audio.src = URL.createObjectURL(this.trackData);
+    this.player.els.audio.src = this.track;
   }
 }
 
