@@ -6,7 +6,8 @@ const init = async () => {
     
     var episodeId = window.location.search.substring(12);
 
-    await api.getEpisodes();
+    const episodes = await api.getEpisodes();
+    console.log(episodes)
     
 };
 
