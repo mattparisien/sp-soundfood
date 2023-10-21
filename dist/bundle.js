@@ -3513,10 +3513,11 @@ class PodcastApi {
 
 ;// CONCATENATED MODULE: ./SoundfoodPlayer.js
 class SoundfoodPlayer {
-  constructor(title) {
+  constructor(title, releaseDate) {
     this.title = title.split("with")[0].trim();
     this.guest = title.split("with")[1].trim();
     this.shortTitle = this.title.split("|")[0].trim();
+
 
     this.player = {
       els: {
@@ -3533,7 +3534,7 @@ class SoundfoodPlayer {
     this.player.els.wrapper.setAttribute("data-episode-short-title", this.shortTitle);
     this.player.els.wrapper.setAttribute("data-episode-guest", this.guest);
 
-    
+
     this.player.els.title.innerText = this.shortTitle;
   }
 
@@ -3559,7 +3560,7 @@ const init = async () => {
 
     
     const episode = await api.getEpisode(episodeId);
-    
+    console.log(episode)
     const player = await new SoundfoodPlayer_0(episode.trackName);
     
     
