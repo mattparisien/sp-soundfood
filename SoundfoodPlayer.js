@@ -45,7 +45,6 @@ class SoundfoodPlayer {
 
     this.updateUI();
     this.initListeners();
-    this.initAudio();
   }
 
   toggleUIPlayState() {
