@@ -13,7 +13,6 @@ class SoundfoodPlayerInterface {
   }
 
   setAttributes(title, shortTitle, guest, releaseDate) {
-    console.log(this.els);
     this.els.root.setAttribute("data-episode-title", title);
     this.els.root.setAttribute("data-episode-short-title", shortTitle);
     this.els.root.setAttribute("data-episode-guest", guest);
