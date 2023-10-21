@@ -2,8 +2,8 @@ import "./assets/styles/main.css";
 import PodcastApi from "../PodcastApi.js";
 
 const init = () => {
-    const Api = new PodcastApi();
-    var url = window.location.search.substring(12);
+    const api = new PodcastApi();
+    var episodeId = window.location.search.substring(12);
     console.log(url)
 };
 
