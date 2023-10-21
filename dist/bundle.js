@@ -3718,7 +3718,7 @@ const init = async () => {
   const episode = await api.getEpisode(episodeId);
   // const data = await api.getTrack(episode.episodeUrl);
 
-  if (data) {
+  if (episode) {
     player = await new SoundfoodPlayer_0(
       episode.trackName,
       episode.releaseDate,
