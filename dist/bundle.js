@@ -3496,8 +3496,7 @@ class PodcastApi {
     this.entity = "podcastEpisode";
     this.limit = 100;
     this.endpoint = `https://itunes.apple.com/lookup?id=${this.collectionId}&media=${this.media}&entity=${this.entity}&limit=${this.limit}`;
-    1539431210;
-    this.init();
+    
   }
 
   async getEpisodes() {
