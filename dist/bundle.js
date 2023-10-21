@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 196:
+/***/ 382:
 /***/ (() => {
 
 
@@ -3496,7 +3496,6 @@ class PodcastApi {
     this.entity = "podcastEpisode";
     this.limit = 100;
     this.endpoint = `https://itunes.apple.com/lookup?id=${this.collectionId}&media=${this.media}&entity=${this.entity}&limit=${this.limit}`;
-    
   }
 
   async getEpisodes() {
@@ -3504,17 +3503,49 @@ class PodcastApi {
   }
 
   async getEpisode(episodeNumber) {
-    const {data} = await lib_axios.get(this.endpoint);
-    const episode = await data.results.reverse()[episodeNumber-1];
-    console.log(episode)
+    const { data } = await lib_axios.get(this.endpoint);
+    return await data.results.reverse()[episodeNumber + 1];
     
-
   }
 }
 
 /* harmony default export */ const PodcastApi_0 = (PodcastApi);
 
+;// CONCATENATED MODULE: ./SoundfoodPlayer.js
+class SoundfoodPlayer {
+  constructor(title) {
+    this.title = title.split("with")[0].trim();
+    this.guest = title.split("with")[1].trim();
+    this.shortTitle = this.title.split("|")[0].trim();
+
+    this.player = {
+      els: {
+        wrapper: document.getElementById("sf-player"),
+        title: document.querySelector(".sf-player-title"),
+      },
+    };
+
+    this.initDom();
+  }
+
+  updateUI() {
+    this.player.els.wrapper.setAttribute("data-episode-title", this.title);
+    this.player.els.wrapper.setAttribute("data-episode-short-title", this.shortTitle);
+    this.player.els.wrapper.setAttribute("data-episode-guest", this.guest);
+
+    
+    this.player.els.title.innerText = this.shortTitle;
+  }
+
+  initDom() {
+    this.updateUI();
+  }
+}
+
+/* harmony default export */ const SoundfoodPlayer_0 = (SoundfoodPlayer);
+
 ;// CONCATENATED MODULE: ./src/index.js
+
 
 
 
@@ -3524,10 +3555,13 @@ const init = async () => {
     
     const api = new PodcastApi_0();
     
-    var episodeId = window.location.search.substring(12);
+    var episodeId = parseInt(window.location.search.substring(12));
 
+    
     const episode = await api.getEpisode(episodeId);
-    console.log(episode)
+    
+    const player = await new SoundfoodPlayer_0(episode.trackName);
+    
     
 };
 
@@ -3662,7 +3696,7 @@ window.addEventListener("load", init);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [532], () => (__webpack_require__(196)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [532], () => (__webpack_require__(382)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

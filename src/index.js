@@ -1,5 +1,6 @@
 import "./assets/styles/main.css";
 import PodcastApi from "../PodcastApi.js";
+import SoundfoodPlayer from "../SoundfoodPlayer.js";
 
 
 const init = async () => {
@@ -7,10 +8,13 @@ const init = async () => {
     
     const api = new PodcastApi();
     
-    var episodeId = window.location.search.substring(12);
+    var episodeId = parseInt(window.location.search.substring(12));
 
+    
     const episode = await api.getEpisode(episodeId);
-    console.log(episode)
+    
+    const player = await new SoundfoodPlayer(episode.trackName);
+    
     
 };
 

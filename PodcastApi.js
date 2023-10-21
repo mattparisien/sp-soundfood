@@ -7,7 +7,6 @@ class PodcastApi {
     this.entity = "podcastEpisode";
     this.limit = 100;
     this.endpoint = `https://itunes.apple.com/lookup?id=${this.collectionId}&media=${this.media}&entity=${this.entity}&limit=${this.limit}`;
-    
   }
 
   async getEpisodes() {
@@ -15,11 +14,9 @@ class PodcastApi {
   }
 
   async getEpisode(episodeNumber) {
-    const {data} = await axios.get(this.endpoint);
-    const episode = await data.results.reverse()[episodeNumber-1];
-    console.log(episode)
+    const { data } = await axios.get(this.endpoint);
+    return await data.results.reverse()[episodeNumber + 1];
     
-
   }
 }
 
