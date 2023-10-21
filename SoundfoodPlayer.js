@@ -69,6 +69,7 @@ class SoundfoodPlayer {
   }
 
   updateUIAnimation() {
+    console.log(this.timelineTrackWidth)
     this.player.els.timeCurrent.innerText = this.currTrackTime;
     this.player.els.timelineTrack.style.width = `${this.timelineTrackWidth}px`;
   }
@@ -160,7 +161,6 @@ class SoundfoodPlayer {
     
       this.pauseAudio();
       const pos = e.clientX - this.player.els.timeline.getBoundingClientRect().left;
-      console.log(pos, 'pos')
       this.timelineTrackWidth = pos;
       this.updateUIAnimation();
   }
