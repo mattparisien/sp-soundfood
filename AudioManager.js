@@ -1,3 +1,5 @@
+import Utils from "./Utils.js";
+
 class AudioManager {
   constructor(audioEl, track, onLoadCb) {
     this.el = audioEl;
@@ -24,8 +26,7 @@ class AudioManager {
   }
 
   getDuration() {
-    console.log('hi')
-    this.el.duration;
+    Utils.formatSeconds(this.el.duration);
   }
 
   getProgressPercent() {
