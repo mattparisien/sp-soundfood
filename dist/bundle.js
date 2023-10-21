@@ -3690,7 +3690,7 @@ class SoundfoodPlayer {
     this.player.els.audio.pause();
   }
 
-  onTimelineClick(e) {
+  onTimelineKeyDown(e) {
     
       this.pauseAudio();
 
@@ -3703,7 +3703,7 @@ class SoundfoodPlayer {
     window.addEventListener("resize", this.onResize.bind(this));
     this.player.els.audio.addEventListener("loadeddata", this.onAudioLoad.bind(this));
     this.player.els.playBtn.addEventListener("click", this.onActionClick.bind(this));
-    this.player.els.timeline.addEventListener("click", this.onTimelineClick.bind(this));
+    this.player.els.timeline.addEventListener("keydown", this.onTimelineKeyDown.bind(this));
   }
 
   getElapsedTimePercentage() {
