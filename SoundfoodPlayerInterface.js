@@ -1,13 +1,34 @@
 class SoundfoodPlayerInterface {
   constructor() {
     this.els = Array.from(document.querySelectorAll("[data-player-el]")).reduce(
-      (a, v) => ({ ...a, [v.dataset.playerEl]: v })
+      (a, v) => ({
+        ...a,
+        [v.dataset.playerEl]: v,
+        [events]: this.getListeners(v.dataset.playerCb),
+      })
     );
     this.els["root"] = document.querySelector('[data-player-el="root"]');
   }
 
+  udpateControls() {
+    console.log("called!");
+  }
+
+  getListeners(str) {
+    if (!str) return str;
+
+    const obj = {};
+
+    str.split(";").forEach((l) => {
+      const e = l.split(",")[0];
+      const h = l.split(",")[1];
+      obj[e] = this[h];
+    });
+
+    return obj;
+  }
+
   updateTimeline(progressPercent) {
-    
     const maxWidth = this.els.timeline.getBoundingClientRect().width;
     // console.log(
     //   this.els.timeline.getBoundingClientRect().width * progressPercent
