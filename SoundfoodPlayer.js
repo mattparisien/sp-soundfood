@@ -1,4 +1,7 @@
 class SoundfoodPlayer {
+  isPlaying = false;
+  isReady = false;
+
   constructor(title, releaseDate) {
     this.title = title.split("with")[0].trim();
     this.guest = title.split("with")[1].trim();
@@ -10,10 +13,24 @@ class SoundfoodPlayer {
         wrapper: document.getElementById("sf-player"),
         title: document.querySelector(".sf-player-title"),
         date: document.querySelector(".sf-player-date"),
+        playBtn: document.querySelector(".sf-player-playBtn"),
+        playSvg: document.getElementById("playSvg"),
+        pauseSvg: document.getElementById("pauseSvg"),
       },
     };
 
-    this.initDom();
+    this.updateUI();
+    this.initListeners();
+  }
+
+  toggleUIPlayState() {
+    if (this.isPlaying) {
+      this.player.els.playSvg.style.display = "none";
+      this.player.els.pauseSvg.style.display = "block";
+    } else {
+      this.player.els.playSvg.style.display = "block";
+      this.player.els.pauseSvg.style.display = "none";
+    }
   }
 
   formatDate(date) {
@@ -56,8 +73,11 @@ class SoundfoodPlayer {
     this.player.els.date.innerText = this.releaseDate;
   }
 
-  initDom() {
-    this.updateUI();
+  initListeners() {
+    this.player.els.playSvg.addEventListener("click", () => {
+      this.isPlaying = !this.isPlaying;
+      this.toggleUIPlayState();
+    });
   }
 }
 
