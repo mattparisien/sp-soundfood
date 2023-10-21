@@ -1,7 +1,7 @@
 import "./assets/styles/main.css";
 
 const init = () => {
-  console.log("hello!");
+    var url = window.location.search.substring(1);
 };
 
 window.addEventListener("load", init);

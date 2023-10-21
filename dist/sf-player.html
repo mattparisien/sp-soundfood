@@ -43,8 +43,9 @@
       }
     </style>
     <script>
-      console.log(window.frames);
-      console.log(window.parent)
+
+      
+      console.log(window.parent[0].document.querySelector("iframe"))
       const episodeId = window.frameElement.getAttribute('data-episode-id');
 
     </script>
