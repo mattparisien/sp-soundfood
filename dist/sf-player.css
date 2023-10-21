@@ -115,7 +115,7 @@ body {
   z-index: 1;
   opacity: 0;
   transition: 400ms ease;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .sf-player-controls {
@@ -138,11 +138,13 @@ body {
 
 .sf-player-timeline {
   height: 2px;
-  border-radius: 1rem;
-  overflow: hidden;
   flex-grow: 1;
   margin: 0 1rem;
   position: relative;
+}
+
+.sf-player-controls:hover .track-bullet {
+  transform: scale(1);
 }
 
 .sf-player-timeline .background {
@@ -163,6 +165,8 @@ body {
   width: 0px;
   height: 100%;
   opacity: 1;
+  border-radius: 1rem;
+  
 }
 
 .sf-player-timeline .track .track-inner{
@@ -175,10 +179,14 @@ body {
   position: absolute;
   right: 0;
   top: 50%;
-  transform: translateY(-50%);
-  width: 2rem;
-  height: 2rem;
+  transform: translateY(-50%)translateX(50%);
+  width: 0.6rem;
+  height: 0.6rem;
   background-color: var(--bg-color);
+  border-radius: 50%;
+  opacity: 1;
+  transform: scale(0);
+  transition: transform 300ms ease;
 }
 
 
