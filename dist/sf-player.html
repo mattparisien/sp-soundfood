@@ -8,7 +8,6 @@
     <title>SF Player</title>
   </head>
   <body>
-    
     <div class="sf-player">
       <div class="sf-player-wrapper">
         <div class="sf-player-title">evolution through integration</div>
@@ -44,13 +43,8 @@
       }
     </style>
     <script>
+      const episodeId = window.frameElement.getAttribute('data-episode-id');
       
-      const frame = parent.document.getElementById('sf-player');
-      const episodeID = frame.dataset.episodeId;
-      console.log(frame, episodeID)
-      
-
     </script>
   </body>
-
 </html>
