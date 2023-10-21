@@ -3544,18 +3544,16 @@ const init = async () => {
 
   
   var episodeId = parseInt(window.location.search.substring(12));
-console.log(episodeId)
   const episode = await api.getEpisode(episodeId);
+  const data = await api.getTrack(episode.episodeUrl);
 
-  // const data = await api.getTrack(episode.episodeUrl);
-
-  // if (data) {
-  //   player = await new SoundfoodPlayer(
-  //     episode.trackName,
-  //     episode.releaseDate,
-  //     data.data
-  //   );
-  // }
+  if (data) {
+    player = await new SoundfoodPlayer(
+      episode.trackName,
+      episode.releaseDate,
+      data.data
+    );
+  }
 };
 
 window.addEventListener("load", init);
