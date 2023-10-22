@@ -1,5 +1,5 @@
 import axios from "axios";
-import Module from "./Module.js"
+import Module from "./Module.js";
 
 class PodcastApi extends Module {
   constructor() {
@@ -12,32 +12,12 @@ class PodcastApi extends Module {
   }
 
   async getEpisodes() {
-    try {
-      return await axios.get(this.endpoint);
-    } catch (err) {
-      console.log(err);
-    }
+    return await axios.get(this.endpoint);
   }
 
   async getEpisode(episodeNumber) {
-    try {
-      const { data } = await axios.get(this.proxyUrl + "/" + episodeNumber);
-
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async getTrack(trackUrl) {
-    try {
-      const hi = await axios.get(trackUrl, {
-        responseType: "blob",
-      });
-      return hi;
-    } catch (err) {
-      console.log(err);
-    }
+    const { data } = await axios.get(this.proxyUrl + "/" + episodeNumber);
+    return data;
   }
 }
 

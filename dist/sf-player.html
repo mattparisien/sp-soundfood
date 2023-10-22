@@ -42,6 +42,9 @@
           <div class="sf-player-title" data-player-el="title">
             evolution through integration
           </div>
+          <div class="sf-player-error" data-module-error>
+            Oops! Looks like there's an error.
+          </div>
         </div>
         <div
           class="sf-player-controls"
@@ -52,7 +55,7 @@
             class="sf-player-playBtn"
             data-player-el="action"
             data-control="playBtn"
-            data-ui-action="click,Audio;togglePlayState(Player.initAnimation)"
+            data-ui-action="click,Audio;togglePlayState-Controls;toggleBtn"
           >
             <svg
               viewBox="0 0 40 40"
@@ -84,7 +87,7 @@
             class="sf-player-timeline"
             data-player-el="timeline"
             data-control="timeline"
-            data-ui-action="mousedown,Audio;togglePlayState-Controls;setProgressWidth(Audio.setProgressBasedOnClick)|mouseup,Audio;togglePlayState"
+            data-ui-action="mousedown,Audio;togglePlayState-Controls;setCurrTime(Audio.getProgress)|mouseup,Audio;togglePlayState"
           >
             <div
               class="track"
@@ -102,12 +105,13 @@
           controls
           class="sf-player-audio"
           data-module-audio
-          data-ui-action="loadeddata,Controls;updateCurrTime|pause,Player;cancelAnimation-Controls;toggleBtn|play,Player;initAnimation(Controls.updateTimeline)-Controls;toggleBtn"
+          data-ui-action="loadeddata,Controls;updateCurrTime|pause,Player;cancelAnimation|play,Player;initAnimation(Controls.updateTimeline:Controls.setCurrTime)"
         >
           Your browser does not support the audio tag.
         </audio>
         <div class="sf-player-overlay"></div>
       </div>
+      <div class="sf-player-loader"></div>
     </div>
 
     <style>

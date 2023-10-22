@@ -1,4 +1,5 @@
 import Module from "./Module.js";
+import Utils from "./Utils.js";
 
 class Controls extends Module {
   animationFrame = null;
@@ -20,13 +21,14 @@ class Controls extends Module {
 
   updateCurrTime() {}
 
-  updateTimeline(audio) {
-    const percent = audio.getProgressPercent();
+  updateTimeline() {
+    const percent = Module.get("Audio")[0].getProgressPercent();
     this.progress.style.width = this.tlWidth * percent + "px";
   }
 
   setProgressWidth(cb, e) {
     const x = e.clientX - this.timeline.getBoundingClientRect().left;
+
     const percent = x / this.tlWidth;
     this.progress.style.width = this.tlWidth * percent + "px";
 
@@ -48,6 +50,12 @@ class Controls extends Module {
     }
 
     this.isPause = !this.isPause;
+  }
+
+  setCurrTime() {
+    this.currTime.innerText = Utils.formatSeconds(
+      Module.get("Audio")[0].getProgress()
+    );
   }
 }
 

@@ -17,25 +17,6 @@ class Interface extends Module {
     this.els["root"].node = document.querySelector('[data-player-el="root"]');
   }
 
-  onTimelineDown(e) {
-    this.audio.pause();
-    const pos = e.pageX - this.els.timeline.node.getBoundingClientRect().left;
-    const progressPercent =
-      pos / this.els.timeline.node.getBoundingClientRect().width;
-    const newCurrentTime =
-      this.audio.getProgressDurationFromProgressPercent(progressPercent);
-    this.audio.setProgress(newCurrentTime);
-  }
-
-  onTimelineUp() {
-    this.audio.play();
-  }
-
-  updateTimeline(progressPercent) {
-    const maxWidth = this.els.timeline.node.getBoundingClientRect().width;
-    this.els.progress.node.style.width = maxWidth * progressPercent + "px";
-  }
-
   setAttributes(title, shortTitle, guest, releaseDate) {
     this.els.root.node.setAttribute("data-episode-title", title);
     this.els.root.node.setAttribute("data-episode-short-title", shortTitle);
@@ -80,12 +61,24 @@ class Interface extends Module {
               x[1].indexOf("(") + 1,
               x[1].indexOf(")")
             );
-            const m = Module.get(data.split(".")[0])?.[0];
-            const a = m[data.split(".")[1]].bind(m);
-            args.push(a);
+
+            data.split(":").forEach((set) => {
+              const m = Module.get(set.split(".")[0])?.[0];
+              const a = m[set.split(".")[1]].bind(m);
+
+              args.push(a.bind(m));
+            });
           }
 
-          node["addEventListener"](event, (e) => cb.bind(m, ...args, e)());
+          node["addEventListener"](event, (e) => {
+            const func = () => {
+              args.forEach((arg) => {
+                arg();
+              });
+            };
+
+            cb.bind(m, func, e)();
+          });
         });
       });
     });

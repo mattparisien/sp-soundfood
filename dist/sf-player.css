@@ -65,15 +65,27 @@ body {
   -webkit-animation: rainbow-anim 20s infinite alternate;
 }
 
-.sf-player:not(.sf-player.has-played):hover .sf-player-overlay {
+.sf-player.is-error .sf-player-controls {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.sf-player.is-error .sf-player-text > *:not(.sf-player-error) {
+  display: none;
+}
+
+.sf-player:not(.sf-player.has-played):not(.sf-player.is-error):hover
+  .sf-player-overlay {
   opacity: 0.14;
 }
 
-.sf-player:not(.sf-player.has-played):hover .sf-player-playBtn--circle {
+.sf-player:not(.sf-player.has-played):not(.sf-player.is-error):hover
+  .sf-player-playBtn--circle {
   opacity: 1;
   transition-delay: none;
 }
-.sf-player:not(.sf-player.has-played):hover .sf-player-playBtn--svg {
+.sf-player:not(.sf-player.has-played):not(.sf-player.is-error):hover
+  .sf-player-playBtn--svg {
   transform: scale(0.6);
 }
 
@@ -87,6 +99,14 @@ body {
   align-items: center;
   justify-content: space-between;
   position: relative;
+}
+
+.sf-player-error {
+  font-family: "Ronda Bold";
+  font-size: 2rem;
+  display: none;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 @media (min-width: 600px) {
@@ -155,10 +175,13 @@ body {
   flex-grow: 1;
   margin: 0 1rem;
   position: relative;
+  transition: height 300ms ease;
 }
+
 
 .sf-player-timeline:hover {
   cursor: pointer;
+  height: 8px;
 }
 
 .sf-player-timeline .background {

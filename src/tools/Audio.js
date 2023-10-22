@@ -41,6 +41,7 @@ class Audio extends Module {
   }
 
   setProgressBasedOnClick(progressPercent) {
+    
     const progress =
       this.getProgressDurationFromProgressPercent(progressPercent);
     this.setProgress(progress);
@@ -57,9 +58,6 @@ class Audio extends Module {
     } else {
       this.play();
     }
-    // this.isPlaying = !this.isPlaying;
-
-    // if (this.isPlaying) onIsPlaying?.();
   }
 
   setTrack() {

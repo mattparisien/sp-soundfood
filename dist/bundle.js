@@ -17238,7 +17238,9 @@ window.addEventListener("load", init);
 /* harmony import */ var _Audio_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(918);
 /* harmony import */ var _Player_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(733);
 /* harmony import */ var _PodcastApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(906);
-/* harmony import */ var _Controls_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(881);
+/* harmony import */ var _Controls_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(711);
+/* harmony import */ var _Error_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(30);
+
 
 
 
@@ -17260,7 +17262,7 @@ class App {
   }
 
   init() {
-    const modules = [_Interface_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z, _Audio_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, _Player_js__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z, _PodcastApi_js__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, _Controls_js__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z];
+    const modules = [_Interface_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z, _Audio_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, _Player_js__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z, _PodcastApi_js__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, _Controls_js__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, _Error_js__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z];
 
     modules.forEach((m) => {
       const name = m.name;
@@ -17343,6 +17345,7 @@ class Audio extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z 
   }
 
   setProgressBasedOnClick(progressPercent) {
+    
     const progress =
       this.getProgressDurationFromProgressPercent(progressPercent);
     this.setProgress(progress);
@@ -17359,9 +17362,6 @@ class Audio extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z 
     } else {
       this.play();
     }
-    // this.isPlaying = !this.isPlaying;
-
-    // if (this.isPlaying) onIsPlaying?.();
   }
 
   setTrack() {
@@ -17374,17 +17374,108 @@ class Audio extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z 
 
 /***/ }),
 
-/***/ 881:
+/***/ 711:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _Module_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(617);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  Z: () => (/* binding */ tools_Controls)
+});
+
+// EXTERNAL MODULE: ./src/tools/Module.js
+var Module = __webpack_require__(617);
+;// CONCATENATED MODULE: ./src/tools/Utils.js
+class Utils {
+  static midpoint(x1, y1, x2, y2) {
+    return {
+      x: (x1 + x2) / 2,
+      y: (y1 + y2) / 2,
+    };
+  }
+
+  static rgbToRgba() {}
+
+  static rgbToHex(r, g, b) {
+    r = r.toString(16);
+    g = g.toString(16);
+    b = b.toString(16);
+
+    if (r.length == 1) r = "0" + r;
+    if (g.length == 1) g = "0" + g;
+    if (b.length == 1) b = "0" + b;
+
+    return "#" + r + g + b;
+  }
+
+  static getPixelColor(img, x, y, format, opacity) {
+    const px = img.get(x, y);
+    let final;
+
+    if (!Array.isArray(px)) return;
+
+    switch (format) {
+      case "rgb":
+        final = `rgb(${[px[0]]}, ${px[1]}, ${px[2]})`;
+        break;
+      case "rgba":
+        final = `rgba(${[px[0]]}, ${px[1]}, ${px[2]}, ${opacity})`;
+        break;
+      default:
+        final = Utils.rgbToHex(px[0], px[1], px[2]);
+    }
+
+    return final;
+  }
+
+  static drawPoint(x, y) {
+    stroke("black");
+    strokeWeight(50);
+    point(x, y);
+    noStroke();
+  }
+
+  static formatSeconds(seconds) {
+    return new Date(seconds * 1000).toISOString().slice(11, 19);
+  }
+
+  static formatDate(date) {
+    let dateStr = "";
+
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const arr = date.substring(0, 10).split("-");
+    const year = arr[0];
+    const month = arr[1];
+    const day = arr[2];
+
+    dateStr += `${monthNames[month - 1]} ${day}, ${year}`;
+
+    return dateStr;
+  }
+}
+
+/* harmony default export */ const tools_Utils = (Utils);
+
+;// CONCATENATED MODULE: ./src/tools/Controls.js
 
 
-class Controls extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+
+class Controls extends Module/* default */.Z {
   animationFrame = null;
   isPause = true;
 
@@ -17404,13 +17495,14 @@ class Controls extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ 
 
   updateCurrTime() {}
 
-  updateTimeline(audio) {
-    const percent = audio.getProgressPercent();
+  updateTimeline() {
+    const percent = Module/* default */.Z.get("Audio")[0].getProgressPercent();
     this.progress.style.width = this.tlWidth * percent + "px";
   }
 
   setProgressWidth(cb, e) {
     const x = e.clientX - this.timeline.getBoundingClientRect().left;
+
     const percent = x / this.tlWidth;
     this.progress.style.width = this.tlWidth * percent + "px";
 
@@ -17433,9 +17525,46 @@ class Controls extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ 
 
     this.isPause = !this.isPause;
   }
+
+  setCurrTime() {
+    this.currTime.innerText = tools_Utils.formatSeconds(
+      Module/* default */.Z.get("Audio")[0].getProgress()
+    );
+  }
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Controls);
+/* harmony default export */ const tools_Controls = (Controls);
+
+
+/***/ }),
+
+/***/ 30:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(617);
+
+
+class Error extends _Module__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+  statusCode = null;
+  message = null;
+
+  constructor(el) {
+    super();
+    this.el = el;
+  }
+
+  setError(code, msg) {
+    this.el.innerText = `${code} Error: ${msg}`
+    this.el.style.display = "block";
+    _Module__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Player")[0].container.classList.add("is-error");
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Error);
 
 
 /***/ }),
@@ -17465,25 +17594,6 @@ class Interface extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */
 
     this.els["root"] = {};
     this.els["root"].node = document.querySelector('[data-player-el="root"]');
-  }
-
-  onTimelineDown(e) {
-    this.audio.pause();
-    const pos = e.pageX - this.els.timeline.node.getBoundingClientRect().left;
-    const progressPercent =
-      pos / this.els.timeline.node.getBoundingClientRect().width;
-    const newCurrentTime =
-      this.audio.getProgressDurationFromProgressPercent(progressPercent);
-    this.audio.setProgress(newCurrentTime);
-  }
-
-  onTimelineUp() {
-    this.audio.play();
-  }
-
-  updateTimeline(progressPercent) {
-    const maxWidth = this.els.timeline.node.getBoundingClientRect().width;
-    this.els.progress.node.style.width = maxWidth * progressPercent + "px";
   }
 
   setAttributes(title, shortTitle, guest, releaseDate) {
@@ -17530,12 +17640,24 @@ class Interface extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */
               x[1].indexOf("(") + 1,
               x[1].indexOf(")")
             );
-            const m = _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get(data.split(".")[0])?.[0];
-            const a = m[data.split(".")[1]].bind(m);
-            args.push(a);
+
+            data.split(":").forEach((set) => {
+              const m = _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get(set.split(".")[0])?.[0];
+              const a = m[set.split(".")[1]].bind(m);
+
+              args.push(a.bind(m));
+            });
           }
 
-          node["addEventListener"](event, (e) => cb.bind(m, ...args, e)());
+          node["addEventListener"](event, (e) => {
+            const func = () => {
+              args.forEach((arg) => {
+                arg();
+              });
+            };
+
+            cb.bind(m, func, e)();
+          });
         });
       });
     });
@@ -17633,10 +17755,18 @@ class Player extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z
   }
 
   async init() {
-    this.episode = await this.api.getEpisode(this.episodeId);
-    this.audio = _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Audio")[0];
-    this.audio?.load(this.episode.episodeUrl);
-    _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Interface")[0]?.init();
+    try {
+      this.episode = await this.api.getEpisode(this.episodeId);
+      this.audio = _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Audio")[0];
+      this.audio?.load(this.episode.episodeUrl);
+      _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Interface")[0]?.init();
+    } catch (err) {
+      console.log(_Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Error")[0]);
+      _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Error")[0]?.setError(
+        null,
+        "There was an issue loading audio."
+      );
+    }
   }
 
   cancelAnimation() {
@@ -17649,24 +17779,6 @@ class Player extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z
     this.animationFrame = requestAnimationFrame(
       this.initAnimation.bind(this, () => onAnimCb(this.audio))
     );
-  }
-
-  onResize() {
-    this.player.els.timeline.getBoundingClientRect().width;
-    const elapsedPercent = this.audio.getProgressPercent();
-
-    this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-    this.currTrackTime = this.audio.getProgress();
-  }
-
-  pauseAudio() {
-    this.audio.pause();
-  }
-
-  onTimelineMouseDown(e) {
-    const pos =
-      e.clientX - this.player.els.timeline.getBoundingClientRect().left;
-    this.timelineTrackWidth = pos;
   }
 }
 
@@ -21182,32 +21294,12 @@ class PodcastApi extends Module/* default */.Z {
   }
 
   async getEpisodes() {
-    try {
-      return await lib_axios.get(this.endpoint);
-    } catch (err) {
-      console.log(err);
-    }
+    return await lib_axios.get(this.endpoint);
   }
 
   async getEpisode(episodeNumber) {
-    try {
-      const { data } = await lib_axios.get(this.proxyUrl + "/" + episodeNumber);
-
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async getTrack(trackUrl) {
-    try {
-      const hi = await lib_axios.get(trackUrl, {
-        responseType: "blob",
-      });
-      return hi;
-    } catch (err) {
-      console.log(err);
-    }
+    const { data } = await lib_axios.get(this.proxyUrl + "/" + episodeNumber);
+    return data;
   }
 }
 

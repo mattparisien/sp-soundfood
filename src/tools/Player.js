@@ -15,10 +15,18 @@ class Player extends Module {
   }
 
   async init() {
-    this.episode = await this.api.getEpisode(this.episodeId);
-    this.audio = Module.get("Audio")[0];
-    this.audio?.load(this.episode.episodeUrl);
-    Module.get("Interface")[0]?.init();
+    try {
+      this.episode = await this.api.getEpisode(this.episodeId);
+      this.audio = Module.get("Audio")[0];
+      this.audio?.load(this.episode.episodeUrl);
+      Module.get("Interface")[0]?.init();
+    } catch (err) {
+      console.log(Module.get("Error")[0]);
+      Module.get("Error")[0]?.setError(
+        null,
+        "There was an issue loading audio."
+      );
+    }
   }
 
   cancelAnimation() {
@@ -31,24 +39,6 @@ class Player extends Module {
     this.animationFrame = requestAnimationFrame(
       this.initAnimation.bind(this, () => onAnimCb(this.audio))
     );
-  }
-
-  onResize() {
-    this.player.els.timeline.getBoundingClientRect().width;
-    const elapsedPercent = this.audio.getProgressPercent();
-
-    this.timelineTrackWidth = this.timelineWidth * elapsedPercent;
-    this.currTrackTime = this.audio.getProgress();
-  }
-
-  pauseAudio() {
-    this.audio.pause();
-  }
-
-  onTimelineMouseDown(e) {
-    const pos =
-      e.clientX - this.player.els.timeline.getBoundingClientRect().left;
-    this.timelineTrackWidth = pos;
   }
 }
 

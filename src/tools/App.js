@@ -3,6 +3,7 @@ import Audio from "./Audio.js";
 import Player from "./Player.js";
 import PodcastApi from "./PodcastApi.js";
 import Controls from "./Controls.js";
+import Error from "./Error.js";
 
 class App {
   static modules = {};
@@ -19,7 +20,7 @@ class App {
   }
 
   init() {
-    const modules = [Interface, Audio, Player, PodcastApi, Controls];
+    const modules = [Interface, Audio, Player, PodcastApi, Controls, Error];
 
     modules.forEach((m) => {
       const name = m.name;

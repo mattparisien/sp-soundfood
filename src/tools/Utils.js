@@ -1,6 +1,4 @@
 class Utils {
-  constructor() {}
-
   static midpoint(x1, y1, x2, y2) {
     return {
       x: (x1 + x2) / 2,
@@ -81,3 +79,5 @@ class Utils {
     return dateStr;
   }
 }
+
+export default Utils;
