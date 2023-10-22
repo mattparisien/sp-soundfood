@@ -1,7 +1,8 @@
-class SoundfoodPlayerInterface {
-  constructor(audio) {
-    const func = this.getListeners.bind(this);
-    this.audio = audio;
+import Module from "./Module.js";
+
+class Interface extends Module {
+  constructor() {
+    super();
 
     this.els = Array.from(document.querySelectorAll("[data-player-el]")).reduce(
       (a, v) => ({
@@ -14,8 +15,6 @@ class SoundfoodPlayerInterface {
 
     this.els["root"] = {};
     this.els["root"].node = document.querySelector('[data-player-el="root"]');
-
-    this.init();
   }
 
   onTimelineDown(e) {
@@ -30,20 +29,6 @@ class SoundfoodPlayerInterface {
 
   onTimelineUp() {
     this.audio.play();
-  }
-
-  getListeners(str) {
-    if (!str) return str;
-
-    const obj = {};
-
-    str.split(";").forEach((l) => {
-      const e = l.split(",")[0]?.trim();
-      const h = l.split(",")[1]?.trim();
-      obj[e] = SoundfoodPlayerInterface[h];
-    });
-
-    return obj;
   }
 
   updateTimeline(progressPercent) {
@@ -62,22 +47,55 @@ class SoundfoodPlayerInterface {
   }
 
   initListeners() {
-    const nodes = Array.from(document.querySelectorAll("[data-player-cb]"));
+    const nodes = Array.from(document.querySelectorAll("[data-ui-action]"));
 
     nodes.forEach((node) => {
-      const listeners = node.dataset.playerCb.split(";");
-      listeners.forEach((l) => {
-        const event = l.split(",")[0]?.trim();
-        const cb = this[l.split(",")[1]?.trim()];
+      const dataset = node.dataset.uiAction.split("|");
 
-        node["addEventListener"](event, cb.bind(this));
+      dataset.forEach((set) => {
+        const event = set.split(",")[0]?.trim();
+        const d = set
+          .split(",")[1]
+          .split("-")
+          .map((x) => x.split(";"));
+
+        d.forEach((x) => {
+          const m = Module.modules.filter((m) => m.name == x[0].trim())[0];
+          const hasArgs = x[1].indexOf("(") != -1 && x[1].indexOf(")") != -1;
+
+          let f, cb;
+
+          if (hasArgs) {
+            f = x[1].substring(0, x[1].indexOf("(")).trim();
+          } else {
+            f = x[1].substring(0, x[1].length).trim();
+          }
+
+          cb = m[f];
+
+          let args = [];
+
+          if (hasArgs) {
+            const data = x[1].substring(
+              x[1].indexOf("(") + 1,
+              x[1].indexOf(")")
+            );
+            const m = Module.get(data.split(".")[0])?.[0];
+            const a = m[data.split(".")[1]].bind(m);
+            args.push(a);
+          }
+
+          node["addEventListener"](event, (e) => cb.bind(m, ...args, e)());
+        });
       });
     });
   }
 
   init() {
-    this.initListeners();
+    setTimeout(() => {
+      this.initListeners();
+    }, 1000);
   }
 }
 
-export default SoundfoodPlayerInterface;
+export default Interface;

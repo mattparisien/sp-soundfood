@@ -1,12 +1,13 @@
 import axios from "axios";
+import Module from "./Module.js"
 
-class PodcastApi {
+class PodcastApi extends Module {
   constructor() {
+    super();
     this.collectionId = "1539431210";
     this.media = "podcast";
     this.entity = "podcastEpisode";
     this.limit = 100;
-    console.log(process.env.PROXY_URL)
     this.proxyUrl = process.env.PROXY_URL;
   }
 

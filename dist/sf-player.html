@@ -9,7 +9,14 @@
     <script src="./bundle.js"></script>
   </head>
   <body>
-    <div class="sf-player" id="sf-player" data-player-el="root">
+    <div
+      class="sf-player"
+      id="sf-player"
+      data-player-el="root"
+      data-module-podcast
+      data-module-player
+      data-module-interface
+    >
       <div class="sf-player-wrapper">
         <div class="sf-player-topBar">
           <div></div>
@@ -21,8 +28,8 @@
               rel="noreferrer,noopener"
               >Apple Podcasts</a
             >
-            <div>•</div
-            ><a
+            <div>•</div>
+            <a
               href="https://podcasts.google.com/search/soundfood"
               target="_blank"
               rel="noreferrer,noopener"
@@ -36,8 +43,17 @@
             evolution through integration
           </div>
         </div>
-        <div class="sf-player-controls" data-player-el="controls">
-          <button class="sf-player-playBtn" data-player-el="action">
+        <div
+          class="sf-player-controls"
+          data-player-el="controls"
+          data-module-controls
+        >
+          <button
+            class="sf-player-playBtn"
+            data-player-el="action"
+            data-control="playBtn"
+            data-ui-action="click,Audio;togglePlayState(Player.initAnimation)"
+          >
             <svg
               viewBox="0 0 40 40"
               class="sf-player-playBtn--svg"
@@ -51,19 +67,30 @@
             <div class="sf-player-playBtn--circle"></div>
           </button>
           <div class="sf-player-controls--timeStamp">
-            <span class="track-time-current" data-player-el="currTime"
+            <span
+              class="track-time-current"
+              data-player-el="currTime"
+              data-control="currTime"
               >00:00:00</span
             ><span>/</span
-            ><span class="track-time-end" data-player-el="duration"
+            ><span
+              class="track-time-end"
+              data-player-el="duration"
+              data-control="endTime"
               >00:00:00</span
             >
           </div>
           <div
             class="sf-player-timeline"
             data-player-el="timeline"
-            data-player-cb="mousedown,onTimelineDown;mouseup,onTimelineUp;dragover,onTimelineDown"
+            data-control="timeline"
+            data-ui-action="mousedown,Audio;togglePlayState-Controls;setProgressWidth(Audio.setProgressBasedOnClick)|mouseup,Audio;togglePlayState"
           >
-            <div class="track" data-player-el="progress">
+            <div
+              class="track"
+              data-player-el="progress"
+              data-control="progress"
+            >
               <div class="track-inner">
                 <div class="track-bullet"></div>
               </div>
@@ -71,7 +98,12 @@
             <div class="background"></div>
           </div>
         </div>
-        <audio controls class="sf-player-audio">
+        <audio
+          controls
+          class="sf-player-audio"
+          data-module-audio
+          data-ui-action="loadeddata,Controls;updateCurrTime|pause,Player;cancelAnimation-Controls;toggleBtn|play,Player;initAnimation(Controls.updateTimeline)-Controls;toggleBtn"
+        >
           Your browser does not support the audio tag.
         </audio>
         <div class="sf-player-overlay"></div>
