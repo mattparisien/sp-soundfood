@@ -59,6 +59,8 @@ body {
   color: var(--bg-color);
   background-size: 250% 250%;
   overflow: hidden;
+  max-width: 1024px;
+  margin: 0 auto;
 
   animation: rainbow-anim 15s linear infinite alternate;
   -webkit-animation: rainbow-anim 20s infinite alternate;
@@ -79,13 +81,19 @@ body {
 .sf-player-wrapper {
   width: 100%;
   height: 100%;
-  padding: 0 3rem;
+  padding: 0 1rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   position: relative;
+}
+
+@media (min-width: 600px) {
+  .sf-player-wrapper {
+    padding: 0 3rem;
+  }
 }
 
 .sf-player-text {
@@ -95,7 +103,6 @@ body {
   align-items: center;
   z-index: 2;
   cursor: default;
-  padding-top: 3rem;
 }
 
 .sf-player-text .sf-player-date {
