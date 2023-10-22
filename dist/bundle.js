@@ -17238,7 +17238,7 @@ window.addEventListener("load", init);
 /* harmony import */ var _Audio_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(918);
 /* harmony import */ var _Player_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(733);
 /* harmony import */ var _PodcastApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(906);
-/* harmony import */ var _Controls_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(711);
+/* harmony import */ var _Controls_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(881);
 /* harmony import */ var _Error_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(30);
 
 
@@ -17374,108 +17374,19 @@ class Audio extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z 
 
 /***/ }),
 
-/***/ 711:
+/***/ 881:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  Z: () => (/* binding */ tools_Controls)
-});
-
-// EXTERNAL MODULE: ./src/tools/Module.js
-var Module = __webpack_require__(617);
-;// CONCATENATED MODULE: ./src/tools/Utils.js
-class Utils {
-  static midpoint(x1, y1, x2, y2) {
-    return {
-      x: (x1 + x2) / 2,
-      y: (y1 + y2) / 2,
-    };
-  }
-
-  static rgbToRgba() {}
-
-  static rgbToHex(r, g, b) {
-    r = r.toString(16);
-    g = g.toString(16);
-    b = b.toString(16);
-
-    if (r.length == 1) r = "0" + r;
-    if (g.length == 1) g = "0" + g;
-    if (b.length == 1) b = "0" + b;
-
-    return "#" + r + g + b;
-  }
-
-  static getPixelColor(img, x, y, format, opacity) {
-    const px = img.get(x, y);
-    let final;
-
-    if (!Array.isArray(px)) return;
-
-    switch (format) {
-      case "rgb":
-        final = `rgb(${[px[0]]}, ${px[1]}, ${px[2]})`;
-        break;
-      case "rgba":
-        final = `rgba(${[px[0]]}, ${px[1]}, ${px[2]}, ${opacity})`;
-        break;
-      default:
-        final = Utils.rgbToHex(px[0], px[1], px[2]);
-    }
-
-    return final;
-  }
-
-  static drawPoint(x, y) {
-    stroke("black");
-    strokeWeight(50);
-    point(x, y);
-    noStroke();
-  }
-
-  static formatSeconds(seconds) {
-    return new Date(seconds * 1000).toISOString().slice(11, 19);
-  }
-
-  static formatDate(date) {
-    let dateStr = "";
-
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    const arr = date.substring(0, 10).split("-");
-    const year = arr[0];
-    const month = arr[1];
-    const day = arr[2];
-
-    dateStr += `${monthNames[month - 1]} ${day}, ${year}`;
-
-    return dateStr;
-  }
-}
-
-/* harmony default export */ const tools_Utils = (Utils);
-
-;// CONCATENATED MODULE: ./src/tools/Controls.js
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Module_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(617);
+/* harmony import */ var _Utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(470);
 
 
 
-class Controls extends Module/* default */.Z {
+class Controls extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
   animationFrame = null;
   isPause = true;
 
@@ -17496,7 +17407,7 @@ class Controls extends Module/* default */.Z {
   updateCurrTime() {}
 
   updateTimeline() {
-    const percent = Module/* default */.Z.get("Audio")[0].getProgressPercent();
+    const percent = _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Audio")[0].getProgressPercent();
     this.progress.style.width = this.tlWidth * percent + "px";
   }
 
@@ -17527,13 +17438,19 @@ class Controls extends Module/* default */.Z {
   }
 
   setCurrTime() {
-    this.currTime.innerText = tools_Utils.formatSeconds(
-      Module/* default */.Z.get("Audio")[0].getProgress()
+    this.currTime.innerText = _Utils_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z.formatSeconds(
+      _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Audio")[0].getProgress()
+    );
+  }
+
+  setEndTIme() {
+    this.endTime.innerText = _Utils_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z.formatSeconds(
+      _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Audio")[0].getDuration()
     );
   }
 }
 
-/* harmony default export */ const tools_Controls = (Controls);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Controls);
 
 
 /***/ }),
@@ -17577,6 +17494,8 @@ class Error extends _Module__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
 /* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Module_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(617);
+/* harmony import */ var _Utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(470);
+
 
 
 class Interface extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
@@ -17663,7 +17582,11 @@ class Interface extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */
     });
   }
 
-  init() {
+  init(trackName, releaseDate) {
+    
+    this.els.title.node.innerText = trackName.split(/[:|]|with/)[0].trim();
+    this.els.date.node.innerText = _Utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z.formatDate(releaseDate);
+
     setTimeout(() => {
       this.initListeners();
     }, 1000);
@@ -17744,11 +17667,14 @@ class Module {
 class Player extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
   hasPlayed = false;
   episode = null;
-  track = null;
+  trackName = null;
+  guestName = null;
+  releaseDate = null;
 
-  constructor() {
+  constructor(wrapper) {
     super();
-    this.episodeId = parseInt(window.location.search.substring(12));
+    this.el = wrapper;
+    this.episodeId = parseInt(window.location.search.substring(12) - 1);
     this.api = new _PodcastApi_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z();
 
     this.init();
@@ -17757,9 +17683,14 @@ class Player extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z
   async init() {
     try {
       this.episode = await this.api.getEpisode(this.episodeId);
+
+      this.trackName = this.episode.trackName;
+      this.releaseDate = this.episode.releaseDate;
+
       this.audio = _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Audio")[0];
       this.audio?.load(this.episode.episodeUrl);
-      _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Interface")[0]?.init();
+
+      _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Interface")[0]?.init(this.trackName, this.releaseDate);
     } catch (err) {
       console.log(_Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Error")[0]);
       _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Error")[0]?.setError(
@@ -21304,6 +21235,100 @@ class PodcastApi extends Module/* default */.Z {
 }
 
 /* harmony default export */ const tools_PodcastApi = (PodcastApi);
+
+
+/***/ }),
+
+/***/ 470:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+class Utils {
+  static midpoint(x1, y1, x2, y2) {
+    return {
+      x: (x1 + x2) / 2,
+      y: (y1 + y2) / 2,
+    };
+  }
+
+  static rgbToRgba() {}
+
+  static rgbToHex(r, g, b) {
+    r = r.toString(16);
+    g = g.toString(16);
+    b = b.toString(16);
+
+    if (r.length == 1) r = "0" + r;
+    if (g.length == 1) g = "0" + g;
+    if (b.length == 1) b = "0" + b;
+
+    return "#" + r + g + b;
+  }
+
+  static getPixelColor(img, x, y, format, opacity) {
+    const px = img.get(x, y);
+    let final;
+
+    if (!Array.isArray(px)) return;
+
+    switch (format) {
+      case "rgb":
+        final = `rgb(${[px[0]]}, ${px[1]}, ${px[2]})`;
+        break;
+      case "rgba":
+        final = `rgba(${[px[0]]}, ${px[1]}, ${px[2]}, ${opacity})`;
+        break;
+      default:
+        final = Utils.rgbToHex(px[0], px[1], px[2]);
+    }
+
+    return final;
+  }
+
+  static drawPoint(x, y) {
+    stroke("black");
+    strokeWeight(50);
+    point(x, y);
+    noStroke();
+  }
+
+  static formatSeconds(seconds) {
+    return new Date(seconds * 1000).toISOString().slice(11, 19);
+  }
+
+  static formatDate(date) {
+    let dateStr = "";
+
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const arr = date.substring(0, 10).split("-");
+    const year = arr[0];
+    const month = arr[1];
+    const day = arr[2];
+
+    dateStr += `${monthNames[month - 1]} ${day}, ${year}`;
+
+    return dateStr;
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Utils);
 
 
 /***/ })

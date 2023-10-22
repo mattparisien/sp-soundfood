@@ -4,11 +4,14 @@ import PodcastApi from "./PodcastApi.js";
 class Player extends Module {
   hasPlayed = false;
   episode = null;
-  track = null;
+  trackName = null;
+  guestName = null;
+  releaseDate = null;
 
-  constructor() {
+  constructor(wrapper) {
     super();
-    this.episodeId = parseInt(window.location.search.substring(12));
+    this.el = wrapper;
+    this.episodeId = parseInt(window.location.search.substring(12) - 1);
     this.api = new PodcastApi();
 
     this.init();
@@ -17,9 +20,14 @@ class Player extends Module {
   async init() {
     try {
       this.episode = await this.api.getEpisode(this.episodeId);
+
+      this.trackName = this.episode.trackName;
+      this.releaseDate = this.episode.releaseDate;
+
       this.audio = Module.get("Audio")[0];
       this.audio?.load(this.episode.episodeUrl);
-      Module.get("Interface")[0]?.init();
+
+      Module.get("Interface")[0]?.init(this.trackName, this.releaseDate);
     } catch (err) {
       console.log(Module.get("Error")[0]);
       Module.get("Error")[0]?.setError(

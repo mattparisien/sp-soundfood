@@ -1,4 +1,5 @@
 import Module from "./Module.js";
+import Utils from "./Utils";
 
 class Interface extends Module {
   constructor() {
@@ -84,7 +85,11 @@ class Interface extends Module {
     });
   }
 
-  init() {
+  init(trackName, releaseDate) {
+    
+    this.els.title.node.innerText = trackName.split(/[:|]|with/)[0].trim();
+    this.els.date.node.innerText = Utils.formatDate(releaseDate);
+
     setTimeout(() => {
       this.initListeners();
     }, 1000);

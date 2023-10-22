@@ -57,6 +57,12 @@ class Controls extends Module {
       Module.get("Audio")[0].getProgress()
     );
   }
+
+  setEndTIme() {
+    this.endTime.innerText = Utils.formatSeconds(
+      Module.get("Audio")[0].getDuration()
+    );
+  }
 }
 
 export default Controls;
