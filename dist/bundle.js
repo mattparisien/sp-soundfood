@@ -21221,7 +21221,7 @@ class PodcastApi extends Module/* default */.Z {
     this.media = "podcast";
     this.entity = "podcastEpisode";
     this.limit = 100;
-    this.proxyUrl = "http://localhost:3000/episodes";
+    this.proxyUrl = "https://sf-proxy-200fa2f17b47.herokuapp.com/episodes";
   }
 
   async getEpisodes() {
