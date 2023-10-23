@@ -2,6 +2,7 @@ import Module from "./Module.js";
 import PodcastApi from "./PodcastApi.js";
 
 class Player extends Module {
+  isReady = false;
   hasPlayed = false;
   episode = null;
   trackName = null;
@@ -15,6 +16,11 @@ class Player extends Module {
     this.api = new PodcastApi();
 
     this.init();
+  }
+
+  setReady() {
+    this.isReady = true;
+    this.el.classList.add("is-ready");
   }
 
   async init() {

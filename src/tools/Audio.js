@@ -7,6 +7,13 @@ class Audio extends Module {
     this.isPlaying = false;
   }
 
+  onLoad(onLoadCb) {
+    console.log(onLoadCb);
+    this.el.addEventListener("loadeddata", () => {
+      onLoadCb?.();
+    });
+  }
+
   play() {
     this.el.play();
     this.isPlaying = true;
@@ -41,15 +48,23 @@ class Audio extends Module {
   }
 
   setProgressBasedOnClick(progressPercent) {
-    
     const progress =
       this.getProgressDurationFromProgressPercent(progressPercent);
     this.setProgress(progress);
   }
 
   load(track) {
+    const onLoadCb = () => {
+      const m1 = Module.get("Controls")[0];
+      const m2 = Module.get("Player")[0];
+
+      m1?.setEndTime.bind(m1)();
+      m2?.setReady.bind(m2)();
+    };
+
     this.track = track;
     this.setTrack();
+    this.onLoad(onLoadCb);
   }
 
   togglePlayState() {

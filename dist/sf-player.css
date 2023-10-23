@@ -99,6 +99,11 @@ body {
   align-items: center;
   justify-content: space-between;
   position: relative;
+  transition: opacity 300ms ease;
+}
+
+.sf-player .sf-player-wrapper:not(.sf-player.is-ready .sf-player-wrapper) {
+  opacity: 0;
 }
 
 .sf-player-error {
@@ -177,7 +182,6 @@ body {
   position: relative;
   transition: height 300ms ease;
 }
-
 
 .sf-player-timeline:hover {
   cursor: pointer;

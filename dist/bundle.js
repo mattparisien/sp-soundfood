@@ -17311,6 +17311,13 @@ class Audio extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z 
     this.isPlaying = false;
   }
 
+  onLoad(onLoadCb) {
+    console.log(onLoadCb);
+    this.el.addEventListener("loadeddata", () => {
+      onLoadCb?.();
+    });
+  }
+
   play() {
     this.el.play();
     this.isPlaying = true;
@@ -17345,15 +17352,23 @@ class Audio extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z 
   }
 
   setProgressBasedOnClick(progressPercent) {
-    
     const progress =
       this.getProgressDurationFromProgressPercent(progressPercent);
     this.setProgress(progress);
   }
 
   load(track) {
+    const onLoadCb = () => {
+      const m1 = _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Controls")[0];
+      const m2 = _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Player")[0];
+
+      m1?.setEndTime.bind(m1)();
+      m2?.setReady.bind(m2)();
+    };
+
     this.track = track;
     this.setTrack();
+    this.onLoad(onLoadCb);
   }
 
   togglePlayState() {
@@ -17394,7 +17409,7 @@ class Controls extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ 
     super();
     this.wrapper = wrapper;
     this.currTime = wrapper.querySelector("[data-control='currTime']");
-    this.endTime = wrapper.querySelector("[data-control='endime']");
+    this.endTime = wrapper.querySelector("[data-control='endTime']");
     this.playBtn = wrapper.querySelector("[data-control='playBtn']");
     this.timeline = wrapper.querySelector("[data-control='timeline']");
     this.progress = wrapper.querySelector("[data-control='progress']");
@@ -17443,7 +17458,8 @@ class Controls extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ 
     );
   }
 
-  setEndTIme() {
+  setEndTime() {
+    
     this.endTime.innerText = _Utils_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z.formatSeconds(
       _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Audio")[0].getDuration()
     );
@@ -17665,6 +17681,7 @@ class Module {
 
 
 class Player extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+  isReady = false;
   hasPlayed = false;
   episode = null;
   trackName = null;
@@ -17678,6 +17695,11 @@ class Player extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z
     this.api = new _PodcastApi_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z();
 
     this.init();
+  }
+
+  setReady() {
+    this.isReady = true;
+    this.el.classList.add("is-ready");
   }
 
   async init() {

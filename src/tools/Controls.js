@@ -9,7 +9,7 @@ class Controls extends Module {
     super();
     this.wrapper = wrapper;
     this.currTime = wrapper.querySelector("[data-control='currTime']");
-    this.endTime = wrapper.querySelector("[data-control='endime']");
+    this.endTime = wrapper.querySelector("[data-control='endTime']");
     this.playBtn = wrapper.querySelector("[data-control='playBtn']");
     this.timeline = wrapper.querySelector("[data-control='timeline']");
     this.progress = wrapper.querySelector("[data-control='progress']");
@@ -58,7 +58,8 @@ class Controls extends Module {
     );
   }
 
-  setEndTIme() {
+  setEndTime() {
+    
     this.endTime.innerText = Utils.formatSeconds(
       Module.get("Audio")[0].getDuration()
     );
