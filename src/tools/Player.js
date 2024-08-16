@@ -1,5 +1,6 @@
 import Module from "./Module.js";
 import PodcastApi from "./PodcastApi.js";
+import Utils from "./Utils.js";
 
 class Player extends Module {
   isReady = false;
@@ -47,11 +48,20 @@ class Player extends Module {
     if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
   }
 
-  initAnimation(onAnimCb) {
-    onAnimCb?.(this.audio);
+  updateTimeline(progressPercent) {
+    console.log("hi");
+    Module.get("RangeSlider").forEach((slider) => {
+      slider.setPos(progressPercent);
+    });
+  }
+
+  initAnimation(onAnimCb, e) {
+    const progressPercent = e.target.currentTime / e.target.duration;
+
+    this.updateTimeline(progressPercent);
 
     this.animationFrame = requestAnimationFrame(
-      this.initAnimation.bind(this, () => onAnimCb(this.audio))
+      this.initAnimation.bind(this, onAnimCb, e)
     );
   }
 }

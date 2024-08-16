@@ -11,29 +11,14 @@ class Controls extends Module {
     this.currTime = wrapper.querySelector("[data-control='currTime']");
     this.endTime = wrapper.querySelector("[data-control='endTime']");
     this.playBtn = wrapper.querySelector("[data-control='playBtn']");
-    this.timeline = wrapper.querySelector("[data-control='timeline']");
-    this.progress = wrapper.querySelector("[data-control='progress']");
     this.playSvg = document.getElementById("playSvg");
     this.pauseSvg = document.getElementById("pauseSvg");
 
-    this.tlWidth = this.timeline.getBoundingClientRect().width;
   }
 
   updateCurrTime() {}
 
-  updateTimeline() {
-    const percent = Module.get("Audio")[0].getProgressPercent();
-    this.progress.style.width = this.tlWidth * percent + "px";
-  }
 
-  setProgressWidth(cb, e) {
-    const x = e.clientX - this.timeline.getBoundingClientRect().left;
-
-    const percent = x / this.tlWidth;
-    this.progress.style.width = this.tlWidth * percent + "px";
-
-    cb?.(percent);
-  }
 
   toggleBtn() {
     if (!this.hasPlayed) {
@@ -52,14 +37,13 @@ class Controls extends Module {
     this.isPause = !this.isPause;
   }
 
-  setCurrTime() {
+  setCurrTime(func) {
     this.currTime.innerText = Utils.formatSeconds(
       Module.get("Audio")[0].getProgress()
     );
   }
 
   setEndTime() {
-    
     this.endTime.innerText = Utils.formatSeconds(
       Module.get("Audio")[0].getDuration()
     );

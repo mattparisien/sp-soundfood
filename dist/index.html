@@ -1,19 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body style="height: 100vh;">
-    <iframe
-    frameborder="0"
-    scrolling="no"
-    id="sf-player"
-    allow="true"
-    src="./sf-player.html?episode-id=4"
-    style="width: 100%; min-height: 420px;"
-    ></iframe>
-  </body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>SF Player</title><script defer="defer" src="bundle.js"></script><link href="styles.css" rel="stylesheet"></head><body><div class="sf-player" id="sf-player" data-player-el="root" data-module-podcast data-module-player data-module-interface><div class="sf-player-wrapper"><div class="sf-player-topBar"><div></div><div class="sf-player-subscriptions"><div>Subscribe:</div><a href="https://podcasts.apple.com/ca/podcast/soundfood/id1539431210" target="_blank" rel="noreferrer,noopener">Apple Podcasts</a><div>•</div><a href="https://podcasts.google.com/search/soundfood" target="_blank" rel="noreferrer,noopener">Google Podcasts</a></div></div><div class="sf-player-text"><div class="sf-player-date" data-player-el="date"></div><div class="sf-player-title" data-player-el="title">evolution through integration</div><div class="sf-player-error" data-module-error>Oops! Looks like there's an error.</div></div><div class="sf-player-controls" data-player-el="controls" data-module-controls><button class="sf-player-playBtn" data-player-el="action" data-control="playBtn" data-ui-action="click,Audio;togglePlayState-Controls;toggleBtn"><svg viewBox="0 0 40 40" class="sf-player-playBtn--svg" id="playSvg"><path d="M3 40V0l33.6 20L3 40Z"/></svg> <svg viewBox="0 0 40 40" class="sf-player-pause--svg" id="pauseSvg"><path d="M34 0H24v40h10V0ZM16 0H6v40h10V0Z"/></svg><div class="sf-player-playBtn--circle"></div></button><div class="sf-player-controls--timeStamp"><span class="track-time-current" data-player-el="currTime" data-control="currTime">00:00:00</span><span>/</span><span class="track-time-end" data-player-el="duration" data-control="endTime">00:00:00</span></div><div class="sf-player-timeline" data-player-el="timeline" data-control="timeline" data-xpos="" data-module-rangeslider data-ui-action="mousedown,Audio;togglePlayState-Controls;setCurrTime(Audio.getProgress)|mouseup,Audio;togglePlayState"><div class="track" data-player-el="progress" data-control="progress" data-rangeslider-progressel="true"><div class="track-inner"><div class="track-bullet"></div></div></div><div class="background"></div></div></div><audio controls class="sf-player-audio" data-module-audio data-ui-action="pause,Player;cancelAnimation|play,Player;initAnimation">Your browser does not support the audio tag.</audio><div class="sf-player-overlay"></div></div><div class="sf-player-loader"></div></div><style>:root {
+        --rainbow: linear-gradient(
+          30deg,
+          #8c9fbe,
+          #e1abc9,
+          #edcb83,
+          #a5d6c2,
+          #b1cce0,
+          #8ca4c0
+        );
+      }
+      .outer-links {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .outer-links a:not(:first-child) {
+        margin-left: 0.5em;
+      }
+
+      .outer-links span {
+        margin-left: 0.5em;
+        opacity: 0.6;
+      }</style></body></html>

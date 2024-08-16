@@ -4,6 +4,7 @@ import Player from "./Player.js";
 import PodcastApi from "./PodcastApi.js";
 import Controls from "./Controls.js";
 import Error from "./Error.js";
+import RangeSlider from "./RangeSlider.js";
 
 class App {
   static modules = {};
@@ -20,7 +21,15 @@ class App {
   }
 
   init() {
-    const modules = [Interface, Audio, Player, PodcastApi, Controls, Error];
+    const modules = [
+      Interface,
+      Audio,
+      Player,
+      PodcastApi,
+      Controls,
+      Error,
+      RangeSlider,
+    ];
 
     modules.forEach((m) => {
       const name = m.name;

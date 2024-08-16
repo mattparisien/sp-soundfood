@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 require("dotenv").config({ path: "./.env" });
 
@@ -17,12 +18,22 @@ module.exports = (env) => {
         filename: "[name].css",
         chunkFilename: "[id].css",
       }),
+      new HtmlWebpackPlugin({
+        filename: "index.html",
+        title: "SOUNDFOOD Player",
+        template: "src/index-template.html",
+      }),
       new webpack.DefinePlugin({
         "process.env": {
           PROXY_URL: JSON.stringify(process.env.PROXY_URL),
         },
       }),
     ],
+    devServer: {
+      client: {
+        overlay: false,
+      },
+    },
     module: {
       rules: [
         {

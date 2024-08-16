@@ -17240,6 +17240,8 @@ window.addEventListener("load", init);
 /* harmony import */ var _PodcastApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(906);
 /* harmony import */ var _Controls_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(881);
 /* harmony import */ var _Error_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(30);
+/* harmony import */ var _RangeSlider_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(672);
+
 
 
 
@@ -17262,7 +17264,15 @@ class App {
   }
 
   init() {
-    const modules = [_Interface_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z, _Audio_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, _Player_js__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z, _PodcastApi_js__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, _Controls_js__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, _Error_js__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z];
+    const modules = [
+      _Interface_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z,
+      _Audio_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z,
+      _Player_js__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z,
+      _PodcastApi_js__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z,
+      _Controls_js__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z,
+      _Error_js__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z,
+      _RangeSlider_js__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z,
+    ];
 
     modules.forEach((m) => {
       const name = m.name;
@@ -17411,29 +17421,14 @@ class Controls extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ 
     this.currTime = wrapper.querySelector("[data-control='currTime']");
     this.endTime = wrapper.querySelector("[data-control='endTime']");
     this.playBtn = wrapper.querySelector("[data-control='playBtn']");
-    this.timeline = wrapper.querySelector("[data-control='timeline']");
-    this.progress = wrapper.querySelector("[data-control='progress']");
     this.playSvg = document.getElementById("playSvg");
     this.pauseSvg = document.getElementById("pauseSvg");
 
-    this.tlWidth = this.timeline.getBoundingClientRect().width;
   }
 
   updateCurrTime() {}
 
-  updateTimeline() {
-    const percent = _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Audio")[0].getProgressPercent();
-    this.progress.style.width = this.tlWidth * percent + "px";
-  }
 
-  setProgressWidth(cb, e) {
-    const x = e.clientX - this.timeline.getBoundingClientRect().left;
-
-    const percent = x / this.tlWidth;
-    this.progress.style.width = this.tlWidth * percent + "px";
-
-    cb?.(percent);
-  }
 
   toggleBtn() {
     if (!this.hasPlayed) {
@@ -17452,14 +17447,13 @@ class Controls extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ 
     this.isPause = !this.isPause;
   }
 
-  setCurrTime() {
+  setCurrTime(func) {
     this.currTime.innerText = _Utils_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z.formatSeconds(
       _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Audio")[0].getProgress()
     );
   }
 
   setEndTime() {
-    
     this.endTime.innerText = _Utils_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z.formatSeconds(
       _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("Audio")[0].getDuration()
     );
@@ -17510,7 +17504,7 @@ class Error extends _Module__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
 /* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Module_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(617);
-/* harmony import */ var _Utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(470);
+/* harmony import */ var _Utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(470);
 
 
 
@@ -17585,13 +17579,14 @@ class Interface extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */
           }
 
           node["addEventListener"](event, (e) => {
+            
             const func = () => {
               args.forEach((arg) => {
                 arg();
               });
             };
 
-            cb.bind(m, func, e)();
+            cb.bind(m, func, e, e.target)();
           });
         });
       });
@@ -17601,7 +17596,7 @@ class Interface extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */
   init(trackName, releaseDate) {
     
     this.els.title.node.innerText = trackName.split(/[:|]|with/)[0].trim();
-    this.els.date.node.innerText = _Utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z.formatDate(releaseDate);
+    this.els.date.node.innerText = _Utils_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z.formatDate(releaseDate);
 
     setTimeout(() => {
       this.initListeners();
@@ -17680,6 +17675,7 @@ class Module {
 
 
 
+
 class Player extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
   isReady = false;
   hasPlayed = false;
@@ -17726,11 +17722,20 @@ class Player extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z
     if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
   }
 
-  initAnimation(onAnimCb) {
-    onAnimCb?.(this.audio);
+  updateTimeline(progressPercent) {
+    console.log("hi");
+    _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z.get("RangeSlider").forEach((slider) => {
+      slider.setPos(progressPercent);
+    });
+  }
+
+  initAnimation(onAnimCb, e) {
+    const progressPercent = e.target.currentTime / e.target.duration;
+
+    this.updateTimeline(progressPercent);
 
     this.animationFrame = requestAnimationFrame(
-      this.initAnimation.bind(this, () => onAnimCb(this.audio))
+      this.initAnimation.bind(this, onAnimCb, e)
     );
   }
 }
@@ -21261,6 +21266,52 @@ class PodcastApi extends Module/* default */.Z {
 
 /***/ }),
 
+/***/ 672:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Module_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(617);
+
+
+class RangeSlider extends _Module_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+  currPos = null;
+  maxPos = null;
+
+  constructor(wrapper) {
+    super();
+    this.wrapper = wrapper;
+    this.progressEl = wrapper.querySelector("[data-rangeSlider-progressEl]");
+
+    this.currPos = 0;
+    this.maxPos = this.calcMaxPos();
+  }
+
+  calcMaxPos() {
+    return (
+      this.wrapper.getBoundingClientRect().width -
+      this.wrapper.getBoundingClientRect().left
+    );
+  }
+
+  setPos(percent) {
+    this.progressEl.style.width = this.maxPos * percent + "px";
+  }
+
+  onResize() {
+    window.addEventListener("resize", () => {
+      this.maxPos = this.calcMaxPos();
+    });
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RangeSlider);
+
+
+/***/ }),
+
 /***/ 470:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -21347,6 +21398,10 @@ class Utils {
     dateStr += `${monthNames[month - 1]} ${day}, ${year}`;
 
     return dateStr;
+  }
+
+  static getPercent(x, y) {
+    return x / y * 100;
   }
 }
 

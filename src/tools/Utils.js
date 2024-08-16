@@ -78,6 +78,10 @@ class Utils {
 
     return dateStr;
   }
+
+  static getPercent(x, y) {
+    return x / y * 100;
+  }
 }
 
 export default Utils;

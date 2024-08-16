@@ -1,5 +1,5 @@
 import Module from "./Module.js";
-import Utils from "./Utils";
+import Utils from "./Utils.js";
 
 class Interface extends Module {
   constructor() {
@@ -72,13 +72,14 @@ class Interface extends Module {
           }
 
           node["addEventListener"](event, (e) => {
+            
             const func = () => {
               args.forEach((arg) => {
                 arg();
               });
             };
 
-            cb.bind(m, func, e)();
+            cb.bind(m, func, e, e.target)();
           });
         });
       });

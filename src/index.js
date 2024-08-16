@@ -1,4 +1,4 @@
-import "./assets/styles/main.css";
+import "./assets/styles/main-player.css";
 import App from "./tools/App.js";
 
 const init = async () => {

@@ -2169,10 +2169,6 @@ body section:nth-child(1) .section-background {
   display: none;
 }
 
-.blog-item-top-wrapper {
-  margin-bottom: -5vw !important;
-}
-
 .blog-item-title h3 {
   margin-bottom: 0;
 }
